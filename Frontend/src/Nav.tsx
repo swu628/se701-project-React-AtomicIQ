@@ -10,7 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import ScienceIcon from "@mui/icons-material/Science";
 
 const pages = ["Levels", "Wiki"];
 const settings = ["Profile", "Logout"];
@@ -29,7 +29,10 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      style={{ background: "linear-gradient(-1deg, lightgray, blue)" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -38,7 +41,7 @@ function ResponsiveAppBar() {
             component="a"
             href="/profile"
             sx={{
-              mr: 2,
+              mr: 5,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
@@ -47,14 +50,14 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            <AdbIcon
+            <ScienceIcon
               sx={{
                 display: { xs: "none", md: "flex" },
                 mr: 1,
-                marginTop: 0.5,
+                mt: 0.5,
               }}
             />
-            LOGO
+            AtomicIQ
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -69,8 +72,9 @@ function ResponsiveAppBar() {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" />
+              <IconButton onClick={handleOpenUserMenu} sx={{ color: "white" }}>
+                <Avatar alt="Remy Sharp" sx={{ mr: 1.5 }} />
+                User
               </IconButton>
             </Tooltip>
             <Menu
