@@ -15,23 +15,37 @@
 /* Nav */
 
 .nav {
-    background-color: red;
+    background: linear-gradient(to right, rgb(83, 83, 137), rgb(22, 45, 145));
+    align-items: center;
     display: flex;
     height: 7vh;
-    align-items: center;
 }
 
 .nav ul {
-    padding-left: 1vw;
+    padding-left: 3vw;
     display: flex;
     text-decoration: none;
     list-style-type: none;
 }
 
 .nav li {
-    padding-right: 3vw;
+    margin-right: 4vw;
 }
 
-.nav .profile {
-    
+.nav li a {
+    display: flex;
+    color: rgb(255, 255, 255);
+    text-decoration: solid;
+    font-size: 1.7rem;
+}
+
+.nav li .profile-section{
+    display: flex;
+    align-items: center;
+}
+
+.nav li .profile-section .profile-icon {
+    width: 2.5vw;
+    height: auto;
+    margin-right: 0.5vw;
 }

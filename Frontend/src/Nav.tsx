@@ -1,3 +1,4 @@
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { NavLink } from "react-router-dom";
 
 export default function Nav() {
@@ -13,10 +14,13 @@ export default function Nav() {
         <li>
           <NavLink to="/wiki">Wiki</NavLink>
         </li>
+        <li style={{ marginLeft: "60vw" }}>
+          <NavLink to="/profile" className="profile-section">
+            <AccountCircleIcon className="profile-icon" />
+            User
+          </NavLink>
+        </li>
       </ul>
-      <div className="profile">
-        <NavLink to="/profile">User</NavLink>
-      </div>
     </div>
   );
 }
