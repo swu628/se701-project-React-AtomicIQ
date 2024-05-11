@@ -1,0 +1,33 @@
+/* App  */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Nav */
+
+.nav {
+    background-color: red;
+    display: flex;
+    height: 7vh;
+    align-items: center;
+}
+
+.nav ul {
+    padding-left: 1vw;
+    display: flex;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.nav li {
+    padding-right: 3vw;
+}
