@@ -5,17 +5,17 @@ export default function Nav() {
     <div className="nav">
       <ul>
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/home">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/">Levels</NavLink>
+          <NavLink to="/levels">Levels</NavLink>
         </li>
         <li>
-          <NavLink to="/">Wiki</NavLink>
+          <NavLink to="/wiki">Wiki</NavLink>
         </li>
       </ul>
-      <div className="right">
-        <NavLink to="/">User</NavLink>
+      <div className="profile">
+        <NavLink to="/profile">User</NavLink>
       </div>
     </div>
   );

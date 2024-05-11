@@ -1,7 +1,7 @@
 export default function Levels() {
   return (
     <div>
-      <p>hi</p>
+      <p>levels</p>
     </div>
   );
 }
