@@ -8,7 +8,9 @@ import Loader from "~/components/Loader/FullScreenLoader";
 interface UserSession {
   username: string;
   password: string;
+  // TODO: add more attributes
 }
+
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
