@@ -7,6 +7,7 @@ import Profile from "./Pages/Profile";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import { Route, Routes, Navigate } from "react-router-dom";
+import Results from "./Pages/Results";
 
 function App() {
   return (
@@ -21,6 +22,15 @@ function App() {
             <>
               <Nav />
               <Home />
+            </>
+          }
+        />
+        <Route
+          path="/quiz/:id/results"
+          element={
+            <>
+              <Nav />
+              <Results />
             </>
           }
         />
