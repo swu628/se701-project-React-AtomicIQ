@@ -1,12 +1,19 @@
 /* App  */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .app {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+.backgroundImage {
+  background-image: url(./assets/chemistryBackground.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
