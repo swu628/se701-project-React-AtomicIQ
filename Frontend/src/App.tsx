@@ -26,7 +26,7 @@ function App() {
           }
         />
         <Route
-          path="/quiz/:id/results"
+          path="/quiz/:quizId/results"
           element={
             <>
               <Nav />
