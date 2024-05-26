@@ -70,7 +70,7 @@ export default function Profile() {
         sx={{ flex: 5, display: "flex", flexDirection: "column", marginTop: 3 }}
       >
         <Typography variant="h4" sx={{ alignSelf: "center" }}>
-          Badges & Achievements
+          Badges
         </Typography>
         <Divider
           sx={{ borderBottomWidth: 2, borderColor: "black", marginY: 1 }}
