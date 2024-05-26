@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Nav from "./Nav";
 import Home from "./Pages/Home";
@@ -9,6 +8,7 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import FlashCard from "./Pages/FlashCard";
 import Results from "./Pages/Results";
+import Wordle from "./Pages/Wordle.tsx";
 import flashcards from "./data/flashcards.json"; // Import the JSON data
 import badges from "./data/badges.json";
 
@@ -73,6 +73,15 @@ function App() {
             </>
           }
         />
+          <Route
+              path="/wordle"
+              element={
+                  <>
+                      <Nav />
+                      <Wordle cols={6} rows={5} />
+                  </>
+              }
+          />
       </Routes>
     </div>
   );
