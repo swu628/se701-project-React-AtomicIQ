@@ -7,6 +7,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/ui/button';
 
+import correctSoundFile from '../sounds/rightanswer.mp3';
+import incorrectSoundFile from '../sounds/wronganswer.mp3';
+
+// Not used
+import chemistryBackground from '../assets/chemistryBackground.jpg';
+
 type FlashcardProps = {
   cardData: Array<{ frontSide: string; backSide: string }>;
 };
@@ -27,6 +33,9 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   const [answers, setAnswers] = useState<AnswerData[]>([]);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+
+  const correctSound = new Audio(correctSoundFile);
+  const incorrectSound = new Audio(incorrectSoundFile);
 
   const total = cardData.length;
   const currentCard = cardData[currentIndex] || { frontSide: '', backSide: '' };
@@ -92,6 +101,12 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
     newAnswers[currentIndex] = { answer: userAnswer, correct };
     setAnswers(newAnswers);
     setErrorMessage('');
+
+    if (correct) {
+      correctSound.play();
+    } else {
+      incorrectSound.play();
+    }
   };
 
   useEffect(() => {
@@ -117,11 +132,10 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white space-y-4">
-      <div className="w-full max-w-lg p-4 bg-gray-800 rounded-lg shadow-lg">
+      <div className="w-full max-w-2xl p-4 bg-gray-800 rounded-lg shadow-lg">
         <button onClick={() => window.history.back()} className="mb-4 text-blue-300">&lt; Back</button>
-        <h1 className="text-2xl font-bold mb-4">Periodic Table of Elements</h1>
-        <p className="mb-2">Lesson 1</p>
-        <div className="flip-card w-full h-64">
+        <h1 className="text-2xl font-bold mb-4">Level 1</h1>
+        <div className="flip-card w-full h-72">
           <motion.div
             className={`flip-card-inner w-full h-full cursor-pointer ${isFlipped ? 'flipped' : ''}`}
             initial={false}
@@ -142,39 +156,45 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
             )}
           </motion.div>
         </div>
-        <form onSubmit={handleAnswerSubmit} className="flex flex-col items-center mt-4">
+        <form onSubmit={handleAnswerSubmit} className="flex items-center mt-4 space-x-4">
           <input 
             type="text" 
             value={userAnswer} 
             onChange={(e) => setUserAnswer(e.target.value)} 
-            className="p-2 mb-4 border rounded-lg text-black"
+            className={`p-2 border rounded-lg w-full ${isSubmitted && !isCorrect ? 'border-red-500' : ''} text-black`}
             placeholder="Enter your answer"
             required
             disabled={isSubmitted}
           />
-          {isCorrect !== null && (
-            <div className={`text-3xl ${isCorrect ? 'text-green-500' : 'text-red-500'}`}>
-              {isCorrect ? '✔️ Correct' : '❌ Incorrect'}
-            </div>
-          )}
-          <Button type="submit" className="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-700" disabled={isSubmitted}>Submit</Button>
+          <Button 
+            type="submit" 
+            className={`px-4 py-2 rounded-lg hover:bg-blue-700 ${isSubmitted ? (isCorrect ? 'bg-green-500' : 'bg-red-500') : 'bg-blue-500'}`} 
+            disabled={isSubmitted}
+          >
+            Submit
+          </Button>
         </form>
-        {errorMessage && (
-          <div className="text-red-500 text-lg mt-2">{errorMessage}</div>
+        {isCorrect !== null && (
+          <div className={`text-lg ${isCorrect ? 'text-green-500' : 'text-red-500'} mt-4 text-center`}>
+            {isCorrect ? 'Well done :)' : 'Try again later :('}
+          </div>
         )}
-        <div className="flex items-center justify-between mt-4">
+        {errorMessage && (
+          <div className="text-red-500 text-lg mt-4">{errorMessage}</div>
+        )}
+        <div className="flex items-center justify-center space-x-4 mt-10">
           <Button onClick={handleBack} className="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-700" disabled={currentIndex === 0}>
             <FaBackward className="size-6" />
           </Button>
+          <div className="text-lg">
+            {currentIndex + 1} / {total}
+          </div>
           <Button onClick={handleNext} className="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-700">
             <FaForward className="size-6" />
           </Button>
         </div>
         <div className="w-full h-2 bg-gray-700 mt-4">
           <div className="h-full bg-blue-500" style={{ width: `${progress}%` }}></div>
-        </div>
-        <div className="mt-2 text-lg">
-          {currentIndex + 1} / {total}
         </div>
       </div>
     </div>
