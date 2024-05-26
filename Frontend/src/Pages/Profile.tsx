@@ -3,6 +3,7 @@ import { Container, Typography, Grid, Divider } from "@mui/material";
 import ProfileTitle from "~/components/Profile/ProfileTitle.tsx";
 import Skills from "~/components/Profile/Skills";
 import Points from "~/components/Profile/Points";
+import Badges from "~/components/Profile/Badges";
 
 interface UserSession {
   username: string;
@@ -66,7 +67,7 @@ export default function Profile() {
         <Divider
           sx={{ borderBottomWidth: 2, borderColor: "black", marginY: 1 }}
         />
-        {/* TODO: badges component */}
+        <Badges />
       </Grid>
     </Container>
   );
