@@ -5,6 +5,7 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ResultsTable from "~/components/ResultsTable";
+import ResultsDisplay from "~/components/ResultsDisplay";
 
 const quizResults = [
   {
@@ -30,7 +31,12 @@ export default function Results() {
   return (
     <Box display="flex" mt="7.5vh" justifyContent="center">
       <Paper elevation={3} sx={{ width: "80vw", minHeight: "75vh", p: "2rem" }}>
-        <Stack display="flex" direction="column" gap="2rem">
+        <Stack
+          display="flex"
+          direction="column"
+          height="100%"
+          justifyContent="space-between"
+        >
           <Typography variant="h5" fontWeight="bold" alignSelf="center">
             Quiz Results
           </Typography>
@@ -38,6 +44,7 @@ export default function Results() {
             display="flex"
             direction="row"
             justifyContent="space-between"
+            alignItems="center"
             gap="10vw"
           >
             <Box>
@@ -45,7 +52,13 @@ export default function Results() {
                 <ResultsTable rows={quizResults} />
               </Paper>
             </Box>
-            <Box>Results Chart</Box>
+            <Box sx={{ width: "30vw", height: "28vh" }}>
+              <ResultsDisplay
+                correct={quizResults[0].value}
+                incorrect={quizResults[1].value}
+                skipped={quizResults[2].value}
+              />
+            </Box>
           </Stack>
           <Stack direction="row" justifyContent="space-between">
             <Button variant="contained" startIcon={<RedoIcon />}>
