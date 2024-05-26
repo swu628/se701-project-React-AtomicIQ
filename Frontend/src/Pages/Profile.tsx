@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Container, Typography, Grid, Divider } from "@mui/material";
 
-import ProfileTitle from "~/components/ui/ProfileTitle.tsx";
-import SkillsAndPoints from "~/components/ui/SkillsAndPoints";
+import ProfileTitle from "~/components/Profile/ProfileTitle.tsx";
+import Skills from "~/components/Profile/Skills";
+import Points from "~/components/Profile/Points";
 
 interface UserSession {
   username: string;
@@ -41,7 +42,13 @@ export default function Profile() {
         }}
       >
         <ProfileTitle username={userSession?.username ?? ""} />
-        <SkillsAndPoints />
+        <Grid
+          item
+          sx={{ display: "flex", flexDirection: "column", marginTop: 3 }}
+        >
+          <Skills />
+          <Points />
+        </Grid>
       </Grid>
       {/* Right */}
       <Divider
