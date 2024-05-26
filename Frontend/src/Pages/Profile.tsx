@@ -20,6 +20,12 @@ export default function Profile() {
     if (storedSession) {
       setUserSession(JSON.parse(storedSession) as UserSession);
     }
+
+    // Add background img
+    document.body.classList.add("backgroundImage");
+    return () => {
+      document.body.classList.remove("backgroundImage");
+    };
   }, []);
 
   return (
@@ -32,7 +38,7 @@ export default function Profile() {
         width: "80vw",
         boxShadow: 3,
         display: "flex",
-        backgroundColor: "#ffe57f",
+        backgroundColor: "white",
       }}
     >
       {/* Left */}
