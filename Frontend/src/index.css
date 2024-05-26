@@ -74,6 +74,7 @@
     @apply bg-background text-foreground;
   }
 }
+
 .background-blur-opacitySignin::before {
   content: "";
   position: fixed;
@@ -88,6 +89,7 @@
   opacity: 0.3;
   z-index: -1;
 }
+
 .background-blur-opacitySignUp::before {
   content: "";
   position: fixed;

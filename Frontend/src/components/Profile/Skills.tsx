@@ -21,12 +21,6 @@ const skills = [
   {
     name: "Element three",
   },
-  {
-    name: "Element four",
-  },
-  {
-    name: "Element five",
-  },
 ];
 
 export default function Skills() {

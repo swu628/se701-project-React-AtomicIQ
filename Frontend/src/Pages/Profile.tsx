@@ -20,17 +20,25 @@ export default function Profile() {
     if (storedSession) {
       setUserSession(JSON.parse(storedSession) as UserSession);
     }
+
+    // Add background img
+    document.body.classList.add("backgroundImage");
+    return () => {
+      document.body.classList.remove("backgroundImage");
+    };
   }, []);
 
   return (
     <Container
       sx={{
+        p: "2rem",
         marginTop: 3,
-        minHeight: "85vh",
-        minWidth: "95vw",
+        marginBottom: 3,
+        minHeight: "75vh",
+        width: "80vw",
         boxShadow: 3,
         display: "flex",
-        backgroundColor: "#ffe57f",
+        backgroundColor: "white",
       }}
     >
       {/* Left */}
@@ -55,14 +63,14 @@ export default function Profile() {
       {/* Right */}
       <Divider
         orientation="vertical"
-        sx={{ borderColor: "black", borderWidth: "0.1vw", minHeight: "88vh" }}
+        sx={{ borderColor: "black", borderWidth: "0.1vw", height: "auto" }}
       />
       <Grid
         container
         sx={{ flex: 5, display: "flex", flexDirection: "column", marginTop: 3 }}
       >
         <Typography variant="h4" sx={{ alignSelf: "center" }}>
-          Badges & Achievements
+          Badges
         </Typography>
         <Divider
           sx={{ borderBottomWidth: 2, borderColor: "black", marginY: 1 }}
