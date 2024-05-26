@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container, Paper, Typography, Box, Grid, Avatar } from "@mui/material";
+import { Container, Typography, Grid, Avatar, Divider } from "@mui/material";
 
 interface UserSession {
   username: string;
@@ -18,12 +18,6 @@ export default function Profile() {
     }
   }, []);
 
-  {
-    /* <p>profile</p>
-      <p>{userSession?.username}</p>
-      <p>{userSession?.password}</p> */
-  }
-
   return (
     <Container
       sx={{
@@ -35,6 +29,7 @@ export default function Profile() {
         display: "flex",
       }}
     >
+      {/* Profile & scores */}
       <Grid
         container
         sx={{
@@ -44,12 +39,25 @@ export default function Profile() {
           flexDirection: "column",
         }}
       >
-        <Grid item sx={{ display: "flex" }}>
-          <Avatar alt="Remy Sharp" />
-          <p>username</p>
+        {/* Profile section */}
+        <Grid item sx={{ display: "flex", marginTop: 3, justifyContent: "center", alignItems: "center" }}>
+          <Avatar alt="Remy Sharp"  sx={{ width: 100, height: 100, marginRight: 5 }} />
+          <Typography sx={{ fontWeight: 600, fontSize: "2rem", color: "black" }}>
+            {userSession?.username}
+          </Typography>
         </Grid>
-        <p>points</p>
+        <Grid item sx={{ display: "flex", flexDirection: "column", backgroundColor: "gray", marginTop: 5 }}>
+        {/* Skills section */}
+        <Typography variant="h4" sx={{ alignSelf: 'center' }}>Skills</Typography>
+        <Divider sx={{ borderBottomWidth: 2, borderColor: 'black', marginY: 1 }} />
+        {/* Points section */}
+        <Typography variant="h4" sx={{ alignSelf: 'center', marginTop: 2 }}>Points</Typography>
+        <Divider sx={{ borderBottomWidth: 2, borderColor: 'black', marginY: 1 }} />
+        <Typography>Points: 2</Typography>
+        <Typography>Points: 2</Typography>
+        </Grid>
       </Grid>
+      {/* Badges & achievements */}
       <Grid container sx={{ backgroundColor: "blue", flex: 5 }}>
         <p>badges</p>
       </Grid>
