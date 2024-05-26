@@ -1,0 +1,43 @@
+[
+    {
+      "frontSide": "H",
+      "backSide": "Hydrogen"
+    },
+    {
+      "frontSide": "He",
+      "backSide": "Helium"
+    },
+    {
+      "frontSide": "Li",
+      "backSide": "Lithium"
+    },
+    {
+      "frontSide": "Be",
+      "backSide": "Beryllium"
+    },
+    {
+      "frontSide": "B",
+      "backSide": "Boron"
+    },
+    {
+      "frontSide": "C",
+      "backSide": "Carbon"
+    },
+    {
+      "frontSide": "N",
+      "backSide": "Nitrogen"
+    },
+    {
+      "frontSide": "O",
+      "backSide": "Oxygen"
+    },
+    {
+      "frontSide": "F",
+      "backSide": "Fluorine"
+    },
+    {
+      "frontSide": "Ne",
+      "backSide": "Neon"
+    }
+  ]
+  
