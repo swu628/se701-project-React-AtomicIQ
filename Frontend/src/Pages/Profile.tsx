@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Container, Typography, Grid, Divider } from "@mui/material";
-
 import ProfileTitle from "~/components/Profile/ProfileTitle.tsx";
 import Skills from "~/components/Profile/Skills";
 import Points from "~/components/Profile/Points";
@@ -30,6 +29,7 @@ export default function Profile() {
         minWidth: "95vw",
         boxShadow: 3,
         display: "flex",
+        backgroundColor: "#ffe57f",
       }}
     >
       {/* Left */}
@@ -50,6 +50,7 @@ export default function Profile() {
           <Points />
         </Grid>
       </Grid>
+
       {/* Right */}
       <Divider
         orientation="vertical"

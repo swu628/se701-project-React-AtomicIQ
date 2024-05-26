@@ -2,12 +2,32 @@ import { Typography, Grid, Divider, Paper } from "@mui/material";
 import { experimentalStyled as styled } from "@mui/material/styles";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  backgroundColor: "gray", // Element: color1, Property: color2
+  //   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(2),
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
+
+// Dummy skill set
+const skills = [
+  {
+    name: "Element one",
+  },
+  {
+    name: "Element two",
+  },
+  {
+    name: "Element three",
+  },
+  {
+    name: "Element four",
+  },
+  {
+    name: "Element five",
+  },
+];
 
 export default function Skills() {
   return (
@@ -21,11 +41,12 @@ export default function Skills() {
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
+        columns={{ xs: 4, sm: 8, md: 12.2 }}
+        sx={{ paddingTop: 3 }}
       >
-        {Array.from(Array(6)).map((_, index) => (
+        {skills.map((skill, index) => (
           <Grid item xs={2} sm={4} md={4} key={index}>
-            <Item>xs=2</Item>
+            <Item>{skill.name}</Item>
           </Grid>
         ))}
       </Grid>
