@@ -1,4 +1,5 @@
-import "./App.css";
+import React from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Nav from "./Nav";
 import Home from "./Pages/Home";
 import Levels from "./Pages/Levels";
@@ -6,8 +7,9 @@ import Wiki from "./Pages/Wiki";
 import Profile from "./Pages/Profile";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
-import { Route, Routes, Navigate } from "react-router-dom";
+import FlashCard from "./Pages/FlashCard";
 import Results from "./Pages/Results";
+import flashcards from "./data/flashcards.json"; // Import the JSON data
 
 function App() {
   return (
@@ -58,6 +60,15 @@ function App() {
             <>
               <Nav />
               <Profile />
+            </>
+          }
+        />
+        <Route
+          path="/flashcard"
+          element={
+            <>
+              <Nav />
+              <FlashCard cardData={flashcards} />
             </>
           }
         />
