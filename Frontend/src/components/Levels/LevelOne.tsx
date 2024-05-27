@@ -1,6 +1,6 @@
+"use client";
 import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "@mui/material";
-
+import { Button } from "../../components/ui/button";
 interface Props {
   isLevelOneVisible: boolean;
   toggleLevelOne: () => void;
@@ -17,9 +17,9 @@ export function LevelOne({ isLevelOneVisible, toggleLevelOne }: Props) {
           exit={{ x: "-100%" }}
           transition={{ duration: 0.5 }}
         >
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md text-center">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md text-center text-white">
             <h2 className="text-2xl mb-4">Level one</h2>
-            <p className="mb-4" style={{ color: "white" }}>
+            <p className="mb-4">
               1. Read the question on the front of the card.
             </p>
             <p className="mb-4">2. Enter your answer in the text field.</p>
