@@ -1,0 +1,134 @@
+[
+  {
+    "id": 0,
+    "icon": "AccountBoxIcon",
+    "name": "Getting Started",
+    "description": "Create an account"
+  },
+  {
+    "id": 1,
+    "icon": "AccessTimeIcon",
+    "name": "Persistent learner I",
+    "description": "Spend 10 minutes on the site"
+  },
+  {
+    "id": 2,
+    "icon": "AccessTimeIcon",
+    "name": "Persistent learner II",
+    "description": "Spend 30 minutes on the site"
+  },
+  {
+    "id": 3,
+    "icon": "AccessTimeIcon",
+    "name": "Persistent learner III",
+    "description": "Spend 1 hour on the site"
+  },
+  {
+    "id": 4,
+    "icon": "QuizIcon",
+    "name": "Quiz Wizard I",
+    "description": "Complete 1 flash card quiz"
+  },
+  {
+    "id": 5,
+    "icon": "QuizIcon",
+    "name": "Quiz Wizard II",
+    "description": "Complete 5 flash card quizzes"
+  },
+  {
+    "id": 6,
+    "icon": "QuizIcon",
+    "name": "Quiz Wizard III",
+    "description": "Complete 10 flash card quizzes"
+  },
+  {
+    "id": 7,
+    "icon": "SchoolIcon",
+    "name": "Elements Master I",
+    "description": "Achieve 80% or above in a flash card quiz"
+  },
+  {
+    "id": 8,
+    "icon": "SchoolIcon",
+    "name": "Elements Master II",
+    "description": "Achieve 90% or above in a flash card quiz"
+  },
+  {
+    "id": 9,
+    "icon": "SchoolIcon",
+    "name": "Elements Master III",
+    "description": "Achieve 100% in a flash card quiz"
+  },
+  {
+    "id": 10,
+    "icon": "TodayIcon",
+    "name": "Daily Visitor I",
+    "description": "Log in for 2 consecutive days"
+  },
+  {
+    "id": 11,
+    "icon": "TodayIcon",
+    "name": "Daily Visitor II",
+    "description": "Log in for 5 consecutive days"
+  },
+  {
+    "id": 12,
+    "icon": "TodayIcon",
+    "name": "Daily Visitor III",
+    "description": "Log in for 10 consecutive days"
+  },
+  {
+    "id": 13,
+    "icon": "ThumbUpAltIcon",
+    "name": "Correct Answers I",
+    "description": "Answer 10 questions in a quiz correctly"
+  },
+  {
+    "id": 14,
+    "icon": "ThumbUpAltIcon",
+    "name": "Correct Answers II",
+    "description": "Answer 50 questions in a quiz correctly"
+  },
+  {
+    "id": 15,
+    "icon": "ThumbUpAltIcon",
+    "name": "Correct Answers III",
+    "description": "Answer 100 questions in a quiz correctly"
+  },
+  {
+    "id": 16,
+    "icon": "AddLinkIcon",
+    "name": "Consistent Genius I",
+    "description": "Achieve 100% in 2 consecutive flash card quizzes"
+  },
+  {
+    "id": 17,
+    "icon": "AddLinkIcon",
+    "name": "Consistent Genius II",
+    "description": "Achieve 100% in 4 consecutive flash card quizzes"
+  },
+  {
+    "id": 18,
+    "icon": "AddLinkIcon",
+    "name": "Consistent Genius III",
+    "description": "Achieve 100% in 8 consecutive flash card quizzes"
+  },
+  {
+    "id": 19,
+    "icon": "EmojiEventsIcon",
+    "name": "Level Achiever I",
+    "description": "Achieve Level 2"
+  },
+  {
+    "id": 20,
+    "icon": "EmojiEventsIcon",
+    "name": "Level Achiever II",
+    "description": "Achieve Level 3"
+  },
+  {
+    "id": 21,
+    "icon": "EmojiEventsIcon",
+    "name": "Level Achiever III",
+    "description": "Achieve Level 5"
+  }
+]
