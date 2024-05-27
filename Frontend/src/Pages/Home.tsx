@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Container, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -36,13 +36,9 @@ export default function Home() {
     textDecoration: "none",
   };
 
-  const typographyStyles = {
-    mb: 30,
-  };
-
   return (
     <Container sx={containerStyles}>
-      <Typography variant="h2" sx={typographyStyles}>
+      <Typography variant="h2" sx={{ mb: 30 }}>
         AtomicIQ
       </Typography>
       <Link to="/flashcard" style={{ textDecoration: "none" }}>
