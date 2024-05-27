@@ -27,6 +27,16 @@ export default function Levels() {
     backgroundColor: "white",
   };
 
+  const timelineIconStyles = {
+    p: 2,
+    width: "100px",
+    height: "100px",
+  };
+
+  const connectorStyles = {
+    height: "3vh",
+  };
+
   return (
     <Container sx={containerStyles}>
       <Typography
@@ -38,11 +48,9 @@ export default function Levels() {
       <Timeline>
         <TimelineItem position="right">
           <TimelineSeparator>
-            <TimelineConnector />
             <TimelineDot>
-              <FastfoodIcon />
+              <FastfoodIcon sx={timelineIconStyles} />
             </TimelineDot>
-            <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent sx={{ py: "3vh", px: 2 }}>
             <Typography variant="h6" component="span">
@@ -53,13 +61,12 @@ export default function Levels() {
         </TimelineItem>
         <TimelineItem position="left">
           <TimelineSeparator>
-            <TimelineConnector />
+            <TimelineConnector sx={connectorStyles} />
             <TimelineDot color="primary">
-              <LaptopMacIcon />
+              <LaptopMacIcon sx={timelineIconStyles} />
             </TimelineDot>
-            <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent sx={{ py: "12px", px: 2 }}>
+          <TimelineContent sx={{ py: "6vh", px: 2 }}>
             <Typography variant="h6" component="span">
               Level 2
             </Typography>
@@ -68,13 +75,12 @@ export default function Levels() {
         </TimelineItem>
         <TimelineItem position="right">
           <TimelineSeparator>
-            <TimelineConnector />
+            <TimelineConnector sx={connectorStyles} />
             <TimelineDot color="primary" variant="outlined">
-              <HotelIcon />
+              <HotelIcon sx={timelineIconStyles} />
             </TimelineDot>
-            <TimelineConnector sx={{ bgcolor: "secondary.main" }} />
           </TimelineSeparator>
-          <TimelineContent sx={{ py: "12px", px: 2 }}>
+          <TimelineContent sx={{ py: "6vh", px: 2 }}>
             <Typography variant="h6" component="span">
               Level 3
             </Typography>
@@ -83,13 +89,13 @@ export default function Levels() {
         </TimelineItem>
         <TimelineItem position="left">
           <TimelineSeparator>
-            <TimelineConnector sx={{ bgcolor: "secondary.main" }} />
+            <TimelineConnector sx={connectorStyles} />
             <TimelineDot color="secondary">
-              <RepeatIcon />
+              <RepeatIcon sx={timelineIconStyles} />
             </TimelineDot>
-            <TimelineConnector />
+            <TimelineConnector sx={connectorStyles} />
           </TimelineSeparator>
-          <TimelineContent sx={{ py: "12px", px: 2 }}>
+          <TimelineContent sx={{ py: "6vh", px: 2 }}>
             <Typography variant="h6" component="span">
               Level ??
             </Typography>
