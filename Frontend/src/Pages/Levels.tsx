@@ -6,10 +6,7 @@ import {
   TimelineContent,
   TimelineDot,
 } from "@mui/lab";
-import FastfoodIcon from "@mui/icons-material/Fastfood";
-import LaptopMacIcon from "@mui/icons-material/LaptopMac";
-import HotelIcon from "@mui/icons-material/Hotel";
-import RepeatIcon from "@mui/icons-material/Repeat";
+
 import { LevelOne } from "~/components/Levels/LevelOne";
 import { LevelTwo } from "~/components/Levels/LevelTwo";
 import { LevelThree } from "~/components/Levels/LevelThree";
@@ -31,21 +28,29 @@ export default function Levels() {
   }, []);
 
   const containerStyles = {
-    p: "2rem",
+    p: { xs: "1rem", sm: "1.5rem", md: "2rem" },
     minHeight: "92.75vh",
-    width: "80vw",
+    width: { xs: "95vw", sm: "90vw", md: "80vw" },
     boxShadow: 3,
     backgroundColor: "white",
-  };
-
-  const timelineIconStyles = {
-    p: 2,
-    width: "100px",
-    height: "100px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   };
 
   const connectorStyles = {
-    height: "3vh",
+    height: { xs: "2vh", sm: "3vh", md: "4vh" },
+  };
+
+  const timelineDotStyles = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: { xs: "40px", sm: "60px", md: "80px", lg: "100px" },
+    height: { xs: "40px", sm: "60px", md: "80px", lg: "100px" },
+    borderWidth: 2,
+    borderColor: "blue",
+    borderStyle: "solid",
   };
 
   function toggleLevelOne() {
@@ -68,69 +73,73 @@ export default function Levels() {
     <Container sx={containerStyles}>
       <Typography
         variant="h2"
-        sx={{ display: "flex", justifyContent: "center" }}
+        sx={{ display: "flex", justifyContent: "center", mb: { xs: 2, md: 4 }, fontSize: { xs: "1.5rem", md: "2rem" } }}
       >
         Levelling
       </Typography>
-      <Timeline>
-        <TimelineItem position="right">
+      <Timeline position="alternate">
+        <TimelineItem>
           <TimelineSeparator>
             <Button onClick={toggleLevelOne}>
-              <TimelineDot>
-                <FastfoodIcon sx={timelineIconStyles} />
+              <TimelineDot sx={timelineDotStyles}>
+                {/* Use your custom SVG or image here */}
+                <img src="src/assets/level1.svg" alt="Level 1 Icon" />
               </TimelineDot>
             </Button>
           </TimelineSeparator>
-          <TimelineContent sx={{ py: "3vh", px: 2 }}>
+          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
             <Typography variant="h6" component="span">
               Level 1
             </Typography>
             <Typography>Description?</Typography>
           </TimelineContent>
         </TimelineItem>
-        <TimelineItem position="left">
+        <TimelineItem>
           <TimelineSeparator>
             <TimelineConnector sx={connectorStyles} />
             <Button onClick={toggleLevelTwo}>
-              <TimelineDot color="primary">
-                <LaptopMacIcon sx={timelineIconStyles} />
+              <TimelineDot color="primary" sx={timelineDotStyles}>
+                {/* Use your custom SVG or image here */}
+                <img src="src/assets/level2.svg" alt="Level 2 Icon" />
               </TimelineDot>
             </Button>
           </TimelineSeparator>
-          <TimelineContent sx={{ py: "6vh", px: 2 }}>
+          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
             <Typography variant="h6" component="span">
               Level 2
             </Typography>
             <Typography>Description?</Typography>
           </TimelineContent>
         </TimelineItem>
-        <TimelineItem position="right">
+        <TimelineItem>
           <TimelineSeparator>
             <TimelineConnector sx={connectorStyles} />
             <Button onClick={toggleLevelThree}>
-              <TimelineDot color="primary" variant="outlined">
-                <HotelIcon sx={timelineIconStyles} />
+              <TimelineDot color="primary" variant="outlined" sx={timelineDotStyles}>
+                {/* Use your custom SVG or image here */}
+                <img src="src/assets/level3.svg" alt="Level 3 Icon"/>
               </TimelineDot>
             </Button>
           </TimelineSeparator>
-          <TimelineContent sx={{ py: "6vh", px: 2 }}>
+          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
             <Typography variant="h6" component="span">
               Level 3
             </Typography>
             <Typography>Description?</Typography>
           </TimelineContent>
         </TimelineItem>
-        <TimelineItem position="left">
+        <TimelineItem>
           <TimelineSeparator>
             <TimelineConnector sx={connectorStyles} />
             <Button onClick={toggleMoreLevels}>
-              <TimelineDot color="secondary">
-                <RepeatIcon sx={timelineIconStyles} />
+              <TimelineDot color="secondary" sx={timelineDotStyles}>
+                {/* Use your custom SVG or image here */}
+                <img src="src/assets/level4.svg" alt="More Levels Icon" />
               </TimelineDot>
             </Button>
             <TimelineConnector sx={connectorStyles} />
           </TimelineSeparator>
-          <TimelineContent sx={{ py: "6vh", px: 2 }}>
+          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
             <Typography variant="h6" component="span">
               Level ??
             </Typography>
