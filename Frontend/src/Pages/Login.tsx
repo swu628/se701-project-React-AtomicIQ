@@ -27,7 +27,7 @@ function Login() {
     document.body.classList.add("background-blur-opacitySignin");
 
     return () => {
-      document.body.classList.remove("background-blur-opacity");
+      document.body.classList.remove("background-blur-opacitySignin");
     };
   }, []);
   const handlePasswordChange = (
