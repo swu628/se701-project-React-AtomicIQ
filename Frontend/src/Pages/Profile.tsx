@@ -43,29 +43,25 @@ export default function Profile() {
       }}
     >
       {/* Left */}
-      <Stack display="flex" flex={5} direction="column" mr="1rem" gap="1rem">
+      <Stack display="flex" flex={5} direction="column" mr="2rem" gap="1rem">
         <ProfileTitle username={userSession?.username ?? ""} />
         <Levels level={1} progress={25} />
         <Points />
       </Stack>
 
-      {/* Right */}
       <Divider
         orientation="vertical"
         sx={{ borderColor: "black", borderWidth: "0.1vw", height: "auto" }}
       />
-      <Grid
-        container
-        sx={{ flex: 5, display: "flex", flexDirection: "column", marginTop: 3 }}
-      >
-        <Typography variant="h4" sx={{ alignSelf: "center" }}>
+
+      {/* Right */}
+      <Stack display="flex" flex={5} direction="column" ml="2rem">
+        <Typography variant="h5" sx={{ marginLeft: "1rem" }}>
           Badges
         </Typography>
-        <Divider
-          sx={{ borderBottomWidth: 2, borderColor: "black", marginY: 1 }}
-        />
+        <Divider sx={{ borderBottomWidth: 2, borderColor: "black" }} />
         <Badges />
-      </Grid>
+      </Stack>
     </Container>
   );
 }

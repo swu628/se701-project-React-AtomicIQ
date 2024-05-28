@@ -1,11 +1,4 @@
-import {
-  Typography,
-  Divider,
-  Grid,
-  LinearProgress,
-  ThemeProvider,
-  Stack,
-} from "@mui/material";
+import { Typography, Divider, Grid, ThemeProvider, Stack } from "@mui/material";
 import {
   experimentalStyled as styled,
   createTheme,
@@ -55,12 +48,13 @@ const theme = createTheme({
 export default function Points() {
   const totalElements = 20;
   const learnedElements = 5;
-  const progress = (learnedElements / totalElements) * 100;
 
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="column">
-        <Typography variant="h5">Points</Typography>
+        <Typography variant="h5" sx={{ marginLeft: "1rem" }}>
+          Points
+        </Typography>
         <Divider sx={{ borderBottomWidth: 2, borderColor: "black" }} />
         {/* Quiz points */}
         <Grid

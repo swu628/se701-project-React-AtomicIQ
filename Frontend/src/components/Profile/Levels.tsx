@@ -8,7 +8,9 @@ interface LevelsProps {
 export default function Levels({ level, progress }: LevelsProps) {
   return (
     <Stack direction="column">
-      <Typography variant="h5">Level {level}</Typography>
+      <Typography variant="h5" sx={{ marginLeft: "1rem" }}>
+        Level {level}
+      </Typography>
       <Box m="0.5rem 0 0.5rem 0" sx={{ display: "flex", alignItems: "center" }}>
         <Box sx={{ width: "100%", mr: 1 }}>
           <LinearProgress
