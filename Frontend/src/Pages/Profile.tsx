@@ -4,15 +4,13 @@ import ProfileTitle from "~/components/Profile/ProfileTitle.tsx";
 import Points from "~/components/Profile/Points";
 import Badges from "~/components/Profile/Badges";
 import Levels from "~/components/Profile/Levels";
-import { BadgeData } from "~/types/entities";
+import { Badge, UserSession } from "~/types/entities";
 
-interface UserSession {
-  username: string;
-  password: string;
-  // TODO: add more attributes
+interface ProfileProps {
+  badgeData: Badge[];
 }
 
-export default function Profile({ badgeData }: BadgeData) {
+export default function Profile({ badgeData }: ProfileProps) {
   const [userSession, setUserSession] = useState<UserSession | null>(null);
 
   useEffect(() => {
@@ -61,7 +59,10 @@ export default function Profile({ badgeData }: BadgeData) {
           Badges
         </Typography>
         <Divider sx={{ borderBottomWidth: 2, borderColor: "black" }} />
-        <Badges badgeData={badgeData} />
+        <Badges
+          badgeData={badgeData}
+          existingBadges={userSession?.badges || []}
+        />
       </Stack>
     </Container>
   );

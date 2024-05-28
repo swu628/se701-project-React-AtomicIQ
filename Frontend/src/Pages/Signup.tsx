@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { UserCircleIcon, LockClosedIcon } from "@heroicons/react/20/solid";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
+import { UserSession } from "~/types/entities";
 function Signup() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -29,9 +30,10 @@ function Signup() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const userSession = {
+    const userSession: UserSession = {
       username: username,
       password: password,
+      badges: [0],
     };
 
     localStorage.setItem("userSession", JSON.stringify(userSession));

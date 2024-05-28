@@ -14,7 +14,7 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import React from "react";
-import { BadgeData } from "~/types/entities";
+import { Badge } from "~/types/entities";
 
 // Define icon components
 const icons = {
@@ -28,13 +28,18 @@ const icons = {
   EmojiEventsIcon: EmojiEventsIcon,
 };
 
-export default function Badges({ badgeData }: BadgeData) {
+interface BadgesProps {
+  badgeData: Badge[];
+  existingBadges: number[];
+}
+
+export default function Badges({ badgeData, existingBadges }: BadgesProps) {
   return (
     <Grid container justifyContent="center" sx={{ marginTop: "2rem" }}>
       <Grid item p="0 !important" sx={{ overflowY: "auto" }}>
         <List
           sx={{
-            width: "30vw",
+            maxWidth: "40vw",
             height: "65vh",
             padding: 0,
             marginRight: "0.5rem",
@@ -45,17 +50,17 @@ export default function Badges({ badgeData }: BadgeData) {
               key={index}
               sx={{
                 borderRadius: "5px",
-                backgroundColor: "#b0b0b0",
-                opacity: 0.4,
+                backgroundColor: existingBadges.includes(index)
+                  ? "#FFD700"
+                  : "#b0b0b0",
+                opacity: existingBadges.includes(index) ? 1 : 0.4,
                 marginBottom: "1rem",
                 padding: "0.5rem",
                 border: "3px solid #008000",
               }}
             >
-              <ListItemAvatar>
-                <ListItemAvatar>
-                  {React.createElement(icons[badge.icon as keyof typeof icons])}
-                </ListItemAvatar>
+              <ListItemAvatar sx={{ textAlign: "center" }}>
+                {React.createElement(icons[badge.icon as keyof typeof icons])}
               </ListItemAvatar>
               <ListItemText
                 primary={badge.name}
