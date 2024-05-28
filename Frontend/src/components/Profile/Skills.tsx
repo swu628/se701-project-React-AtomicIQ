@@ -26,11 +26,10 @@ const skills = [
 export default function Skills() {
   return (
     <>
-      <Typography variant="h4" sx={{ alignSelf: "center" }}>
-        Skills
-      </Typography>
+      <Typography variant="h5">Skills</Typography>
       <Divider
-        sx={{ borderBottomWidth: 2, borderColor: "black", marginY: 1 }}
+        variant="fullWidth"
+        sx={{ borderBottomWidth: 2, marginRight: "1rem" }}
       />
       <Grid
         container

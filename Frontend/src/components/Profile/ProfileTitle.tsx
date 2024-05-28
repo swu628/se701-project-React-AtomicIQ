@@ -10,16 +10,13 @@ export default function ProfileTitle({ username }: usernameProp) {
         item
         sx={{
           display: "flex",
-          marginTop: 3,
           justifyContent: "center",
           alignItems: "center",
         }}
+        gap={3}
       >
-        <Avatar
-          alt="Remy Sharp"
-          sx={{ width: 100, height: 100, marginRight: 5 }}
-        />
-        <Typography sx={{ fontWeight: 600, fontSize: "2rem", color: "black" }}>
+        <Avatar alt="Remy Sharp" sx={{ width: 64, height: 64 }} />
+        <Typography variant="h4" sx={{ fontWeight: 600, color: "black" }}>
           {username}
         </Typography>
       </Grid>

@@ -4,6 +4,7 @@ import ProfileTitle from "~/components/Profile/ProfileTitle.tsx";
 import Skills from "~/components/Profile/Skills";
 import Points from "~/components/Profile/Points";
 import Badges from "~/components/Profile/Badges";
+import Levels from "~/components/Profile/Levels";
 
 interface UserSession {
   username: string;
@@ -31,14 +32,15 @@ export default function Profile() {
   return (
     <Container
       sx={{
-        p: "2rem",
-        marginTop: 3,
-        marginBottom: 3,
+        p: "2rem !important",
+        marginTop: "7.5vh",
+        marginBottom: "7.5vh",
         minHeight: "75vh",
         width: "80vw",
         boxShadow: 3,
         display: "flex",
         backgroundColor: "white",
+        borderRadius: 1,
       }}
     >
       {/* Left */}
@@ -48,14 +50,12 @@ export default function Profile() {
           flex: 5,
           display: "flex",
           flexDirection: "column",
+          marginRight: "1rem",
         }}
       >
         <ProfileTitle username={userSession?.username ?? ""} />
-        <Grid
-          item
-          sx={{ display: "flex", flexDirection: "column", marginTop: 3 }}
-        >
-          <Skills />
+        <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+          <Levels level={1} progress={25} />
           <Points />
         </Grid>
       </Grid>
