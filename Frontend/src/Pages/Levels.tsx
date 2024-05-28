@@ -82,7 +82,6 @@ export default function Levels() {
           <TimelineSeparator>
             <Button onClick={toggleLevelOne}>
               <TimelineDot sx={timelineDotStyles}>
-                {/* Use your custom SVG or image here */}
                 <img src="src/assets/level1.svg" alt="Level 1 Icon" />
               </TimelineDot>
             </Button>
@@ -99,7 +98,6 @@ export default function Levels() {
             <TimelineConnector sx={connectorStyles} />
             <Button onClick={toggleLevelTwo}>
               <TimelineDot color="primary" sx={timelineDotStyles}>
-                {/* Use your custom SVG or image here */}
                 <img src="src/assets/level2.svg" alt="Level 2 Icon" />
               </TimelineDot>
             </Button>
@@ -116,7 +114,6 @@ export default function Levels() {
             <TimelineConnector sx={connectorStyles} />
             <Button onClick={toggleLevelThree}>
               <TimelineDot color="primary" variant="outlined" sx={timelineDotStyles}>
-                {/* Use your custom SVG or image here */}
                 <img src="src/assets/level3.svg" alt="Level 3 Icon"/>
               </TimelineDot>
             </Button>
@@ -133,7 +130,6 @@ export default function Levels() {
             <TimelineConnector sx={connectorStyles} />
             <Button onClick={toggleMoreLevels}>
               <TimelineDot color="secondary" sx={timelineDotStyles}>
-                {/* Use your custom SVG or image here */}
                 <img src="src/assets/level4.svg" alt="More Levels Icon" />
               </TimelineDot>
             </Button>

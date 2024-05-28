@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaForward, FaBackward } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import "../index.css";
 import { Button } from "../components/ui/button";
 
 // Import the sound effects when the user got the questions right/wrong
@@ -39,6 +39,13 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   const total = cardData.length;
   const currentCard = cardData[currentIndex] || { frontSide: "", backSide: "" };
   const [cardBack, setCardBack] = useState(currentCard.backSide);
+
+  useEffect(() => {
+    document.body.classList.add("backgroundImage");
+    return () => {
+      document.body.classList.remove("backgroundImage");
+    };
+  }, []);
 
   useEffect(() => {
     if (answers[currentIndex]) {
@@ -147,8 +154,8 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   }, [currentIndex, isSubmitted]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white space-y-4">
-      <div className="w-full max-w-2xl p-4 bg-gray-800 rounded-lg shadow-lg">
+    <div className="flex flex-col items-center justify-center min-h-screen text-white space-y-4">
+      <div className="w-full max-w-2xl p-4 bg-gray-800 rounded-lg shadow-lg relative z-10">
         <div className="flex justify-between mb-4">
           <button
             onClick={() => window.history.back()}
