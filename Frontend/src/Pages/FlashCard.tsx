@@ -77,21 +77,24 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   };
 
   const handleNext = () => {
-    // Show error message if the user did not submit a answer before proceeding to the next question
     if (!isSubmitted) {
-      setErrorMessage("Please submit an answer before proceeding to the next question.");
-      return;
+      const newAnswers = [...answers];
+      newAnswers[currentIndex] = { answer: "", correct: false };
+      setAnswers(newAnswers);
+      setErrorMessage("");
+      setIsSubmitted(true);
     }
     if (currentIndex < total - 1) {
       setCurrentIndex((prev) => prev + 1);
       setProgress((prev) => prev + 100 / total);
       setErrorMessage("");
-      // navigate to the result page when the user reached to the last question and clicked on the next button
+      setIsSubmitted(false);
+    // navigate to the result page when the user reached to the last question and clicked on the next button
     } else if (currentIndex === total - 1) {
       navigate("/quiz/:id/results", { state: { answers } });
     }
   };
-  
+
   // When the user clicked on the back button
   const handleBack = () => {
     if (currentIndex > 0) {
@@ -121,7 +124,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
     }
   };
   
-  // SHow the rules when the show rules button is clicked
+  // Show the rules when the show rules button is clicked
   const toggleRules = () => {
   setShowRules((prev) => !prev);
   };
