@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Container, Typography, Grid, Divider } from "@mui/material";
+import { Container, Typography, Grid, Divider, Stack } from "@mui/material";
 import ProfileTitle from "~/components/Profile/ProfileTitle.tsx";
-import Skills from "~/components/Profile/Skills";
 import Points from "~/components/Profile/Points";
 import Badges from "~/components/Profile/Badges";
 import Levels from "~/components/Profile/Levels";
@@ -44,21 +43,11 @@ export default function Profile() {
       }}
     >
       {/* Left */}
-      <Grid
-        container
-        sx={{
-          flex: 5,
-          display: "flex",
-          flexDirection: "column",
-          marginRight: "1rem",
-        }}
-      >
+      <Stack display="flex" flex={5} direction="column" mr="1rem" gap="1rem">
         <ProfileTitle username={userSession?.username ?? ""} />
-        <Grid item sx={{ display: "flex", flexDirection: "column" }}>
-          <Levels level={1} progress={25} />
-          <Points />
-        </Grid>
-      </Grid>
+        <Levels level={1} progress={25} />
+        <Points />
+      </Stack>
 
       {/* Right */}
       <Divider
