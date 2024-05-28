@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import Home from "./Pages/Home";
 import Levels from "./Pages/Levels";
 import Wiki from "./Pages/Wiki";
+import SolidsLiquidsGases from "./Pages/Solids-Liquids-Gases";
 import Profile from "./Pages/Profile";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
@@ -42,6 +43,15 @@ function App() {
             <>
               <Nav />
               <Levels />
+            </>
+          }
+        />
+        <Route
+          path="/solids-liquids-gases"
+          element={
+            <>
+              <Nav />
+              <SolidsLiquidsGases />
             </>
           }
         />
