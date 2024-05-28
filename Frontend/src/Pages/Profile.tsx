@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Container, Typography, Grid, Divider, Stack } from "@mui/material";
+import { Container, Typography, Divider, Stack } from "@mui/material";
 import ProfileTitle from "~/components/Profile/ProfileTitle.tsx";
 import Points from "~/components/Profile/Points";
 import Badges from "~/components/Profile/Badges";
 import Levels from "~/components/Profile/Levels";
+import { BadgeData } from "~/types/entities";
 
 interface UserSession {
   username: string;
@@ -11,7 +12,7 @@ interface UserSession {
   // TODO: add more attributes
 }
 
-export default function Profile() {
+export default function Profile({ badgeData }: BadgeData) {
   const [userSession, setUserSession] = useState<UserSession | null>(null);
 
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function Profile() {
           Badges
         </Typography>
         <Divider sx={{ borderBottomWidth: 2, borderColor: "black" }} />
-        <Badges />
+        <Badges badgeData={badgeData} />
       </Stack>
     </Container>
   );
