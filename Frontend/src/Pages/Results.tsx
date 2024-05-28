@@ -3,24 +3,19 @@ import RedoIcon from "@mui/icons-material/Redo";
 import PreviewIcon from "@mui/icons-material/Preview";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import ResultsTable from "~/components/ResultsTable";
 import ResultsDisplay from "~/components/ResultsDisplay";
 
-const quizResults = [
-  {
-    label: "Correct",
-    value: 8,
-    expandedValues: [1, 2, 3, 4, 5, 7, 9, 10],
-  },
-  { label: "Incorrect", value: 1, expandedValues: [6] },
-  { label: "Skipped", value: 1, expandedValues: [8] },
-];
-
 export default function Results() {
-  const { quizId } = useParams();
-  console.log(quizId);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state || { answers: [] };
+  const { answers } = state;
+
+  const correct = answers.filter((answer: AnswerData) => answer.correct).length;
+  const incorrect = answers.filter((answer: AnswerData) => !answer.correct && answer.answer !== "").length;
+  const skipped = answers.filter((answer: AnswerData) => answer.answer === "").length;
 
   useEffect(() => {
     document.body.classList.add("backgroundImage");
@@ -30,7 +25,7 @@ export default function Results() {
   }, []);
 
   const handleRetakeQuiz = () => {
-    navigate("/flashcard"); 
+    navigate("/flashcard");
   };
 
   return (
@@ -54,15 +49,17 @@ export default function Results() {
           >
             <Box>
               <Paper sx={{ width: "30vw" }}>
-                <ResultsTable rows={quizResults} />
+                <ResultsTable
+                  rows={[
+                    { label: "Correct", value: correct, expandedValues: [] },
+                    { label: "Incorrect", value: incorrect, expandedValues: [] },
+                    { label: "Skipped", value: skipped, expandedValues: [] },
+                  ]}
+                />
               </Paper>
             </Box>
             <Box sx={{ width: "30vw", height: "28vh" }}>
-              <ResultsDisplay
-                correct={quizResults[0].value}
-                incorrect={quizResults[1].value}
-                skipped={quizResults[2].value}
-              />
+              <ResultsDisplay correct={correct} incorrect={incorrect} skipped={skipped} />
             </Box>
           </Stack>
           <Stack direction="row" justifyContent="space-between">
