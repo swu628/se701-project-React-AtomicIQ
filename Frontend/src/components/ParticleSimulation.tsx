@@ -62,14 +62,13 @@ const ParticleSimulation = ({ state, temperature, pressure }) => {
       const lineHeight = normalizedLogPressure * 0.6 * canvasHeight;
       
       console.log(lineHeight, pressure);
-      
+      ctx.fillStyle = "black";
       ctx.beginPath();
       ctx.moveTo(0, lineHeight);
-      ctx.lineTo(canvasWidth, lineHeight);
-      ctx.strokeStyle = "black"; // Set the line color
+      ctx.fillRect(0, lineHeight-20, canvasWidth, 20);
+      ctx.fillRect((canvasWidth - 100)/2, 0, 100, lineHeight);
       ctx.stroke();
-
-
+      
       const gravity = 0.9;
       const repulsionForce = (1000000 - pressure) / 2000000;
       const dampeningFactor = 0.9;
