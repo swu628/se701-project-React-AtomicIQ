@@ -155,7 +155,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-white space-y-4">
-      <div className="w-full max-w-2xl p-4 bg-gray-800 rounded-lg shadow-lg relative z-10">
+      <div className="w-full max-w-2xl p-4 bg-white rounded-lg shadow-lg relative z-10">
         <div className="flex justify-between mb-4">
           <button
             onClick={() => window.history.back()}
@@ -167,7 +167,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
             Show Rules
           </button>
         </div>
-        <h1 className="text-2xl font-bold mb-4">Periodic Table Elements</h1>
+        <h1 className="text-2xl font-bold mb-4 text-black">Periodic Table Elements</h1>
         <div className="flip-card w-full h-72">
           <motion.div
             className={`flip-card-inner w-full h-full cursor-pointer ${
@@ -185,7 +185,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
           >
             {!isFlipped ? (
               <div className="flip-card-front w-full h-full bg-zinc-800 rounded-lg p-4 flex justify-center items-center">
-                <div className="text-3xl sm:text-4xl">
+                <div className="text-3xl sm:text-4xl text-white">
                   {currentCard.frontSide}
                 </div>
               </div>
@@ -194,7 +194,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
                 className="flip-card-back w-full h-full bg-zinc-800 rounded-lg p-4 flex justify-center items-center"
                 style={{ transform: "rotateY(180deg)" }}
               >
-                <div className="text-3xl sm:text-4xl">{cardBack}</div>
+                <div className="text-3xl sm:text-4xl text-white">{cardBack}</div>
               </div>
             )}
           </motion.div>
@@ -248,7 +248,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
           >
             <FaBackward className="size-6" />
           </Button>
-          <div className="text-lg">
+          <div className="text-lg text-black">
             {currentIndex + 1} / {total}
           </div>
           <Button
