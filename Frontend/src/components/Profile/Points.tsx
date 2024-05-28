@@ -1,10 +1,4 @@
-import {
-  Typography,
-  Divider,
-  Grid,
-  LinearProgress,
-  ThemeProvider,
-} from "@mui/material";
+import { Typography, Divider, Grid, ThemeProvider, Stack } from "@mui/material";
 import {
   experimentalStyled as styled,
   createTheme,
@@ -54,19 +48,20 @@ const theme = createTheme({
 export default function Points() {
   const totalElements = 20;
   const learnedElements = 5;
-  const progress = (learnedElements / totalElements) * 100;
 
   return (
     <ThemeProvider theme={theme}>
-      <>
-        <Typography variant="h4" sx={{ alignSelf: "center", marginTop: 4 }}>
+      <Stack direction="column">
+        <Typography variant="h5" sx={{ marginLeft: "1rem" }}>
           Points
         </Typography>
-        <Divider
-          sx={{ borderBottomWidth: 2, borderColor: "black", marginY: 1 }}
-        />
+        <Divider sx={{ borderBottomWidth: 2, borderColor: "black" }} />
         {/* Quiz points */}
-        <Grid container justifyContent="space-evenly" sx={{ marginTop: 2 }}>
+        <Grid
+          container
+          justifyContent="space-evenly"
+          sx={{ marginTop: "2rem" }}
+        >
           <CircleContainer>
             <Label>Flashcard</Label>
             <WinnerCount>2</WinnerCount>
@@ -80,46 +75,7 @@ export default function Points() {
             <WinnerCount>0</WinnerCount>
           </CircleContainer>
         </Grid>
-        {/* Learning progress */}
-        <Typography variant="h5" sx={{ alignSelf: "center", marginTop: 4 }}>
-          Elements learnt
-        </Typography>
-        <Grid container alignItems="center" justifyContent="center">
-          <Typography sx={{ marginRight: 1 }}>{learnedElements}</Typography>
-          <LinearProgress
-            variant="determinate"
-            value={progress}
-            color="primary"
-            sx={{
-              width: "80%",
-              height: "10px",
-              borderRadius: "5px",
-              marginLeft: 1,
-              marginRight: 1,
-            }}
-          />
-          <Typography sx={{ marginLeft: 1 }}>{totalElements}</Typography>
-        </Grid>
-        <Typography variant="h5" sx={{ alignSelf: "center", marginTop: 4 }}>
-          Properties learnt
-        </Typography>
-        <Grid container alignItems="center" justifyContent="center">
-          <Typography sx={{ marginRight: 1 }}>{learnedElements}</Typography>
-          <LinearProgress
-            variant="determinate"
-            value={progress}
-            color="primary"
-            sx={{
-              width: "80%",
-              height: "10px",
-              borderRadius: "5px",
-              marginLeft: 1,
-              marginRight: 1,
-            }}
-          />
-          <Typography sx={{ marginLeft: 1 }}>{totalElements}</Typography>
-        </Grid>
-      </>
+      </Stack>
     </ThemeProvider>
   );
 }
