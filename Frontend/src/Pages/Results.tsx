@@ -3,7 +3,7 @@ import RedoIcon from "@mui/icons-material/Redo";
 import PreviewIcon from "@mui/icons-material/Preview";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ResultsTable from "~/components/ResultsTable";
 import ResultsDisplay from "~/components/ResultsDisplay";
 
@@ -20,6 +20,7 @@ const quizResults = [
 export default function Results() {
   const { quizId } = useParams();
   console.log(quizId);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     document.body.classList.add("backgroundImage");
@@ -27,6 +28,10 @@ export default function Results() {
       document.body.classList.remove("backgroundImage");
     };
   }, []);
+
+  const handleRetakeQuiz = () => {
+    navigate("/flashcard"); 
+  };
 
   return (
     <Box display="flex" mt="7.5vh" justifyContent="center">
@@ -61,7 +66,11 @@ export default function Results() {
             </Box>
           </Stack>
           <Stack direction="row" justifyContent="space-between">
-            <Button variant="contained" startIcon={<RedoIcon />}>
+            <Button
+              variant="contained"
+              startIcon={<RedoIcon />}
+              onClick={handleRetakeQuiz}
+            >
               Retake Quiz
             </Button>
             <Button variant="contained" startIcon={<PreviewIcon />}>
