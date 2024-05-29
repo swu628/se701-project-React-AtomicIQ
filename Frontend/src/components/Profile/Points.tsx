@@ -68,19 +68,19 @@ export default function Points() {
           sx={{ marginTop: "3rem" }}
         >
           <CircleContainer>
-            <Tooltip title="This is a flashcard." arrow>
+            <Tooltip title="Number of flashcard completion" arrow>
               <Label>Flashcard</Label>
             </Tooltip>
             <WinnerCount>2</WinnerCount>
           </CircleContainer>
           <CircleContainer>
-            <Tooltip title="This is a wordle." arrow>
+            <Tooltip title="Number of wordle quiz completion" arrow>
               <Label>Wordle</Label>
             </Tooltip>
             <WinnerCount>2</WinnerCount>
           </CircleContainer>
           <CircleContainer>
-            <Tooltip title="This is a streak." arrow>
+            <Tooltip title="Consecutive days of completion" arrow>
               <Label>Streak</Label>
             </Tooltip>
             <WinnerCount>0</WinnerCount>
@@ -92,19 +92,19 @@ export default function Points() {
           sx={{ marginTop: "5rem" }}
         >
           <CircleContainer>
-            <Tooltip title="This is a flashcard." arrow>
+            <Tooltip title="Number of completed quizzes" arrow>
               <Label>Quizzes</Label>
             </Tooltip>
             <WinnerCount>2</WinnerCount>
           </CircleContainer>
           <CircleContainer>
-            <Tooltip title="This is a wordle." arrow>
+            <Tooltip title="Number of correct answers" arrow>
               <Label>Correct</Label>
             </Tooltip>
             <WinnerCount>2</WinnerCount>
           </CircleContainer>
           <CircleContainer>
-            <Tooltip title="This is a streak." arrow>
+            <Tooltip title="Number of incorrect answers" arrow>
               <Label>Wrong</Label>
             </Tooltip>
             <WinnerCount>0</WinnerCount>
