@@ -68,6 +68,12 @@ export default function Levels() {
     borderStyle: "solid",
   };
 
+  const congratulationStyles = {
+    color: "green",
+    fontWeight: "bold",
+    fontSize: "1.2rem",
+  };
+
   function toggleLevelOne() {
     setIsLevelOneVisible((prev) => !prev);
   }
@@ -105,7 +111,13 @@ export default function Levels() {
             <Typography variant="h6" component="span">
               Level 1
             </Typography>
-            <Typography>
+            <Typography
+              sx={
+                completedLevels.includes(1)
+                  ? congratulationStyles
+                  : {}
+              }
+            >
               {completedLevels.includes(1)
                 ? "Congratulation! You have learned the first 3 elements of FLASHCARD."
                 : "You have not learned the first 3 elements of FLASHCARD."}
@@ -125,7 +137,13 @@ export default function Levels() {
             <Typography variant="h6" component="span">
               Level 2
             </Typography>
-            <Typography>
+            <Typography
+              sx={
+                completedLevels.includes(2)
+                  ? congratulationStyles
+                  : {}
+              }
+            >
               {completedLevels.includes(2)
                 ? "Congratulation! You have learned the middle 3 elements of FLASHCARD."
                 : "You have not learned the middle 3 elements of FLASHCARD."}
@@ -145,7 +163,13 @@ export default function Levels() {
             <Typography variant="h6" component="span">
               Level 3
             </Typography>
-            <Typography>
+            <Typography
+              sx={
+                completedLevels.includes(3)
+                  ? congratulationStyles
+                  : {}
+              }
+            >
               {completedLevels.includes(3)
                 ? "Congratulation! You have learned the last 3 elements of FLASHCARD."
                 : "You have not learned the last 3 elements of FLASHCARD."}
