@@ -97,7 +97,7 @@ function ResponsiveAppBar() {
                   src={userSession?.avatar}
                   sx={{ mr: 1.5 }}
                 />
-                User
+                {userSession?.username || "User"}
               </IconButton>
             </Tooltip>
             <Menu

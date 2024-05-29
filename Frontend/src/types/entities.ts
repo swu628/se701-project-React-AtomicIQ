@@ -10,4 +10,6 @@ export interface UserSession {
   password: string;
   avatar: string;
   badges: number[];
+  level: number;
+  progress: number;
 }

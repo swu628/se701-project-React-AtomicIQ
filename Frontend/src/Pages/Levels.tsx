@@ -12,6 +12,8 @@ import { LevelThree } from "~/components/Levels/LevelThree";
 import { MoreLevels } from "~/components/Levels/MoreLevels";
 import { useState, useEffect } from "react";
 import { Container, Typography, Button } from "@mui/material";
+import { UserSession } from "~/types/entities";
+import LevelSidebar from "~/components/LevelSidebar";
 
 export default function Levels() {
   const [isLevelOneVisible, setIsLevelOneVisible] = useState(false);
@@ -22,8 +24,14 @@ export default function Levels() {
     const savedLevels = localStorage.getItem("completedLevels");
     return savedLevels ? JSON.parse(savedLevels) : [];
   });
-
+  const [userSession, setUserSession] = useState<UserSession | null>(null);
   useEffect(() => {
+    // Retrieve currently logged in user
+    const storedSession = localStorage.getItem("userSession");
+    if (storedSession) {
+      setUserSession(JSON.parse(storedSession) as UserSession);
+    }
+
     document.body.classList.add("backgroundImage");
     return () => {
       document.body.classList.remove("backgroundImage");
@@ -44,11 +52,11 @@ export default function Levels() {
 
   const containerStyles = {
     p: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-    minHeight: "92.75vh",
-    width: { xs: "95vw", sm: "90vw", md: "80vw" },
+    width: { xs: "95vw", sm: "90vw", md: "60vw" },
     boxShadow: 3,
     backgroundColor: "white",
     display: "flex",
+    flex: 1,
     flexDirection: "column",
     alignItems: "center",
   };
@@ -91,6 +99,11 @@ export default function Levels() {
   }
 
   return (
+    <>
+      <LevelSidebar
+        level={userSession?.level ?? 1}
+        progress={userSession?.progress ?? 25}
+      />
     <Container sx={containerStyles}>
       <Typography
         variant="h2"
@@ -224,5 +237,6 @@ export default function Levels() {
         />
       )}
     </Container>
+    </>
   );
 }
