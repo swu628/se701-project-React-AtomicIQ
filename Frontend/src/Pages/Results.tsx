@@ -33,13 +33,13 @@ export default function Results() {
     (acc, answer, index) => {
       if (answer.correct) {
         acc.resultsValues.correct++;
-        acc.resultsQuestions.correct.push(index);
+        acc.resultsQuestions.correct.push(index + 1);
       } else if (answer.answer === "") {
         acc.resultsValues.skipped++;
-        acc.resultsQuestions.skipped.push(index);
+        acc.resultsQuestions.skipped.push(index + 1); 
       } else {
         acc.resultsValues.incorrect++;
-        acc.resultsQuestions.incorrect.push(index);
+        acc.resultsQuestions.incorrect.push(index + 1);
       }
       return acc;
     },

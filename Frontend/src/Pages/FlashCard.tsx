@@ -92,7 +92,10 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
       setIsSubmitted(false);
       // navigate to the result page when the user reached to the last question and clicked on the next button
     } else if (currentIndex === total - 1) {
-      navigate("/quiz/:id/results", { state: { answers } });
+      const newAnswers = [...answers];
+      newAnswers[currentIndex] = { answer: "", correct: false };
+      setAnswers(newAnswers);
+      navigate("/quiz/:quizId/results", { state: { answers: newAnswers } });
     }
   };
 
