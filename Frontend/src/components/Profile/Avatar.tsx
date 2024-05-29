@@ -22,15 +22,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const avatars = [
-  { src: "src/assets/avatar1.svg" },
-  { src: "src/assets/avatar1.svg" },
-  { src: "src/assets/avatar1.svg" },
-  { src: "src/assets/avatar1.svg" },
-  { src: "src/assets/avatar1.svg" },
-  { src: "src/assets/avatar1.svg" },
-  { src: "src/assets/avatar1.svg" },
-  { src: "src/assets/avatar1.svg" },
-  { src: "src/assets/avatar1.svg" },
+  { src: "src/assets/avatar1.svg" }, // Default avatar
+  { src: "src/assets/avatar2.svg" },
+  { src: "src/assets/avatar3.svg" },
+  { src: "src/assets/avatar4.svg" },
+  { src: "src/assets/avatar5.svg" },
+  { src: "src/assets/avatar6.svg" },
+  { src: "src/assets/avatar7.svg" },
+  { src: "src/assets/avatar8.svg" },
+  { src: "src/assets/avatar9.svg" },
 ];
 
 const theme = createTheme({
