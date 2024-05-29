@@ -23,7 +23,7 @@ const skills = [
   },
 ];
 
-export default function Skills() {
+export default function Avatar() {
   return (
     <>
       <Typography variant="h5">Skills</Typography>
