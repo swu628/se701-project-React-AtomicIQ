@@ -97,7 +97,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
       setIsSubmitted(true);
     }
     if (currentIndex < total - 1) {
-      setCurrentIndex(currentIndex + 1);
+      setCurrentIndex((prev) => prev + 1);
       setProgress(((currentIndex + 1) / total) * 100);
       setErrorMessage("");
       setIsSubmitted(false);
@@ -118,8 +118,8 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   // When the user clicked on the back button
   const handleBack = () => {
     if (currentIndex > 0) {
-      setCurrentIndex(currentIndex + 1);
-      setProgress(((currentIndex + 1) / total) * 100);
+      setCurrentIndex((prev) => prev - 1);
+      setProgress(((currentIndex - 1) / total) * 100);
       setErrorMessage("");
       const previousAnswer = answers[currentIndex - 1];
       if (previousAnswer && previousAnswer.answer === "") {
@@ -136,7 +136,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
     }
   };
 
-  // When the user sumbit an answer
+  // When the user submit an answer
   const handleAnswerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const correct =
