@@ -34,6 +34,8 @@ function Signup() {
       username: username,
       password: password,
       badges: [0],
+      level: 1,
+      progress: 0,
       avatar: "src/assets/avatar1.svg",
     };
 

@@ -12,6 +12,7 @@ import Wordle from "./Pages/Wordle.tsx";
 import flashcards from "./data/flashcards.json"; // Import the JSON data
 import badges from "./data/badges.json";
 import {Element, ElementProperty} from "~/types/element.ts";
+import "./App.css";
 
 function App() {
     return (
