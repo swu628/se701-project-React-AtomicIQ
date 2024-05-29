@@ -34,7 +34,7 @@ export default function Profile({ badgeData }: ProfileProps) {
       sx={{
         p: "2rem !important",
         marginTop: "7.5vh",
-        // marginBottom: "7.5vh",
+        marginBottom: "7.5vh",
         minHeight: "75vh",
         width: "80vw",
         boxShadow: 3,
