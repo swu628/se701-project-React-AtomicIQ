@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaForward, FaBackward } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../components/ui/button";
 
 // Import the sound effects when the user got the questions right/wrong
@@ -20,24 +20,27 @@ export type AnswerData = {
 };
 
 const FlashCard = ({ cardData }: FlashcardProps) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { startIndex = 0 } = location.state || {};
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const [userAnswer, setUserAnswer] = useState("");
+  const [currentIndex, setCurrentIndex] = useState<number>(startIndex);
+  const [progress, setProgress] = useState<number>((startIndex / cardData.length) * 100);
+  const [userAnswer, setUserAnswer] = useState<string>("");
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [answers, setAnswers] = useState<AnswerData[]>([]);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showRules, setShowRules] = useState(false);
-  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showRules, setShowRules] = useState<boolean>(false);
 
   const correctSound = new Audio(correctSoundFile);
   const incorrectSound = new Audio(incorrectSoundFile);
 
+  const groupSize = 3;
   const total = cardData.length;
   const currentCard = cardData[currentIndex] || { frontSide: "", backSide: "" };
-  const [cardBack, setCardBack] = useState(currentCard.backSide);
+  const [cardBack, setCardBack] = useState<string>(currentCard.backSide);
 
   useEffect(() => {
     document.body.classList.add("backgroundImage");
@@ -77,34 +80,59 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
     }
   };
 
+  const navigateToResults = (currentIndex: number, newAnswers: AnswerData[]) => {
+    const sliceStart = startIndex;
+    const sliceEnd = sliceStart + groupSize;
+    navigate(`/quiz/${Math.floor((currentIndex + 1) / groupSize)}/results`, {
+      state: { answers: newAnswers.slice(sliceStart, sliceEnd).filter(Boolean) },
+    });
+  };
+
   const handleNext = () => {
+    const newAnswers = [...answers];
     if (!isSubmitted) {
-      const newAnswers = [...answers];
       newAnswers[currentIndex] = { answer: "", correct: false };
       setAnswers(newAnswers);
       setErrorMessage("");
       setIsSubmitted(true);
     }
     if (currentIndex < total - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setProgress((prev) => prev + 100 / total);
+      setCurrentIndex(currentIndex + 1);
+      setProgress(((currentIndex + 1) / total) * 100);
       setErrorMessage("");
       setIsSubmitted(false);
       // navigate to the result page when the user reached to the last question and clicked on the next button
+      setIsFlipped(false);
+      if ((currentIndex + 1) % groupSize === 0) {
+        navigateToResults(currentIndex, newAnswers);
+      }
     } else if (currentIndex === total - 1) {
-      const newAnswers = [...answers];
-      newAnswers[currentIndex] = { answer: "", correct: false };
-      setAnswers(newAnswers);
-      navigate("/quiz/:quizId/results", { state: { answers: newAnswers } });
+      if (!isSubmitted) {
+        newAnswers[currentIndex] = { answer: "", correct: false };
+        setAnswers(newAnswers);
+      }
+      navigateToResults(currentIndex, newAnswers);
     }
   };
 
   // When the user clicked on the back button
   const handleBack = () => {
     if (currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1);
-      setProgress((prev) => prev - 100 / total);
+      setCurrentIndex(currentIndex + 1);
+      setProgress(((currentIndex + 1) / total) * 100);
       setErrorMessage("");
+      const previousAnswer = answers[currentIndex - 1];
+      if (previousAnswer && previousAnswer.answer === "") {
+        setIsSubmitted(false);
+        setIsCorrect(null);
+        setIsFlipped(false);
+        setUserAnswer("");
+      } else {
+        setIsSubmitted(true);
+        setIsCorrect(previousAnswer.correct);
+        setIsFlipped(true);
+        setUserAnswer(previousAnswer.answer);
+      }
     }
   };
 

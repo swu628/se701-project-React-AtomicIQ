@@ -3,7 +3,7 @@ import RedoIcon from "@mui/icons-material/Redo";
 import PreviewIcon from "@mui/icons-material/Preview";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ResultsTable from "~/components/Results/ResultsTable";
 import ResultsDisplay from "~/components/Results/ResultsDisplay";
 import { AnswerData } from "./FlashCard";
@@ -23,8 +23,10 @@ interface ResultsQuestions {
 export default function Results() {
   const navigate = useNavigate();
   const location = useLocation();
-  const state = location.state || { answers: [] };
-  const answers = state.answers as AnswerData[];
+  const params = useParams<{ quizId: string }>();
+  const quizId = params.quizId || "0";
+  const state = location.state || {};
+  const answers = (state.answers as AnswerData[]) || [];
 
   const { resultsValues, resultsQuestions } = answers.reduce<{
     resultsValues: ResultsValues;
@@ -60,8 +62,26 @@ export default function Results() {
     };
   }, []);
 
+  useEffect(() => {
+    const completedLevel = Math.floor(answers.length / 3);
+    if (completedLevel > 0) {
+      const savedLevels = localStorage.getItem("completedLevels");
+      const updatedLevels = savedLevels ? JSON.parse(savedLevels) : [];
+      
+      if (!updatedLevels.includes(completedLevel)) {
+        updatedLevels.push(completedLevel);
+        localStorage.setItem("completedLevels", JSON.stringify(updatedLevels));
+      }
+    }
+  }, [answers]);
+
   const handleRetakeQuiz = () => {
     navigate("/flashcard");
+  };
+
+  const handleNextQuiz = () => {
+    const nextStartIndex = 3 * parseInt(quizId, 10);
+    navigate("/flashcard", { state: { startIndex: nextStartIndex } });
   };
 
   return (
@@ -74,7 +94,7 @@ export default function Results() {
           justifyContent="space-between"
         >
           <Typography variant="h5" fontWeight="bold" alignSelf="center">
-            Quiz Results
+            Quiz Results - Quiz {quizId}
           </Typography>
           <Stack
             display="flex"
@@ -125,7 +145,11 @@ export default function Results() {
             <Button variant="contained" startIcon={<PreviewIcon />}>
               Review Quiz
             </Button>
-            <Button variant="contained" startIcon={<SkipNextIcon />}>
+            <Button
+              variant="contained"
+              startIcon={<SkipNextIcon />}
+              onClick={handleNextQuiz}
+            >
               Next Quiz
             </Button>
           </Stack>
