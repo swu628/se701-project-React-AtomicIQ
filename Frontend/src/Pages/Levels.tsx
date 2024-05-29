@@ -6,7 +6,6 @@ import {
   TimelineContent,
   TimelineDot,
 } from "@mui/lab";
-
 import { LevelOne } from "~/components/Levels/LevelOne";
 import { LevelTwo } from "~/components/Levels/LevelTwo";
 import { LevelThree } from "~/components/Levels/LevelThree";
@@ -19,6 +18,10 @@ export default function Levels() {
   const [isLevelTwoVisible, setIsLevelTwoVisible] = useState(false);
   const [isLevelThreeVisible, setIsLevelThreeVisible] = useState(false);
   const [isMoreLevelsVisible, setIsMoreLevelsVisible] = useState(false);
+  const [completedLevels, setCompletedLevels] = useState<number[]>(() => {
+    const savedLevels = localStorage.getItem("completedLevels");
+    return savedLevels ? JSON.parse(savedLevels) : [];
+  });
 
   useEffect(() => {
     document.body.classList.add("backgroundImage");
@@ -26,6 +29,18 @@ export default function Levels() {
       document.body.classList.remove("backgroundImage");
     };
   }, []);
+
+  useEffect(() => {
+    const savedLevels = localStorage.getItem("completedLevels");
+    if (savedLevels) {
+      setCompletedLevels(JSON.parse(savedLevels));
+    }
+  }, []);
+
+  const resetCompletedLevels = () => {
+    localStorage.removeItem("completedLevels");
+    setCompletedLevels([]);
+  };
 
   const containerStyles = {
     p: { xs: "1rem", sm: "1.5rem", md: "2rem" },
@@ -90,9 +105,11 @@ export default function Levels() {
             <Typography variant="h6" component="span">
               Level 1
             </Typography>
-              <Typography>
-                Congratulation! You have learned the first 3 elements of FLASHCARD.
-              </Typography> 
+            <Typography>
+              {completedLevels.includes(1)
+                ? "Congratulation! You have learned the first 3 elements of FLASHCARD."
+                : "You have not learned the first 3 elements of FLASHCARD."}
+            </Typography>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -108,9 +125,11 @@ export default function Levels() {
             <Typography variant="h6" component="span">
               Level 2
             </Typography>
-              <Typography>
-                Congratulation! You have learned the middle 3 elements of FLASHCARD.
-              </Typography>
+            <Typography>
+              {completedLevels.includes(2)
+                ? "Congratulation! You have learned the middle 3 elements of FLASHCARD."
+                : "You have not learned the middle 3 elements of FLASHCARD."}
+            </Typography>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -127,8 +146,10 @@ export default function Levels() {
               Level 3
             </Typography>
             <Typography>
-                Congratulation! You have learned the last 3 elements of FLASHCARD.
-              </Typography>
+              {completedLevels.includes(3)
+                ? "Congratulation! You have learned the last 3 elements of FLASHCARD."
+                : "You have not learned the last 3 elements of FLASHCARD."}
+            </Typography>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -149,6 +170,10 @@ export default function Levels() {
           </TimelineContent>
         </TimelineItem>
       </Timeline>
+
+      <Button onClick={resetCompletedLevels} variant="contained" color="secondary" sx={{ mt: 4 }}>
+        Reset Completed Levels
+      </Button>
 
       {isLevelOneVisible && (
         <LevelOne
