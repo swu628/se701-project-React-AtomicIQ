@@ -64,6 +64,9 @@ export default function Avatar() {
       // Update the user object
       setUserSession(updatedUserSession);
       localStorage.setItem("userSession", JSON.stringify(updatedUserSession));
+
+      // Automate avatar refresh (this can be discarded by implementing useContext in future work)
+      window.location.reload();
     }
   }
 
