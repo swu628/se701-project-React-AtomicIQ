@@ -1,7 +1,7 @@
 // Define the props interface
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Button from "@mui/material/Button";
-import {Element, ElementProperty, Elements} from "~/types/element";
+import {Element, ElementData, ElementProperty, Elements} from "~/types/element";
 
 
 interface WordleProps {
@@ -11,14 +11,20 @@ interface WordleProps {
 }
 
 export default function Wordle({allowedAttempts, properties, availableElements}: WordleProps) {
+    const [answer, setAnswer] = useState<ElementData>();
     const [guesses, setGuesses] = useState<Element[]>([]);
 
     const rows = allowedAttempts;
     const cols = properties.length;
-    const answerElement = availableElements[Math.floor(Math.random() * availableElements.length)];
 
     // pick a random element
-    const answer = Elements.find((e) => e.name === answerElement);
+    useEffect(() => {
+        const answerElement = availableElements[Math.floor(Math.random() * availableElements.length)];
+        const answerElementData = Elements.find((e) => e.name === answerElement);
+        if (answerElementData) {
+            setAnswer(answerElementData);
+        }
+    }, [availableElements]);
 
     const checkCellEmpty = (rowIndex: number) => {
         return guesses[rowIndex - 1] === undefined;
@@ -30,18 +36,18 @@ export default function Wordle({allowedAttempts, properties, availableElements}:
         if (!elementData || !answer) {
             return false;
         }
-        switch (colIndex) {
-            case 1:
+        switch (properties[colIndex - 1]) {
+            case ElementProperty.Category:
                 return elementData.category === answer.category;
-            case 2:
+            case ElementProperty.Period:
                 return elementData.period === answer.period;
-            case 3:
+            case ElementProperty.Group:
                 return elementData.group === answer.group;
-            case 4:
+            case ElementProperty.Origins:
                 return elementData.origins === answer.origins;
-            case 5:
+            case ElementProperty.Countries:
                 return elementData.countries === answer.countries;
-            case 6:
+            case ElementProperty.Color:
                 return elementData.color === answer.color;
             default:
                 return false;
@@ -55,35 +61,35 @@ export default function Wordle({allowedAttempts, properties, availableElements}:
             return false;
         }
         if (checkCellCorrectness(rowIndex, colIndex)) {
-            switch (colIndex) {
-                case 1:
+            switch (properties[colIndex - 1]) {
+                case ElementProperty.Category:
                     return elementData.category;
-                case 2:
+                case ElementProperty.Period:
                     return elementData.period;
-                case 3:
+                case ElementProperty.Group:
                     return elementData.group;
-                case 4:
-                    return elementData.origins;
-                case 5:
-                    return elementData.countries;
-                case 6:
+                case ElementProperty.Origins:
+                    return elementData.origins.join(", ");
+                case ElementProperty.Countries:
+                    return elementData.countries.join(", ");
+                case ElementProperty.Color:
                     return elementData.color;
                 default:
                     return "";
             }
         } else {
-            switch (colIndex) {
-                case 1:
+            switch (properties[colIndex - 1]) {
+                case ElementProperty.Category:
                     return elementData.category;
-                case 2:
+                case ElementProperty.Period:
                     return elementData.period;
-                case 3:
+                case ElementProperty.Group:
                     return elementData.group;
-                case 4:
+                case ElementProperty.Origins:
                     return elementData.origins.join(", ");
-                case 5:
+                case ElementProperty.Countries:
                     return elementData.countries.join(", ");
-                case 6:
+                case ElementProperty.Color:
                     return elementData.color;
                 default:
                     return "";
@@ -133,7 +139,7 @@ export default function Wordle({allowedAttempts, properties, availableElements}:
                 return (
                     <div
                         key={`${rowIndex}-${colIndex}`}
-                        className={`flex justify-center items-center text-center w-20 h-20 border ` + getCellColor(rowIndex, colIndex)}
+                        className={`flex justify-center items-center text-center w-20 h-20 border ` + (getCellColor(rowIndex, colIndex))}
                     >
                         {checkCellEmpty(rowIndex) ? "" : getCellContent(rowIndex, colIndex)}
                     </div>
