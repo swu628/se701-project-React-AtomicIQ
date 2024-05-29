@@ -52,8 +52,8 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
       const { answer, correct } = answers[currentIndex];
       setUserAnswer(answer);
       setIsCorrect(correct);
-      setIsSubmitted(true);
-      setIsFlipped(true);
+      setIsSubmitted(answer !== ""); // Only set isSubmitted to true if the answer is not empty
+      setIsFlipped(answer !== ""); // Only set isFlipped to true if the answer is not empty
     } else {
       setUserAnswer("");
       setIsCorrect(null);
@@ -91,6 +91,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
       setProgress((prev) => prev + 100 / total);
       setErrorMessage("");
       setIsSubmitted(false);
+      setIsCorrect(null); // Reset isCorrect when moving to the next question
       // navigate to the result page when the user reached to the last question and clicked on the next button
     } else if (currentIndex === total - 1) {
       navigate("/quiz/:id/results", { state: { answers } });
@@ -103,6 +104,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
       setCurrentIndex((prev) => prev - 1);
       setProgress((prev) => prev - 100 / total);
       setErrorMessage("");
+      setIsCorrect(null); // Reset isCorrect when moving to the previous question
     }
   };
 
@@ -217,7 +219,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
             } text-black`}
             placeholder="Enter your answer"
             required
-            disabled={isSubmitted}
+            disabled={isSubmitted && userAnswer !== ""}
           />
           <Button
             type="submit"
@@ -228,12 +230,12 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
                   : "bg-red-500"
                 : "bg-blue-500"
             }`}
-            disabled={isSubmitted}
+            disabled={isSubmitted && userAnswer !== ""}
           >
             Submit
           </Button>
         </form>
-        {isCorrect !== null && (
+        {isCorrect !== null && isSubmitted && userAnswer !== "" && (
           <div
             className={`text-lg ${
               isCorrect ? "text-green-500" : "text-red-500"
