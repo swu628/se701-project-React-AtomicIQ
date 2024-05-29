@@ -4,8 +4,9 @@ import PreviewIcon from "@mui/icons-material/Preview";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import ResultsTable from "~/components/ResultsTable";
-import ResultsDisplay from "~/components/ResultsDisplay";
+import ResultsTable from "~/components/Results/ResultsTable";
+import ResultsDisplay from "~/components/Results/ResultsDisplay";
+import { AnswerData } from "./FlashCard";
 
 export default function Results() {
   const navigate = useNavigate();
@@ -14,8 +15,12 @@ export default function Results() {
   const { answers } = state;
 
   const correct = answers.filter((answer: AnswerData) => answer.correct).length;
-  const incorrect = answers.filter((answer: AnswerData) => !answer.correct && answer.answer !== "").length;
-  const skipped = answers.filter((answer: AnswerData) => answer.answer === "").length;
+  const incorrect = answers.filter(
+    (answer: AnswerData) => !answer.correct && answer.answer !== ""
+  ).length;
+  const skipped = answers.filter(
+    (answer: AnswerData) => answer.answer === ""
+  ).length;
 
   useEffect(() => {
     document.body.classList.add("backgroundImage");
@@ -52,14 +57,22 @@ export default function Results() {
                 <ResultsTable
                   rows={[
                     { label: "Correct", value: correct, expandedValues: [] },
-                    { label: "Incorrect", value: incorrect, expandedValues: [] },
+                    {
+                      label: "Incorrect",
+                      value: incorrect,
+                      expandedValues: [],
+                    },
                     { label: "Skipped", value: skipped, expandedValues: [] },
                   ]}
                 />
               </Paper>
             </Box>
             <Box sx={{ width: "30vw", height: "28vh" }}>
-              <ResultsDisplay correct={correct} incorrect={incorrect} skipped={skipped} />
+              <ResultsDisplay
+                correct={correct}
+                incorrect={incorrect}
+                skipped={skipped}
+              />
             </Box>
           </Stack>
           <Stack direction="row" justifyContent="space-between">
