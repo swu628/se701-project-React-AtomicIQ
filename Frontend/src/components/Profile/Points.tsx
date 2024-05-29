@@ -1,4 +1,12 @@
-import { Typography, Divider, Grid, ThemeProvider, Stack } from "@mui/material";
+import React from "react";
+import {
+  Typography,
+  Divider,
+  Grid,
+  ThemeProvider,
+  Stack,
+  Tooltip,
+} from "@mui/material";
 import {
   experimentalStyled as styled,
   createTheme,
@@ -46,9 +54,6 @@ const theme = createTheme({
 });
 
 export default function Points() {
-  const totalElements = 20;
-  const learnedElements = 5;
-
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="column">
@@ -60,18 +65,48 @@ export default function Points() {
         <Grid
           container
           justifyContent="space-evenly"
-          sx={{ marginTop: "2rem" }}
+          sx={{ marginTop: "3rem" }}
         >
           <CircleContainer>
-            <Label>Flashcard</Label>
+            <Tooltip title="Number of flashcard completion" arrow>
+              <Label>Flashcard</Label>
+            </Tooltip>
             <WinnerCount>2</WinnerCount>
           </CircleContainer>
           <CircleContainer>
-            <Label>Wordle</Label>
+            <Tooltip title="Number of wordle quiz completion" arrow>
+              <Label>Wordle</Label>
+            </Tooltip>
             <WinnerCount>2</WinnerCount>
           </CircleContainer>
           <CircleContainer>
-            <Label>Streak</Label>
+            <Tooltip title="Consecutive days of completion" arrow>
+              <Label>Streak</Label>
+            </Tooltip>
+            <WinnerCount>0</WinnerCount>
+          </CircleContainer>
+        </Grid>
+        <Grid
+          container
+          justifyContent="space-evenly"
+          sx={{ marginTop: "5rem" }}
+        >
+          <CircleContainer>
+            <Tooltip title="Number of completed quizzes" arrow>
+              <Label>Quizzes</Label>
+            </Tooltip>
+            <WinnerCount>2</WinnerCount>
+          </CircleContainer>
+          <CircleContainer>
+            <Tooltip title="Number of correct answers" arrow>
+              <Label>Correct</Label>
+            </Tooltip>
+            <WinnerCount>2</WinnerCount>
+          </CircleContainer>
+          <CircleContainer>
+            <Tooltip title="Number of incorrect answers" arrow>
+              <Label>Wrong</Label>
+            </Tooltip>
             <WinnerCount>0</WinnerCount>
           </CircleContainer>
         </Grid>

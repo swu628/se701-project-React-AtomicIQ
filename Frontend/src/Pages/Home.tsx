@@ -40,12 +40,12 @@ export default function Home() {
   };
 
   const buttonStyles = {
-    width: "15vw", // Increased width
+    width: { xs: "80vw", sm: "60vw", md: "30vw", lg: "15vw" },
     mb: "2rem",
     backgroundColor: "#1976d2",
     color: "white",
-    padding: "1rem 2rem", // Increased padding
-    fontSize: "1.25rem", // Increased font size
+    padding: { xs: "0.5rem 1rem", md: "1rem 2rem" },
+    fontSize: { xs: "1rem", md: "1.25rem" },
     borderRadius: "0.25rem",
     boxShadow: 2,
     "&:hover": {

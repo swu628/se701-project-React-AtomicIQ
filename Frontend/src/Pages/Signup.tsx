@@ -36,6 +36,7 @@ function Signup() {
       badges: [0],
       level: 1,
       progress: 0,
+      avatar: "src/assets/avatar1.svg",
     };
 
     localStorage.setItem("userSession", JSON.stringify(userSession));

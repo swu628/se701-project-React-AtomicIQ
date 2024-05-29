@@ -11,8 +11,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ScienceIcon from "@mui/icons-material/Science";
-import { useEffect, useState } from "react";
-import { UserSession } from "./types/entities";
+import { UserSession } from "~/types/entities";
+import { useState, useEffect } from "react";
 
 const pages = ["Levels", "Wiki"];
 const settings = ["Profile", "Logout"];
