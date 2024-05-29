@@ -11,6 +11,8 @@ import {
   experimentalStyled as styled,
   createTheme,
 } from "@mui/material/styles";
+import { useState, useEffect } from "react";
+import { UserSession } from "~/types/entities";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "gray",
@@ -42,6 +44,29 @@ const theme = createTheme({
 });
 
 export default function Avatar() {
+  const [userSession, setUserSession] = useState<UserSession | null>(null);
+
+  useEffect(() => {
+    // Retrieve currently logged in user
+    const storedSession = localStorage.getItem("userSession");
+    if (storedSession) {
+      setUserSession(JSON.parse(storedSession) as UserSession);
+    }
+  }, []);
+
+  function handleUpdateAvatar(avatar: string) {
+    if (userSession) {
+      const updatedUserSession: UserSession = {
+        ...userSession,
+        avatar: avatar,
+      };
+
+      // Update the user object
+      setUserSession(updatedUserSession);
+      localStorage.setItem("userSession", JSON.stringify(updatedUserSession));
+    }
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="column">
@@ -58,7 +83,7 @@ export default function Avatar() {
           {avatars.map((avatar, index) => (
             <Grid item xs={2} sm={4} md={4} key={index}>
               <Item>
-                <Button>
+                <Button onClick={() => handleUpdateAvatar(avatar.src)}>
                   <img
                     src={avatar.src}
                     alt={`Avatar ${index}`}

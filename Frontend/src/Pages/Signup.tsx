@@ -34,6 +34,7 @@ function Signup() {
       username: username,
       password: password,
       badges: [0],
+      avatar: "src/assets/avatar1.svg",
     };
 
     localStorage.setItem("userSession", JSON.stringify(userSession));
