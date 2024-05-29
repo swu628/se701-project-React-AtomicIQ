@@ -30,7 +30,7 @@ export default function Levels() {
   const containerStyles = {
     p: { xs: "1rem", sm: "1.5rem", md: "2rem" },
     minHeight: "92.75vh",
-    width: { xs: "95vw", sm: "90vw", md: "80vw" },
+    width: { xs: "95vw", sm: "90vw", md: "60vw" },
     boxShadow: 3,
     backgroundColor: "white",
     display: "flex",
@@ -73,7 +73,12 @@ export default function Levels() {
     <Container sx={containerStyles}>
       <Typography
         variant="h2"
-        sx={{ display: "flex", justifyContent: "center", mb: { xs: 2, md: 4 }, fontSize: { xs: "1.5rem", md: "2rem" } }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          mb: { xs: 2, md: 4 },
+          fontSize: { xs: "1.5rem", md: "2rem" },
+        }}
       >
         Levelling
       </Typography>
@@ -86,7 +91,9 @@ export default function Levels() {
               </TimelineDot>
             </Button>
           </TimelineSeparator>
-          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
+          <TimelineContent
+            sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}
+          >
             <Typography variant="h6" component="span">
               Level 1
             </Typography>
@@ -102,7 +109,9 @@ export default function Levels() {
               </TimelineDot>
             </Button>
           </TimelineSeparator>
-          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
+          <TimelineContent
+            sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}
+          >
             <Typography variant="h6" component="span">
               Level 2
             </Typography>
@@ -113,12 +122,18 @@ export default function Levels() {
           <TimelineSeparator>
             <TimelineConnector sx={connectorStyles} />
             <Button onClick={toggleLevelThree}>
-              <TimelineDot color="primary" variant="outlined" sx={timelineDotStyles}>
-                <img src="src/assets/level3.svg" alt="Level 3 Icon"/>
+              <TimelineDot
+                color="primary"
+                variant="outlined"
+                sx={timelineDotStyles}
+              >
+                <img src="src/assets/level3.svg" alt="Level 3 Icon" />
               </TimelineDot>
             </Button>
           </TimelineSeparator>
-          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
+          <TimelineContent
+            sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}
+          >
             <Typography variant="h6" component="span">
               Level 3
             </Typography>
@@ -135,7 +150,9 @@ export default function Levels() {
             </Button>
             <TimelineConnector sx={connectorStyles} />
           </TimelineSeparator>
-          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
+          <TimelineContent
+            sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}
+          >
             <Typography variant="h6" component="span">
               Level ??
             </Typography>

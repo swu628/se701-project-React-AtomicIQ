@@ -13,7 +13,7 @@ export default function Home() {
   const containerStyles = {
     p: "2rem",
     minHeight: "92.75vh",
-    width: "80vw",
+    width: "60vw",
     boxShadow: 3,
     display: "flex",
     flexDirection: "column",
