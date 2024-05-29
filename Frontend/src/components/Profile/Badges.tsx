@@ -1,86 +1,89 @@
 import {
   Grid,
-  Typography,
   List,
   ListItem,
   ListItemText,
   ListItemAvatar,
+  Typography,
+  Divider,
 } from "@mui/material";
-import AcUnitIcon from "@mui/icons-material/AcUnit";
-import AccessibilityIcon from "@mui/icons-material/Accessibility";
-import AdUnitsIcon from "@mui/icons-material/AdUnits";
-import AddLocationIcon from "@mui/icons-material/AddLocation";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import QuizIcon from "@mui/icons-material/Quiz";
+import SchoolIcon from "@mui/icons-material/School";
+import TodayIcon from "@mui/icons-material/Today";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import AddLinkIcon from "@mui/icons-material/AddLink";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import React from "react";
+import { Badge } from "~/types/entities";
 
 // Define icon components
 const icons = {
-  AcUnitIcon: AcUnitIcon,
-  AccessibilityIcon: AccessibilityIcon,
-  AdUnitsIcon: AdUnitsIcon,
-  AddLocationIcon: AddLocationIcon,
+  AccountBoxIcon: AccountBoxIcon,
+  AccessTimeIcon: AccessTimeIcon,
+  QuizIcon: QuizIcon,
+  SchoolIcon: SchoolIcon,
+  TodayIcon: TodayIcon,
+  ThumbUpAltIcon: ThumbUpAltIcon,
+  AddLinkIcon: AddLinkIcon,
+  EmojiEventsIcon: EmojiEventsIcon,
 };
 
-// Dummy badges
-const badges = [
-  {
-    icon: "AcUnitIcon",
-    name: "hi",
-    description: "This is an achievement",
-  },
-  {
-    icon: "AccessibilityIcon",
-    name: "adw",
-    description: "This is an achievement",
-  },
-  {
-    icon: "AdUnitsIcon",
-    name: "wad",
-    description: "This is an achievement",
-  },
-  {
-    icon: "AddLocationIcon",
-    name: "adwfafw",
-    description: "This is an achievement",
-  },
-];
+interface BadgesProps {
+  badgeData: Badge[];
+  existingBadges: number[];
+}
 
-export default function Badges() {
+export default function Badges({ badgeData, existingBadges }: BadgesProps) {
   return (
-    <Grid container justifyContent="center" spacing={2} sx={{ marginTop: 2 }}>
-      <Grid item>
-        <List sx={{ width: "25vw" }}>
-          {badges.map((badge, index) => (
-            <ListItem
-              key={index}
-              sx={{
-                borderRadius: "5px",
-                backgroundColor: "#FFD700",
-                marginBottom: 2,
-                padding: 2,
-                border: "3px solid #008000",
-              }}
-            >
-              <ListItemAvatar>
-                <ListItemAvatar>
+    <>
+      <Typography variant="h5" sx={{ marginLeft: "1rem" }}>
+        Badges
+      </Typography>
+      <Divider sx={{ borderBottomWidth: 2, borderColor: "black" }} />
+      <Grid container justifyContent="center" sx={{ marginTop: "2rem" }}>
+        <Grid item p="0 !important" sx={{ overflowY: "auto" }}>
+          <List
+            sx={{
+              maxWidth: "40vw",
+              height: "65vh",
+              padding: 0,
+              marginRight: "0.5rem",
+            }}
+          >
+            {badgeData.map((badge, index) => (
+              <ListItem
+                key={index}
+                sx={{
+                  borderRadius: "5px",
+                  backgroundColor: existingBadges.includes(index)
+                    ? "#FFD700"
+                    : "#b0b0b0",
+                  opacity: existingBadges.includes(index) ? 1 : 0.4,
+                  marginBottom: "1rem",
+                  padding: "0.5rem",
+                  border: "3px solid #008000",
+                }}
+              >
+                <ListItemAvatar sx={{ textAlign: "center" }}>
                   {React.createElement(icons[badge.icon as keyof typeof icons])}
                 </ListItemAvatar>
-
-                {/* Render icon dynamically */}
-              </ListItemAvatar>
-              <ListItemText
-                primary={badge.name}
-                secondary={badge.description}
-                primaryTypographyProps={{
-                  fontWeight: "bold",
-                  color: "black",
-                  fontSize: "1.3rem",
-                }}
-                secondaryTypographyProps={{ color: "black" }}
-              />
-            </ListItem>
-          ))}
-        </List>
+                <ListItemText
+                  primary={badge.name}
+                  secondary={badge.description}
+                  primaryTypographyProps={{
+                    fontWeight: "bold",
+                    color: "black",
+                    fontSize: "1.3rem",
+                  }}
+                  secondaryTypographyProps={{ color: "black" }}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 }

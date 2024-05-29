@@ -10,6 +10,7 @@ import Signup from "./Pages/Signup";
 import FlashCard from "./Pages/FlashCard";
 import Results from "./Pages/Results";
 import flashcards from "./data/flashcards.json"; // Import the JSON data
+import badges from "./data/badges.json";
 
 function App() {
   return (
@@ -59,7 +60,7 @@ function App() {
           element={
             <>
               <Nav />
-              <Profile />
+              <Profile badgeData={badges} />
             </>
           }
         />
