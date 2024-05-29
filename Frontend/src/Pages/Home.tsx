@@ -41,7 +41,7 @@ export default function Home() {
       <Typography variant="h2">AtomicIQ</Typography>
       <Stack display="flex" direction="column" flex={1} justifyContent="center">
         <Link to="/flashcard" style={{ textDecoration: "none" }}>
-          <Button sx={buttonStyles}>Flashcard</Button>
+          <Button sx={buttonStyles}>Flash Card</Button>
         </Link>
         <Link to="/wordle" style={{ textDecoration: "none" }}>
           <Button sx={buttonStyles}>Wordle</Button>
