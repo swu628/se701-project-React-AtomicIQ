@@ -8,5 +8,6 @@ export interface Badge {
 export interface UserSession {
   username: string;
   password: string;
+  avatar: string;
   badges: number[];
 }

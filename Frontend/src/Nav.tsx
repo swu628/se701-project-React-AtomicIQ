@@ -11,14 +11,23 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ScienceIcon from "@mui/icons-material/Science";
+import { UserSession } from "~/types/entities";
+import { useState, useEffect } from "react";
 
 const pages = ["Levels", "Wiki"];
 const settings = ["Profile", "Logout"];
 
 function ResponsiveAppBar() {
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [userSession, setUserSession] = useState<UserSession | null>(null);
+
+  useEffect(() => {
+    // Retrieve currently logged in user
+    const storedSession = localStorage.getItem("userSession");
+    if (storedSession) {
+      setUserSession(JSON.parse(storedSession) as UserSession);
+    }
+  }, []);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -73,7 +82,11 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ color: "white" }}>
-                <Avatar alt="Remy Sharp" sx={{ mr: 1.5 }} />
+                <Avatar
+                  alt="Remy Sharp"
+                  src={userSession?.avatar}
+                  sx={{ mr: 1.5 }}
+                />
                 User
               </IconButton>
             </Tooltip>

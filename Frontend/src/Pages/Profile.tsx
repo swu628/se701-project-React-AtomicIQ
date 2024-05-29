@@ -5,6 +5,7 @@ import Points from "~/components/Profile/Points";
 import Badges from "~/components/Profile/Badges";
 import Levels from "~/components/Profile/Levels";
 import { Badge, UserSession } from "~/types/entities";
+import Avatar from "~/components/Profile/Avatar";
 
 interface ProfileProps {
   badgeData: Badge[];
@@ -12,6 +13,7 @@ interface ProfileProps {
 
 export default function Profile({ badgeData }: ProfileProps) {
   const [userSession, setUserSession] = useState<UserSession | null>(null);
+  const [isUpdatingAvatar, setIsUpdatingAvatar] = useState<boolean>(false);
 
   useEffect(() => {
     // Retrieve currently logged in user
@@ -32,7 +34,7 @@ export default function Profile({ badgeData }: ProfileProps) {
       sx={{
         p: "2rem !important",
         marginTop: "7.5vh",
-        marginBottom: "7.5vh",
+        // marginBottom: "7.5vh",
         minHeight: "75vh",
         width: "80vw",
         boxShadow: 3,
@@ -43,9 +45,19 @@ export default function Profile({ badgeData }: ProfileProps) {
     >
       {/* Left */}
       <Stack display="flex" flex={5} direction="column" mr="2rem" gap="1rem">
-        <ProfileTitle username={userSession?.username ?? ""} />
-        <Levels level={1} progress={25} />
-        <Points />
+        <ProfileTitle
+          username={userSession?.username ?? ""}
+          isUpdatingAvatar={isUpdatingAvatar}
+          setIsUpdatingAvatar={setIsUpdatingAvatar}
+        />
+        {isUpdatingAvatar ? (
+          <Avatar />
+        ) : (
+          <>
+            <Levels level={1} progress={25} />
+            <Points />
+          </>
+        )}
       </Stack>
 
       <Divider
@@ -55,10 +67,6 @@ export default function Profile({ badgeData }: ProfileProps) {
 
       {/* Right */}
       <Stack display="flex" flex={5} direction="column" ml="2rem">
-        <Typography variant="h5" sx={{ marginLeft: "1rem" }}>
-          Badges
-        </Typography>
-        <Divider sx={{ borderBottomWidth: 2, borderColor: "black" }} />
         <Badges
           badgeData={badgeData}
           existingBadges={userSession?.badges || []}
