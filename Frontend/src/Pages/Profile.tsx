@@ -67,10 +67,6 @@ export default function Profile({ badgeData }: ProfileProps) {
 
       {/* Right */}
       <Stack display="flex" flex={5} direction="column" ml="2rem">
-        <Typography variant="h5" sx={{ marginLeft: "1rem" }}>
-          Badges
-        </Typography>
-        <Divider sx={{ borderBottomWidth: 2, borderColor: "black" }} />
         <Badges
           badgeData={badgeData}
           existingBadges={userSession?.badges || []}
