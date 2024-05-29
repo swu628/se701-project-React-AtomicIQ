@@ -29,11 +29,11 @@ export default function Levels() {
 
   const containerStyles = {
     p: { xs: "1rem", sm: "1.5rem", md: "2rem" },
-    minHeight: "92.75vh",
     width: { xs: "95vw", sm: "90vw", md: "60vw" },
     boxShadow: 3,
     backgroundColor: "white",
     display: "flex",
+    flex: 1,
     flexDirection: "column",
     alignItems: "center",
   };

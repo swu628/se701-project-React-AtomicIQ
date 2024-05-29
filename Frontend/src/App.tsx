@@ -11,6 +11,7 @@ import FlashCard from "./Pages/FlashCard";
 import Results from "./Pages/Results";
 import flashcards from "./data/flashcards.json"; // Import the JSON data
 import badges from "./data/badges.json";
+import "./App.css";
 
 function App() {
   return (
