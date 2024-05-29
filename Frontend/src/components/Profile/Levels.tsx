@@ -1,5 +1,4 @@
 import { Box, LinearProgress, Stack, Typography } from "@mui/material";
-import LevelSidebar from "../LevelSidebar";
 
 interface LevelsProps {
   level: number;
@@ -8,33 +7,22 @@ interface LevelsProps {
 
 export default function Levels({ level, progress }: LevelsProps) {
   return (
-    <>
-      <LevelSidebar
-        level={userSession?.level || 1}
-        progress={userSession?.progress || 25}
-      />
-      <Stack direction="column">
-        <Typography variant="h5" sx={{ marginLeft: "1rem" }}>
-          Level {level}
-        </Typography>
-        <Box
-          m="0.5rem 0 0.5rem 0"
-          sx={{ display: "flex", alignItems: "center" }}
-        >
-          <Box sx={{ width: "100%", mr: 1 }}>
-            <LinearProgress
-              variant="determinate"
-              value={progress}
-              sx={{ height: "0.5rem", borderRadius: 1 }}
-            />
-          </Box>
-          <Box sx={{ minWidth: 35 }}>
-            <Typography variant="body2">{`${Math.round(
-              progress
-            )}%`}</Typography>
-          </Box>
+    <Stack direction="column">
+      <Typography variant="h5" sx={{ marginLeft: "1rem" }}>
+        Level {level}
+      </Typography>
+      <Box m="0.5rem 0 0.5rem 0" sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ width: "100%", mr: 1 }}>
+          <LinearProgress
+            variant="determinate"
+            value={progress}
+            sx={{ height: "0.5rem", borderRadius: 1 }}
+          />
         </Box>
-      </Stack>
-    </>
+        <Box sx={{ minWidth: 35 }}>
+          <Typography variant="body2">{`${Math.round(progress)}%`}</Typography>
+        </Box>
+      </Box>
+    </Stack>
   );
 }

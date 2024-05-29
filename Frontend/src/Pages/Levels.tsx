@@ -81,8 +81,8 @@ export default function Levels() {
   return (
     <>
       <LevelSidebar
-        level={userSession?.level || 1}
-        progress={userSession?.progress || 25}
+        level={userSession?.level ?? 1}
+        progress={userSession?.progress ?? 25}
       />
       <Container sx={containerStyles}>
         <Typography
