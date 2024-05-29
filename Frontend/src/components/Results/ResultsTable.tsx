@@ -39,7 +39,7 @@ function CollapsibleRow({ row }: CollapsibleRowProps) {
         <TableCell component="th" scope="row">
           <Typography fontWeight="bold">{row.label}</Typography>
         </TableCell>
-        <TableCell align="right">
+        <TableCell>
           <Typography fontWeight="bold">{row.value}</Typography>
         </TableCell>
       </TableRow>
