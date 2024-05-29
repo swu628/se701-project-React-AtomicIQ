@@ -95,7 +95,7 @@ export default function Wordle({rows, cols}: WordleProps) {
         "Color",
     ];
 
-    const elements:ElementData[] = [
+    const elements: ElementData[] = [
         {
             name: Element.H,
             category: Category.NonMetal,
@@ -307,6 +307,59 @@ export default function Wordle({rows, cols}: WordleProps) {
         }
     }
 
+    const getCellContent = (rowIndex: number, colIndex: number) => {
+        const element = guesses[rowIndex - 1];
+        const elementData = elements.find((e) => e.name === element);
+        if (!elementData || !answer) {
+            return false;
+        }
+        if (checkCellCorrectness(rowIndex, colIndex)) {
+            switch (colIndex) {
+                case 1:
+                    return elementData.category;
+                case 2:
+                    return elementData.period;
+                case 3:
+                    return elementData.group;
+                case 4:
+                    return elementData.origins;
+                case 5:
+                    return elementData.countries;
+                case 6:
+                    return elementData.color;
+                default:
+                    return "";
+            }
+        } else {
+            switch (colIndex) {
+                case 1:
+                    return elementData.category;
+                case 2:
+                    return elementData.period;
+                case 3:
+                    return elementData.group;
+                case 4:
+                    return elementData.origins.join(", ");
+                case 5:
+                    return elementData.countries.join(", ");
+                case 6:
+                    return elementData.color;
+                default:
+                    return "";
+            }
+        }
+    }
+
+    const getCellColor = (rowIndex: number, colIndex: number) => {
+        if (checkCellEmpty(rowIndex)) {
+            return "bg-white";
+        } else if (checkCellCorrectness(rowIndex, colIndex)) {
+            return "bg-green-300";
+        } else {
+            return "bg-red-300";
+        }
+    }
+
     // Create a grid based on the rows and cols
     const grid = Array.from({length: rows + 1}, (_, rowIndex) => (
         Array.from({length: cols + 1}, (_, colIndex) => {
@@ -314,14 +367,14 @@ export default function Wordle({rows, cols}: WordleProps) {
                 return (
                     <div
                         key={`${rowIndex}-${colIndex}`}
-                        className={`flex justify-center items-center w-20 h-20 border border-black`}
+                        className={`flex justify-center items-center w-20 h-20`}
                     ></div>
                 )
             } else if (colIndex !== 0 && rowIndex === 0) {
                 return (
                     <div
                         key={`${rowIndex}-${colIndex}`}
-                        className={`flex justify-center items-center w-20 h-20 border border-black`}
+                        className={`flex justify-center items-center font-bold w-20 h-20 border`}
                     >
                         {properties[colIndex - 1]}
                     </div>
@@ -330,7 +383,7 @@ export default function Wordle({rows, cols}: WordleProps) {
                 return (
                     <div
                         key={`${rowIndex}-${colIndex}`}
-                        className={`flex justify-center items-center w-20 h-20 border border-black`}
+                        className={`flex justify-center items-center font-bold w-20 h-20 border`}
                     >
                         {guesses[rowIndex - 1]}
                     </div>
@@ -339,9 +392,9 @@ export default function Wordle({rows, cols}: WordleProps) {
                 return (
                     <div
                         key={`${rowIndex}-${colIndex}`}
-                        className={`flex justify-center items-center w-20 h-20 border border-black`}
+                        className={`flex justify-center items-center text-center w-20 h-20 border ` + getCellColor(rowIndex, colIndex)}
                     >
-                        {checkCellEmpty(rowIndex) ? "" : checkCellCorrectness(rowIndex, colIndex) ? "✅" : "❌"}
+                        {checkCellEmpty(rowIndex) ? "" : getCellContent(rowIndex, colIndex)}
                     </div>
                 )
             }
