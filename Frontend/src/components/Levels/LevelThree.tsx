@@ -19,22 +19,12 @@ export function LevelThree({ isLevelThreeVisible, toggleLevelThree }: Props) {
           transition={{ duration: 0.5 }}
         >
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md text-center text-white">
-            <h2 className="text-2xl mb-4">Level three</h2>
+            <h2 className="text-2xl mb-4">Level Three</h2>
             <p className="mb-4">
-              1. Read the question on the front of the card.
-            </p>
-            <p className="mb-4">2. Enter your answer in the text field.</p>
-            <p className="mb-4">
-              3. Click 'Submit' button / press 'Enter' on keyboard to submit
-              your answer.
+              1. You have to learn the last 3 elements of FLASHCARD.
             </p>
             <p className="mb-4">
-              4. Navigate between cards using the 'Next' and 'Back' buttons /
-              'Arrow left' and 'Arrow right' on keyboard.
-            </p>
-            <p className="mb-4">
-              Note: Click the flashcard / press 'Space' on keyboard to flip the
-              attempted cards.
+              2. You have to learn the last 3 quizs of WORDLE.
             </p>
             <Button
               onClick={toggleLevelThree}

@@ -90,7 +90,9 @@ export default function Levels() {
             <Typography variant="h6" component="span">
               Level 1
             </Typography>
-            <Typography>Description?</Typography>
+              <Typography>
+                Congratulation! You have learned the first 3 elements of FLASHCARD.
+              </Typography> 
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -106,7 +108,9 @@ export default function Levels() {
             <Typography variant="h6" component="span">
               Level 2
             </Typography>
-            <Typography>Description?</Typography>
+              <Typography>
+                Congratulation! You have learned the middle 3 elements of FLASHCARD.
+              </Typography>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -122,7 +126,9 @@ export default function Levels() {
             <Typography variant="h6" component="span">
               Level 3
             </Typography>
-            <Typography>Description?</Typography>
+            <Typography>
+                Congratulation! You have learned the last 3 elements of FLASHCARD.
+              </Typography>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
@@ -137,9 +143,9 @@ export default function Levels() {
           </TimelineSeparator>
           <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
             <Typography variant="h6" component="span">
-              Level ??
+              More Levels
             </Typography>
-            <Typography>Description?</Typography>
+            <Typography>Learn more elements to unlock</Typography>
           </TimelineContent>
         </TimelineItem>
       </Timeline>

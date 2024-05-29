@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaForward, FaBackward } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import "../index.css";
 import { Button } from "../components/ui/button";
 
 // Import the sound effects when the user got the questions right/wrong
