@@ -8,8 +8,9 @@ export interface Badge {
 export interface UserSession {
   username: string;
   password: string;
-  avatar: string;
   badges: number[];
   level: number;
   progress: number;
+  avatar: string;
+  correctQuiz: number;
 }

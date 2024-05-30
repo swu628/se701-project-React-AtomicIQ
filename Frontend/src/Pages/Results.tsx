@@ -2,11 +2,12 @@ import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import RedoIcon from "@mui/icons-material/Redo";
 import PreviewIcon from "@mui/icons-material/Preview";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ResultsTable from "~/components/Results/ResultsTable";
 import ResultsDisplay from "~/components/Results/ResultsDisplay";
 import { AnswerData } from "./FlashCard";
+import { UserSession } from "~/types/entities";
 
 interface ResultsValues {
   correct: number;
@@ -38,7 +39,7 @@ export default function Results() {
         acc.resultsQuestions.correct.push(index + 1);
       } else if (answer.answer === "") {
         acc.resultsValues.skipped++;
-        acc.resultsQuestions.skipped.push(index + 1); 
+        acc.resultsQuestions.skipped.push(index + 1);
       } else {
         acc.resultsValues.incorrect++;
         acc.resultsQuestions.incorrect.push(index + 1);
@@ -56,18 +57,26 @@ export default function Results() {
   );
 
   useEffect(() => {
+    // Retrieve and update currently logged in user
+    const storedSession = localStorage.getItem("userSession");
+    if (storedSession) {
+      const session = JSON.parse(storedSession) as UserSession;
+      session.correctQuiz = session.correctQuiz + resultsValues.correct;
+      localStorage.setItem("userSession", JSON.stringify(session));
+    }
+
     document.body.classList.add("backgroundImage");
     return () => {
       document.body.classList.remove("backgroundImage");
     };
-  }, []);
+  }, [resultsValues.correct]);
 
   useEffect(() => {
     const completedLevel = Math.floor(answers.length / 3);
     if (completedLevel > 0) {
       const savedLevels = localStorage.getItem("completedLevels");
       const updatedLevels = savedLevels ? JSON.parse(savedLevels) : [];
-      
+
       if (!updatedLevels.includes(completedLevel)) {
         updatedLevels.push(completedLevel);
         localStorage.setItem("completedLevels", JSON.stringify(updatedLevels));

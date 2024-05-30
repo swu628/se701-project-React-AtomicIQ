@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Typography,
   Divider,
@@ -11,6 +10,10 @@ import {
   experimentalStyled as styled,
   createTheme,
 } from "@mui/material/styles";
+
+type pointProp = {
+  correctQuiz: number;
+};
 
 // Styled component for the circle container
 const CircleContainer = styled("div")({
@@ -53,7 +56,7 @@ const theme = createTheme({
   },
 });
 
-export default function Points() {
+export default function Points({ correctQuiz }: pointProp) {
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="column">
@@ -101,7 +104,7 @@ export default function Points() {
             <Tooltip title="Number of correct answers" arrow>
               <Label>Correct</Label>
             </Tooltip>
-            <WinnerCount>2</WinnerCount>
+            <WinnerCount>{correctQuiz}</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Number of incorrect answers" arrow>
