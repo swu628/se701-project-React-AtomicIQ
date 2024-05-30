@@ -101,6 +101,7 @@ const FlashCard = () => {
     navigate(`/flashcard/${cardData.id}/results`, {
       state: {
         answers: newAnswers.slice(sliceStart, sliceEnd).filter(Boolean),
+        quizType: "flashcard",
       },
     });
   };
