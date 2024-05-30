@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import Confetti from 'react-confetti';
+import React, { useState } from "react";
+import Confetti from "react-confetti";
 import { Slider } from "./ui/slider";
 import { Separator } from "./ui/separator";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
 import { Textarea } from "./ui/textarea";
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import ParticleSimulation from './ParticleSimulation';
+import ParticleSimulation from "./ParticleSimulation";
 import { Button } from "./ui/button";
 
 const MIN_PRESSURE = 1000; // Minimum pressure in Pascals
@@ -17,7 +22,7 @@ const antoineIscoVaporPressure = (temperature) => {
   const B1 = 1730.63;
   const C1 = 233.426;
   const tempKelvin = temperature + 273.15;
-  return 10 ** (A1 - (B1 / (tempKelvin + C1)));
+  return 10 ** (A1 - B1 / (tempKelvin + C1));
 };
 
 const antoineVaporPressure = (temperature) => {
@@ -25,7 +30,7 @@ const antoineVaporPressure = (temperature) => {
   const B2 = 1688.537;
   const C2 = 233.832;
   const tempKelvin = temperature + 273.15;
-  return 10 ** (A2 - (B2 / (tempKelvin + C2)));
+  return 10 ** (A2 - B2 / (tempKelvin + C2));
 };
 
 const getWaterState = (temperature, pressure) => {
@@ -33,11 +38,11 @@ const getWaterState = (temperature, pressure) => {
   const vaporPressureAntoine = antoineVaporPressure(temperature);
 
   if (pressure < vaporPressureIsco) {
-    return 'gas';
+    return "gas";
   } else if (pressure > vaporPressureAntoine) {
-    return 'solid';
+    return "solid";
   } else {
-    return 'liquid';
+    return "liquid";
   }
 };
 
@@ -47,17 +52,33 @@ const WaterStateSimulator = () => {
   const waterState = getWaterState(temperature, pressure);
 
   const [learningObjectives, setLearningObjectives] = useState([
-    { id: 1, text: 'State the distinguishing properties of solids, liquids and gases', completed: false },
-    { id: 2, text: 'Describe the structures of solids, liquids and gases in terms of particle separation, arrangement and motion', completed: false },
-    { id: 3, text: 'Describe changes of state in terms of melting, boiling, evaporating, freezing and condensing', completed: false },
-    { id: 4, text: 'Describe the effects of temperature and pressure on the volume of a gas', completed: false },
+    {
+      id: 1,
+      text: "State the distinguishing properties of solids, liquids and gases",
+      completed: false,
+    },
+    {
+      id: 2,
+      text: "Describe the structures of solids, liquids and gases in terms of particle separation, arrangement and motion",
+      completed: false,
+    },
+    {
+      id: 3,
+      text: "Describe changes of state in terms of melting, boiling, evaporating, freezing and condensing",
+      completed: false,
+    },
+    {
+      id: 4,
+      text: "Describe the effects of temperature and pressure on the volume of a gas",
+      completed: false,
+    },
   ]);
 
   const [userAnswers, setUserAnswers] = useState({
-    1: '',
-    2: '',
-    3: '',
-    4: '',
+    1: "",
+    2: "",
+    3: "",
+    4: "",
   });
 
   const [currentObjectiveIndex, setCurrentObjectiveIndex] = useState(0);
@@ -74,7 +95,9 @@ const WaterStateSimulator = () => {
   const handleCheckboxChange = (objectiveId) => {
     setLearningObjectives((prevObjectives) =>
       prevObjectives.map((objective) =>
-        objective.id === objectiveId ? { ...objective, completed: !objective.completed } : objective
+        objective.id === objectiveId
+          ? { ...objective, completed: !objective.completed }
+          : objective
       )
     );
   };
@@ -95,7 +118,9 @@ const WaterStateSimulator = () => {
     if (validateAnswer(objectiveId, userAnswers[objectiveId])) {
       setLearningObjectives((prevObjectives) =>
         prevObjectives.map((objective) =>
-          objective.id === objectiveId ? { ...objective, completed: true } : objective
+          objective.id === objectiveId
+            ? { ...objective, completed: true }
+            : objective
         )
       );
       setCurrentObjectiveIndex((prevIndex) => prevIndex + 1);
@@ -125,7 +150,9 @@ const WaterStateSimulator = () => {
           <CardHeader>
             <CardTitle>Water State Simulator</CardTitle>
             <CardDescription>
-              Explore the states of water by adjusting temperature and pressure. Use the learning objectives and answer boxes to guide your exploration.
+              Explore the states of water by adjusting temperature and pressure.
+              Use the learning objectives and answer boxes to guide your
+              exploration.
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
@@ -156,24 +183,38 @@ const WaterStateSimulator = () => {
                   step={0.01}
                   onValueChange={handlePressureChange}
                 />
-<span>{Math.round(pressure / 1000).toLocaleString()} kPa</span>
+                <span>{Math.round(pressure / 1000).toLocaleString()} kPa</span>
               </div>
             </div>
             <div className="flex gap-2">
-              <Button onClick={handleResetToRoomTemp}>Reset to Room Temperature</Button>
-              <Button onClick={handleResetToStandardAtmospheric}>Reset to Standard Pressure</Button>
+              <Button onClick={handleResetToRoomTemp}>
+                Reset to Room Temperature
+              </Button>
+              <Button onClick={handleResetToStandardAtmospheric}>
+                Reset to Standard Pressure
+              </Button>
             </div>
             <Separator />
             <div className="flex flex-col items-center gap-2">
               <span className="font-bold">Water State:</span>
-              {waterState === 'solid' && <span className="text-blue-500">Solid</span>}
-              {waterState === 'liquid' && <span className="text-blue-500">Liquid</span>}
-              {waterState === 'gas' && <span className="text-blue-500">Gas</span>}
+              {waterState === "solid" && (
+                <span className="text-blue-500">Solid</span>
+              )}
+              {waterState === "liquid" && (
+                <span className="text-blue-500">Liquid</span>
+              )}
+              {waterState === "gas" && (
+                <span className="text-blue-500">Gas</span>
+              )}
             </div>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <div style={{ width: '100%', height: '100%' }}>
-              <ParticleSimulation state={waterState} temperature={temperature} pressure={pressure} />
+            <div style={{ width: "100%", height: "100%" }}>
+              <ParticleSimulation
+                state={waterState}
+                temperature={temperature}
+                pressure={pressure}
+              />
             </div>
           </CardFooter>
         </Card>
@@ -193,7 +234,10 @@ const WaterStateSimulator = () => {
                   onCheckedChange={() => handleCheckboxChange(objective.id)}
                   disabled
                 />
-                <label htmlFor={`objective-${objective.id}`} className={`${objective.completed ? 'line-through' : ''}`}>
+                <label
+                  htmlFor={`objective-${objective.id}`}
+                  className={`${objective.completed ? "line-through" : ""}`}
+                >
                   {objective.text}
                 </label>
               </div>
@@ -210,11 +254,15 @@ const WaterStateSimulator = () => {
               <Textarea
                 placeholder="Write your answer here..."
                 value={userAnswers[currentObjective.id]}
-                onChange={(e) => handleUserAnswerChange(currentObjective.id, e.target.value)}
+                onChange={(e) =>
+                  handleUserAnswerChange(currentObjective.id, e.target.value)
+                }
               />
             </CardContent>
             <CardFooter>
-              <Button onClick={() => handleSubmitAnswer(currentObjective.id)}>Submit Answer</Button>
+              <Button onClick={() => handleSubmitAnswer(currentObjective.id)}>
+                Submit Answer
+              </Button>
             </CardFooter>
           </Card>
         )}
@@ -226,7 +274,15 @@ const WaterStateSimulator = () => {
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const SliderDemo = ({ className, ...props }: SliderProps) => {
-  return <Slider defaultValue={[50]} max={100} step={1} {...props} className={`w-full ${className}`} />;
+  return (
+    <Slider
+      defaultValue={[50]}
+      max={100}
+      step={1}
+      {...props}
+      className={`w-full ${className}`}
+    />
+  );
 };
 
 export default WaterStateSimulator;

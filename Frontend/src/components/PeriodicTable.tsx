@@ -1,14 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import elementData from "../data/elementData";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "../components/ui/table";
 
 const PeriodicTable = () => {
   const [showModal, setShowModal] = useState(false);

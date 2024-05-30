@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const ParticleSimulation = ({ state, temperature, pressure }) => {
   const canvasRef = useRef(null);
@@ -22,7 +22,7 @@ const ParticleSimulation = ({ state, temperature, pressure }) => {
     const ctx = canvas.getContext("2d");
     const canvasWidth = canvas.parentElement.clientWidth;
     const canvasHeight = canvas.parentElement.clientHeight;
-    console.log(canvasHeight)
+    console.log(canvasHeight);
 
     // Set the canvas dimensions to match the parent element
     canvas.width = canvasWidth;
@@ -57,18 +57,19 @@ const ParticleSimulation = ({ state, temperature, pressure }) => {
       const logPressure = Math.log(pressure);
       const logMinPressure = Math.log(100);
       const logMaxPressure = Math.log(25000000);
-      
-      const normalizedLogPressure = (logPressure - logMinPressure) / (logMaxPressure - logMinPressure);
+
+      const normalizedLogPressure =
+        (logPressure - logMinPressure) / (logMaxPressure - logMinPressure);
       const lineHeight = normalizedLogPressure * 0.6 * canvasHeight;
-      
+
       console.log(lineHeight, pressure);
       ctx.fillStyle = "black";
       ctx.beginPath();
       ctx.moveTo(0, lineHeight);
-      ctx.fillRect(0, lineHeight-20, canvasWidth, 20);
-      ctx.fillRect((canvasWidth - 100)/2, 0, 100, lineHeight);
+      ctx.fillRect(0, lineHeight - 20, canvasWidth, 20);
+      ctx.fillRect((canvasWidth - 100) / 2, 0, 100, lineHeight);
       ctx.stroke();
-      
+
       const gravity = 0.9;
       const repulsionForce = (1000000 - pressure) / 2000000;
       const dampeningFactor = 0.9;
@@ -93,29 +94,29 @@ const ParticleSimulation = ({ state, temperature, pressure }) => {
               const rows = Math.floor(canvasHeight / gridSize);
 
               // Find the closest available grid position, filling rows from bottom to top, left to right
-let closestRow = rows - 1;
-let closestCol = 0;
-let foundPosition = false;
-for (let row = rows - 1; row >= 0; row--) {
-  for (let col = 0; col < cols; col++) {
-    const gridX = col * gridSize + gridSize / 2;
-    const gridY = canvasHeight - (row + 1) * gridSize + gridSize / 2;
-    const distance = Math.sqrt(
-      (particle.initialX - gridX) ** 2 +
-      (particle.initialY - gridY) ** 2
-    );
-    if (!occupiedPositions.includes(`${col},${row}`)) {
-      closestRow = row;
-      closestCol = col;
-      foundPosition = true;
-      break;
-    }
-  }
-  if (foundPosition) {
-    break;
-  }
-}
-
+              let closestRow = rows - 1;
+              let closestCol = 0;
+              let foundPosition = false;
+              for (let row = rows - 1; row >= 0; row--) {
+                for (let col = 0; col < cols; col++) {
+                  const gridX = col * gridSize + gridSize / 2;
+                  const gridY =
+                    canvasHeight - (row + 1) * gridSize + gridSize / 2;
+                  const distance = Math.sqrt(
+                    (particle.initialX - gridX) ** 2 +
+                      (particle.initialY - gridY) ** 2
+                  );
+                  if (!occupiedPositions.includes(`${col},${row}`)) {
+                    closestRow = row;
+                    closestCol = col;
+                    foundPosition = true;
+                    break;
+                  }
+                }
+                if (foundPosition) {
+                  break;
+                }
+              }
 
               if (foundPosition) {
                 particle.targetX = closestCol * gridSize + gridSize / 2;
@@ -153,8 +154,8 @@ for (let row = rows - 1; row >= 0; row--) {
               const gridY = canvasHeight - (row + 1) * gridSize + gridSize / 2;
               const maxVibrationAmplitude = 2 + temperature / 100;
               const vibrationFrequencyFactor = 1 + temperature / 200;
-              const randomnessFactorX = vibrationFrequencyFactor; 
-              const randomnessFactorY = vibrationFrequencyFactor; 
+              const randomnessFactorX = vibrationFrequencyFactor;
+              const randomnessFactorY = vibrationFrequencyFactor;
               const vibrationAmplitudeX =
                 maxVibrationAmplitude *
                   Math.sin((time / 500 + index) * vibrationFrequencyFactor) +
