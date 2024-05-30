@@ -68,6 +68,12 @@ export default function Results() {
       session.questionPoints.totalQuestions +=
         resultsValues.correct + resultsValues.incorrect;
       session.quizPoints.numFlashcard += 1;
+      if (resultsValues.incorrect === 0 && resultsValues.skipped === 0) {
+        session.questionPoints.consecutiveQuestions += 1;
+      } else {
+        session.questionPoints.consecutiveQuestions = 0;
+      }
+      console.log(session.questionPoints.consecutiveQuestions);
 
       updateBadges(session);
       // Initialize user points
@@ -78,7 +84,8 @@ export default function Results() {
 
     // Update badges
     const updateBadges = (session: UserSession) => {
-      const { correctQuestions, incorrectQuestions } = session.questionPoints;
+      const { correctQuestions, incorrectQuestions, consecutiveQuestions } =
+        session.questionPoints;
       const { numFlashcard } = session.quizPoints;
 
       // Quiz Wizard: complete n flashcard quiz
@@ -120,6 +127,16 @@ export default function Results() {
       if (correctQuestions >= 100 && !session.badges.includes(15)) {
         session.badges.push(15);
       }
+      // Consistent Genius: achieve 100% in n consecutive flash card quizzes
+      if (consecutiveQuestions === 2 && !session.badges.includes(16)) {
+        session.badges.push(16);
+      }
+      if (consecutiveQuestions === 4 && !session.badges.includes(17)) {
+        session.badges.push(17);
+      }
+      if (consecutiveQuestions === 8 && !session.badges.includes(18)) {
+        session.badges.push(18);
+      }
     };
 
     // Initialize user points
@@ -127,6 +144,7 @@ export default function Results() {
       session.questionPoints.correctQuestions = 0;
       session.questionPoints.incorrectQuestions = 0;
       session.questionPoints.totalQuestions = 0;
+      session.questionPoints.consecutiveQuestions = 0;
       session.quizPoints.numFlashcard = 0;
       session.badges = [0];
     };
