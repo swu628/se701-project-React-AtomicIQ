@@ -1,9 +1,11 @@
+import React from "react";
 import {
   Typography,
   Divider,
   Grid,
-  LinearProgress,
   ThemeProvider,
+  Stack,
+  Tooltip,
 } from "@mui/material";
 import {
   experimentalStyled as styled,
@@ -52,74 +54,63 @@ const theme = createTheme({
 });
 
 export default function Points() {
-  const totalElements = 20;
-  const learnedElements = 5;
-  const progress = (learnedElements / totalElements) * 100;
-
   return (
     <ThemeProvider theme={theme}>
-      <>
-        <Typography variant="h4" sx={{ alignSelf: "center", marginTop: 4 }}>
+      <Stack direction="column">
+        <Typography variant="h5" sx={{ marginLeft: "1rem" }}>
           Points
         </Typography>
-        <Divider
-          sx={{ borderBottomWidth: 2, borderColor: "black", marginY: 1 }}
-        />
+        <Divider sx={{ borderBottomWidth: 2, borderColor: "black" }} />
         {/* Quiz points */}
-        <Grid container justifyContent="space-evenly" sx={{ marginTop: 2 }}>
+        <Grid
+          container
+          justifyContent="space-evenly"
+          sx={{ marginTop: "3rem" }}
+        >
           <CircleContainer>
-            <Label>Flashcard</Label>
+            <Tooltip title="Number of flashcard completion" arrow>
+              <Label>Flashcard</Label>
+            </Tooltip>
             <WinnerCount>2</WinnerCount>
           </CircleContainer>
           <CircleContainer>
-            <Label>Wordle</Label>
+            <Tooltip title="Number of wordle quiz completion" arrow>
+              <Label>Wordle</Label>
+            </Tooltip>
             <WinnerCount>2</WinnerCount>
           </CircleContainer>
           <CircleContainer>
-            <Label>Streak</Label>
+            <Tooltip title="Consecutive days of completion" arrow>
+              <Label>Streak</Label>
+            </Tooltip>
             <WinnerCount>0</WinnerCount>
           </CircleContainer>
         </Grid>
-        {/* Learning progress */}
-        <Typography variant="h5" sx={{ alignSelf: "center", marginTop: 4 }}>
-          Elements learnt
-        </Typography>
-        <Grid container alignItems="center" justifyContent="center">
-          <Typography sx={{ marginRight: 1 }}>{learnedElements}</Typography>
-          <LinearProgress
-            variant="determinate"
-            value={progress}
-            color="primary"
-            sx={{
-              width: "80%",
-              height: "10px",
-              borderRadius: "5px",
-              marginLeft: 1,
-              marginRight: 1,
-            }}
-          />
-          <Typography sx={{ marginLeft: 1 }}>{totalElements}</Typography>
+        <Grid
+          container
+          justifyContent="space-evenly"
+          sx={{ marginTop: "5rem" }}
+        >
+          <CircleContainer>
+            <Tooltip title="Number of completed quizzes" arrow>
+              <Label>Quizzes</Label>
+            </Tooltip>
+            <WinnerCount>2</WinnerCount>
+          </CircleContainer>
+          <CircleContainer>
+            <Tooltip title="Number of correct answers" arrow>
+              <Label>Correct</Label>
+            </Tooltip>
+            <WinnerCount>2</WinnerCount>
+          </CircleContainer>
+          <CircleContainer>
+            <Tooltip title="Number of incorrect answers" arrow>
+              <Label>Wrong</Label>
+            </Tooltip>
+            <WinnerCount>0</WinnerCount>
+          </CircleContainer>
         </Grid>
-        <Typography variant="h5" sx={{ alignSelf: "center", marginTop: 4 }}>
-          Properties learnt
-        </Typography>
-        <Grid container alignItems="center" justifyContent="center">
-          <Typography sx={{ marginRight: 1 }}>{learnedElements}</Typography>
-          <LinearProgress
-            variant="determinate"
-            value={progress}
-            color="primary"
-            sx={{
-              width: "80%",
-              height: "10px",
-              borderRadius: "5px",
-              marginLeft: 1,
-              marginRight: 1,
-            }}
-          />
-          <Typography sx={{ marginLeft: 1 }}>{totalElements}</Typography>
-        </Grid>
-      </>
+      </Stack>
     </ThemeProvider>
   );
 }

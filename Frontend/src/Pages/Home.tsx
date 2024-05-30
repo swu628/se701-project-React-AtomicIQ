@@ -1,9 +1,27 @@
-import { useState, useEffect } from "react";
-import { Container, Typography, Button } from "@mui/material";
+import { useEffect, useState } from "react";
+import {
+  Container,
+  Typography,
+  Button,
+  Stack,
+  Drawer,
+  Divider,
+  LinearProgress,
+} from "@mui/material";
 import { Link } from "react-router-dom";
+import { UserSession } from "~/types/entities";
+import LevelSidebar from "~/components/LevelSidebar";
 
 export default function Home() {
+  const [userSession, setUserSession] = useState<UserSession | null>(null);
+
   useEffect(() => {
+    // Retrieve currently logged in user
+    const storedSession = localStorage.getItem("userSession");
+    if (storedSession) {
+      setUserSession(JSON.parse(storedSession) as UserSession);
+    }
+
     document.body.classList.add("backgroundImage");
     return () => {
       document.body.classList.remove("backgroundImage");
@@ -12,22 +30,22 @@ export default function Home() {
 
   const containerStyles = {
     p: "2rem",
-    minHeight: "92.75vh",
-    width: "80vw",
+    width: "60vw",
     boxShadow: 3,
     display: "flex",
+    flex: 1,
     flexDirection: "column",
     backgroundColor: "white",
     alignItems: "center",
   };
 
   const buttonStyles = {
-    width: "15vw", // Increased width
-    mb: 5,
+    width: { xs: "80vw", sm: "60vw", md: "30vw", lg: "15vw" },
+    mb: "2rem",
     backgroundColor: "#1976d2",
     color: "white",
-    padding: "1rem 2rem", // Increased padding
-    fontSize: "1.25rem", // Increased font size
+    padding: { xs: "0.5rem 1rem", md: "1rem 2rem" },
+    fontSize: { xs: "1rem", md: "1.25rem" },
     borderRadius: "0.25rem",
     boxShadow: 2,
     "&:hover": {
@@ -36,27 +54,28 @@ export default function Home() {
     textDecoration: "none",
   };
 
-  const typographyStyles = {
-    mb: 30,
-  };
-
   return (
-    <Container sx={containerStyles}>
-      <Typography variant="h2" sx={typographyStyles}>
-        AtomicIQ
-      </Typography>
-      <Link to="/flashcard" style={{ textDecoration: "none" }}>
-        <Button sx={buttonStyles}>Flashcard</Button>
-      </Link>
-      <Link to="/wordle" style={{ textDecoration: "none" }}>
-        <Button sx={buttonStyles}>Wordle</Button>
-      </Link>
-      {/* Test purposes, have to remove this before submitting */}
-      <Link to="/quiz/0/results" style={{ textDecoration: "none" }}>
-        <Button sx={buttonStyles}>
-          Quiz result (remember to remove this button)
-        </Button>
-      </Link>
-    </Container>
+    <>
+      <LevelSidebar
+        level={userSession?.level ?? 1}
+        progress={userSession?.progress ?? 25}
+      />
+      <Container sx={containerStyles}>
+        <Typography variant="h2">AtomicIQ</Typography>
+        <Stack
+          display="flex"
+          direction="column"
+          flex={1}
+          justifyContent="center"
+        >
+          <Link to="/flashcard" style={{ textDecoration: "none" }}>
+            <Button sx={buttonStyles}>FlashCard</Button>
+          </Link>
+          <Link to="/wordle" style={{ textDecoration: "none" }}>
+            <Button sx={buttonStyles}>Wordle</Button>
+          </Link>
+        </Stack>
+      </Container>
+    </>
   );
 }

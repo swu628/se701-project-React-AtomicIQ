@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,14 +12,25 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ScienceIcon from "@mui/icons-material/Science";
+import { UserSession } from "~/types/entities";
+import { useState, useEffect } from "react";
 
 const pages = ["Levels", "Wiki"];
 const settings = ["Profile", "Logout"];
 
 function ResponsiveAppBar() {
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [userSession, setUserSession] = useState<UserSession | null>(null);
+
+  useEffect(() => {
+    // Retrieve currently logged in user
+    const storedSession = localStorage.getItem("userSession");
+    if (storedSession) {
+      setUserSession(JSON.parse(storedSession) as UserSession);
+    }
+  }, []);
+
+  const navigate = useNavigate();
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -28,11 +40,22 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("userToken");
+    navigate("/login"); 
+  };
+
+  const handleMenuClick = (setting: string) => {
+    if (setting === "Logout") {
+      handleLogout();
+    } else if (setting === "Profile") {
+      navigate("/profile");
+    }
+    handleCloseUserMenu();
+  };
+
   return (
-    <AppBar
-      position="static"
-      style={{ background: "linear-gradient(-1deg, lightgray, blue)" }}
-    >
+    <AppBar position="static" style={{ background: "linear-gradient(-1deg, lightgray, blue)" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -61,11 +84,7 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                sx={{ my: 2, color: "white", display: "block" }}
-                href={`/${page}`}
-              >
+              <Button key={page} sx={{ my: 2, color: "white", display: "block" }} href={`/${page}`}>
                 {page}
               </Button>
             ))}
@@ -73,8 +92,12 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ color: "white" }}>
-                <Avatar alt="Remy Sharp" sx={{ mr: 1.5 }} />
-                User
+                <Avatar
+                  alt="Remy Sharp"
+                  src={userSession?.avatar}
+                  sx={{ mr: 1.5 }}
+                />
+                {userSession?.username || "User"}
               </IconButton>
             </Tooltip>
             <Menu
@@ -94,11 +117,9 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => handleMenuClick(setting)}>
                   <Typography
                     textAlign="center"
-                    component="a"
-                    href={setting === "Profile" ? "/profile" : undefined}
                     sx={{
                       color: "inherit",
                       textDecoration: "none",
