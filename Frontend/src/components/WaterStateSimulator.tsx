@@ -14,6 +14,7 @@ import { Checkbox } from "./ui/checkbox";
 import { Textarea } from "./ui/textarea";
 import ParticleSimulation from "./ParticleSimulation";
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 const MIN_PRESSURE = 1000; // Minimum pressure in Pascals
 const MAX_PRESSURE = 25000000; // Maximum pressure in Pascals
@@ -48,6 +49,7 @@ const getWaterState = (temperature, pressure) => {
 };
 
 const WaterStateSimulator = () => {
+  const navigate = useNavigate();
   const [temperature, setTemperature] = useState(100);
   const [pressure, setPressure] = useState(100000);
   const waterState = getWaterState(temperature, pressure);
@@ -267,6 +269,9 @@ const WaterStateSimulator = () => {
             </CardFooter>
           </Card>
         )}
+        <Button onClick={() => navigate("/room-temperature-pressure")}>
+          Next
+        </Button>
       </div>
     </div>
   );
