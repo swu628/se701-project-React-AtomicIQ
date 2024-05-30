@@ -121,6 +121,7 @@ export default function Results() {
       const { correctQuestions, incorrectQuestions, consecutiveQuestions } =
         session.questionPoints;
       const { numFlashcard } = session.quizPoints;
+      const { level } = session;
 
       // Quiz Wizard: complete n flashcard quiz
       if (numFlashcard === 1 && !session.badges.includes(4)) {
@@ -192,6 +193,19 @@ export default function Results() {
         showSnackbar(
           "Consistent Genius: Achieved 100% in 8 consecutive flash card quizzes!"
         );
+      }
+      // Level Achiever: Achieve Level n
+      if (level === 2 && !session.badges.includes(19)) {
+        session.badges.push(19);
+        showSnackbar("Level Achiever: Achieve Level 2");
+      }
+      if (level === 3 && !session.badges.includes(20)) {
+        session.badges.push(20);
+        showSnackbar("Level Achiever: Achieve Level 3");
+      }
+      if (level === 5 && !session.badges.includes(21)) {
+        session.badges.push(21);
+        showSnackbar("Level Achiever: Achieve Level 5");
       }
     };
 
