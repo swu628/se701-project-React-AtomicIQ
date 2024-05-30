@@ -22,6 +22,21 @@ export default function ElementModal({element, closeModal}: ElementModalProps) {
                 <p className="mb-2">
                     <strong>Period:</strong> {element.period}
                 </p>
+                <p className="mb-2">
+                    <strong>Category:</strong> {element.category}
+                </p>
+                <p className="mb-2">
+                    <strong>Origins:</strong> {element.origins.join(", ")}
+                </p>
+                <p className="mb-2">
+                    <strong>Countries of Discovery:</strong> {element.countries.join(", ")}
+                </p>
+                <p className="mb-2">
+                    <strong>Color:</strong> {element.color}
+                </p>
+                <p className="mb-2">
+                    <strong>Natural Phase:</strong> {element.naturalPhase}
+                </p>
                 <p>
                     <strong>Fun Fact:</strong> {element.funFact}
                 </p>

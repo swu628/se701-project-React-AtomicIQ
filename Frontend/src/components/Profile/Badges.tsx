@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import AppsIcon from "@mui/icons-material/Apps";
 import QuizIcon from "@mui/icons-material/Quiz";
 import SchoolIcon from "@mui/icons-material/School";
 import TodayIcon from "@mui/icons-material/Today";
@@ -22,6 +23,7 @@ import { Badge } from "~/types/entities";
 const icons = {
   AccountBoxIcon: AccountBoxIcon,
   AccessTimeIcon: AccessTimeIcon,
+  AppsIcon: AppsIcon,
   QuizIcon: QuizIcon,
   SchoolIcon: SchoolIcon,
   TodayIcon: TodayIcon,

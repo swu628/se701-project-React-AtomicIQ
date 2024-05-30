@@ -65,6 +65,13 @@ export enum Color {
     Gold = "Gold",
 }
 
+export enum ElementPhase {
+    Solid = "Solid",
+    Liquid = "Liquid",
+    Gas = "Gas",
+    Synthetic = "Synthetic",
+}
+
 export interface ElementData {
     number: number;
     symbol: Element;
@@ -76,6 +83,7 @@ export interface ElementData {
     countries: Country[];
     color: Color;
     funFact: string;
+    naturalPhase: ElementPhase;
 }
 
 export enum ElementProperty {
@@ -85,4 +93,5 @@ export enum ElementProperty {
     Origins = "Origins",
     Countries = "Countries",
     Color = "Color",
+    NaturalPhase = "Natural Phase",
 }

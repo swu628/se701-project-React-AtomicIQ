@@ -8,19 +8,19 @@
   {
     "id": 1,
     "icon": "AccessTimeIcon",
-    "name": "Persistent learner I",
+    "name": "Persistent Learner I",
     "description": "Spend 10 minutes on the site"
   },
   {
     "id": 2,
     "icon": "AccessTimeIcon",
-    "name": "Persistent learner II",
+    "name": "Persistent Learner II",
     "description": "Spend 30 minutes on the site"
   },
   {
     "id": 3,
     "icon": "AccessTimeIcon",
-    "name": "Persistent learner III",
+    "name": "Persistent Learner III",
     "description": "Spend 1 hour on the site"
   },
   {
@@ -130,5 +130,23 @@
     "icon": "EmojiEventsIcon",
     "name": "Level Achiever III",
     "description": "Achieve Level 5"
+  },
+  {
+    "id": 22,
+    "icon": "AppsIcon",
+    "name": "Wordle Solver I",
+    "description": "Complete 1 wordle quiz"
+  },
+  {
+    "id": 23,
+    "icon": "AppsIcon",
+    "name": "Wordle Solver II",
+    "description": "Complete 5 wordle quizzes"
+  },
+  {
+    "id": 24,
+    "icon": "AppsIcon",
+    "name": "Wordle Solver III",
+    "description": "Complete 10 wordle quizzes"
   }
 ]

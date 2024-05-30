@@ -98,6 +98,7 @@ function App() {
                   ElementProperty.Origins,
                   ElementProperty.Countries,
                   ElementProperty.Color,
+                  ElementProperty.NaturalPhase,
                 ]}
                 availableElements={[
                   Element.H,
@@ -109,22 +110,31 @@ function App() {
                   Element.N,
                   Element.O,
                   Element.F,
-                  Element.Ne,
-                  Element.Na,
-                  Element.Mg,
-                  Element.Al,
-                  Element.Si,
-                  Element.P,
-                  Element.S,
-                  Element.Cl,
-                  Element.Ar,
-                  Element.K,
-                  Element.Ca,
+                  // Element.Ne,
+                  // Element.Na,
+                  // Element.Mg,
+                  // Element.Al,
+                  // Element.Si,
+                  // Element.P,
+                  // Element.S,
+                  // Element.Cl,
+                  // Element.Ar,
+                  // Element.K,
+                  // Element.Ca,
                 ]}
               />
             </>
           }
         />
+          <Route
+              path="/wordle/results"
+              element={
+                  <>
+                      <Nav />
+                      <Results />
+                  </>
+              }
+          />
       </Routes>
     </div>
   );

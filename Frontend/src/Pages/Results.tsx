@@ -36,6 +36,7 @@ export default function Results() {
   const quizId = params.quizId || "0";
   const state = location.state || {};
   const answers = (state.answers as AnswerData[]) || [];
+  const quizType = state.quizType;
 
   const { resultsValues, resultsQuestions } = answers.reduce<{
     resultsValues: ResultsValues;
@@ -83,7 +84,11 @@ export default function Results() {
       session.questionPoints.incorrectQuestions += resultsValues.incorrect;
       session.questionPoints.totalQuestions +=
         resultsValues.correct + resultsValues.incorrect;
-      session.quizPoints.numFlashcard += 1;
+        if (quizType === "flashcard") {
+            session.quizPoints.numFlashcard += 1;
+        } else if (quizType === "origin") {
+            session.quizPoints.numWordle += 1;
+        }
       if (resultsValues.incorrect === 0 && resultsValues.skipped === 0) {
         session.questionPoints.consecutiveQuestions += 1;
       } else {
@@ -101,7 +106,7 @@ export default function Results() {
     const updateBadges = (session: UserSession) => {
       const { correctQuestions, incorrectQuestions, consecutiveQuestions } =
         session.questionPoints;
-      const { numFlashcard } = session.quizPoints;
+      const { numFlashcard, numWordle } = session.quizPoints;
 
       // Quiz Wizard: complete n flashcard quiz
       if (numFlashcard === 1 && !session.badges.includes(4)) {
@@ -115,6 +120,19 @@ export default function Results() {
       if (numFlashcard === 10 && !session.badges.includes(6)) {
         session.badges.push(6);
         showSnackbar("Quiz Wizard: Completed 10 flashcard quizzes!");
+      }
+      // Wordle Solver: complete n origin quiz
+      if (numWordle === 1 && !session.badges.includes(22)) {
+        session.badges.push(22);
+        showSnackbar("Wordle Solver: Completed 1 origin quiz!");
+      }
+      if (numWordle === 5 && !session.badges.includes(23)) {
+          session.badges.push(23);
+          showSnackbar("Wordle Solver: Completed 5 origin quizzes!");
+      }
+      if (numWordle === 10 && !session.badges.includes(24)) {
+          session.badges.push(24);
+          showSnackbar("Wordle Solver: Completed 10 origin quizzes!");
       }
       // Elements Master: achieve n% or above in a flash card quiz
       if (
@@ -227,7 +245,11 @@ export default function Results() {
   }, [answers]);
 
   const handleRetakeQuiz = () => {
-    navigate(`/flashcard/${quizId}`);
+    if (quizType === "flashcard") {
+      navigate(`/flashcard/${quizId}`);
+    } else if (quizType === "origin") {
+      navigate(`/wordle`);
+    }
   };
 
   const handleNextQuiz = () => {
