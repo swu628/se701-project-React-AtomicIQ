@@ -68,6 +68,7 @@ export default function Results() {
         resultsValues.correct +
         resultsValues.incorrect +
         resultsValues.skipped;
+      session.numOfFlashcard = session.numOfFlashcard + 1;
       localStorage.setItem("userSession", JSON.stringify(session));
     }
 

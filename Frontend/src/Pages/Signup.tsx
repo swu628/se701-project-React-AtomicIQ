@@ -40,6 +40,7 @@ function Signup() {
       correctQuiz: 0,
       incorrectQuiz: 0,
       totalQuiz: 0,
+      numOfFlashcard: 0,
     };
 
     localStorage.setItem("userSession", JSON.stringify(userSession));

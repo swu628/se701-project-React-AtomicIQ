@@ -15,4 +15,5 @@ export interface UserSession {
   correctQuiz: number;
   incorrectQuiz: number;
   totalQuiz: number,
+  numOfFlashcard: number,
 }

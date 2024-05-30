@@ -59,6 +59,7 @@ export default function Profile({ badgeData }: ProfileProps) {
               correctQuiz={userSession?.correctQuiz ?? 0}
               incorrectQuiz={userSession?.incorrectQuiz ?? 0}
               totalQuiz={userSession?.totalQuiz ?? 0}
+              numOfFlashcard={userSession?.numOfFlashcard ?? 0}
             />
           </>
         )}

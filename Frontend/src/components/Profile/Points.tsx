@@ -15,6 +15,7 @@ type pointProp = {
   correctQuiz: number;
   incorrectQuiz: number;
   totalQuiz: number;
+  numOfFlashcard: number;
 };
 
 // Styled component for the circle container
@@ -62,6 +63,7 @@ export default function Points({
   correctQuiz,
   incorrectQuiz,
   totalQuiz,
+  numOfFlashcard,
 }: pointProp) {
   return (
     <ThemeProvider theme={theme}>
@@ -80,13 +82,13 @@ export default function Points({
             <Tooltip title="Number of flashcard completion" arrow>
               <Label>Flashcard</Label>
             </Tooltip>
-            <WinnerCount>2</WinnerCount>
+            <WinnerCount>{numOfFlashcard}</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Number of wordle quiz completion" arrow>
               <Label>Wordle</Label>
             </Tooltip>
-            <WinnerCount>2</WinnerCount>
+            <WinnerCount>0</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Consecutive days of completion" arrow>
