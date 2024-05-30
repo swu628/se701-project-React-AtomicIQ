@@ -38,6 +38,7 @@ export default function Levels() {
   const resetCompletedLevels = () => {
     if (userSession) {
       userSession.level = 1;
+      userSession.progress = 0;
       localStorage.setItem("userSession", JSON.stringify(userSession));
     }
     window.location.reload();

@@ -79,12 +79,23 @@ export default function Results() {
     // Update profile
     const updateSession = (session: UserSession) => {
       // Update level progress
-      session.progress = Math.floor(
-        (resultsValues.correct /
-          (resultsValues.incorrect + resultsValues.skipped)) *
-          100
-      );
+      if (resultsValues.incorrect === 0 && resultsValues.skipped === 0) {
+        session.progress = 100;
+      } else {
+        session.progress = Math.floor(
+          (resultsValues.correct /
+            (resultsValues.incorrect + resultsValues.skipped)) *
+            100
+        );
+      }
+
       console.log(session.progress);
+
+      // Update level if possible
+      if (session.progress === 100) {
+        session.level += 1;
+        session.progress = 0;
+      }
 
       // Update quiz points
       session.questionPoints.correctQuestions += resultsValues.correct;
@@ -105,7 +116,7 @@ export default function Results() {
       localStorage.setItem("userSession", JSON.stringify(session));
     };
 
-    // Update badges
+    // Update badges if possible
     const updateBadges = (session: UserSession) => {
       const { correctQuestions, incorrectQuestions, consecutiveQuestions } =
         session.questionPoints;
@@ -198,6 +209,8 @@ export default function Results() {
       session.questionPoints.consecutiveQuestions = 0;
       session.quizPoints.numFlashcard = 0;
       session.badges = [0];
+      session.level = 1;
+      session.progress = 0;
     };
 
     const retrieveAndUpdateSession = () => {
