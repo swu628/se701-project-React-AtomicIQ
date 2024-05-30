@@ -39,8 +39,8 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   const correctSound = new Audio(correctSoundFile);
   const incorrectSound = new Audio(incorrectSoundFile);
 
-  const groupSize = 3;
   const total = cardData.length;
+  const groupSize = total;
   const currentCard = cardData[currentIndex] || { frontSide: "", backSide: "" };
   const [cardBack, setCardBack] = useState<string>(currentCard.backSide);
 

@@ -111,8 +111,9 @@ export default function Results() {
   };
 
   const handleNextQuiz = () => {
-    const nextStartIndex = 3 * parseInt(quizId, 10);
-    navigate("/flashcard", { state: { startIndex: nextStartIndex } });
+    // const nextStartIndex = 3 * parseInt(quizId, 10);
+    // navigate("/flashcard", { state: { startIndex: nextStartIndex } });
+    navigate("/home");
   };
 
   return (
@@ -125,7 +126,7 @@ export default function Results() {
           justifyContent="space-between"
         >
           <Typography variant="h5" fontWeight="bold" alignSelf="center">
-            Quiz Results - Quiz {quizId}
+            Quiz Results
           </Typography>
           <Stack
             display="flex"
