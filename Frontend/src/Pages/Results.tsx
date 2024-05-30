@@ -78,8 +78,10 @@ export default function Results() {
 
     // Update badges
     const updateBadges = (session: UserSession) => {
+      const { correctQuestions, incorrectQuestions } = session.questionPoints;
       const { numFlashcard } = session.quizPoints;
 
+      // Quiz Wizard: complete n flashcard quiz
       if (numFlashcard === 1) {
         session.badges.push(4);
       }
@@ -89,14 +91,34 @@ export default function Results() {
       if (numFlashcard === 10) {
         session.badges.push(6);
       }
-      if (resultsValues.correct / resultsValues.incorrect >= 0.8) {
+      // Elements Master: achieve n% or above in a flash card quiz
+      if (
+        correctQuestions / incorrectQuestions >= 0.8 &&
+        !session.badges.includes(7)
+      ) {
         session.badges.push(7);
-        if (resultsValues.correct / resultsValues.incorrect >= 0.9) {
-          session.badges.push(8);
-          if (resultsValues.correct / resultsValues.incorrect >= 1) {
-            session.badges.push(9);
-          }
-        }
+      }
+      if (
+        correctQuestions / incorrectQuestions >= 0.9 &&
+        !session.badges.includes(8)
+      ) {
+        session.badges.push(8);
+      }
+      if (
+        correctQuestions / incorrectQuestions >= 1 &&
+        !session.badges.includes(9)
+      ) {
+        session.badges.push(9);
+      }
+      // Correct Answers: answer n questions in a quiz correctly
+      if (correctQuestions >= 10 && !session.badges.includes(13)) {
+        session.badges.push(13);
+      }
+      if (correctQuestions >= 50 && !session.badges.includes(14)) {
+        session.badges.push(14);
+      }
+      if (correctQuestions >= 100 && !session.badges.includes(15)) {
+        session.badges.push(15);
       }
     };
 
