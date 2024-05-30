@@ -54,7 +54,10 @@ export default function Profile({ badgeData }: ProfileProps) {
           <Avatar />
         ) : (
           <>
-            <Levels level={1} progress={25} />
+            <Levels
+              level={userSession?.level ?? 0}
+              progress={userSession?.progress ?? 0}
+            />
             <Points
               correctQuestions={
                 userSession?.questionPoints.correctQuestions ?? 0
@@ -64,6 +67,7 @@ export default function Profile({ badgeData }: ProfileProps) {
               }
               totalQuestions={userSession?.questionPoints.totalQuestions ?? 0}
               numFlashcard={userSession?.quizPoints.numFlashcard ?? 0}
+              progress={userSession?.progress ?? 0}
             />
           </>
         )}

@@ -10,7 +10,7 @@ import {
 import RedoIcon from "@mui/icons-material/Redo";
 import PreviewIcon from "@mui/icons-material/Preview";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ResultsTable from "~/components/Results/ResultsTable";
 import ResultsDisplay from "~/components/Results/ResultsDisplay";
@@ -78,6 +78,14 @@ export default function Results() {
   useEffect(() => {
     // Update profile
     const updateSession = (session: UserSession) => {
+      // Update level progress
+      session.progress = Math.floor(
+        (resultsValues.correct /
+          (resultsValues.incorrect + resultsValues.skipped)) *
+          100
+      );
+      console.log(session.progress);
+
       // Update quiz points
       session.questionPoints.correctQuestions += resultsValues.correct;
       session.questionPoints.incorrectQuestions += resultsValues.incorrect;
