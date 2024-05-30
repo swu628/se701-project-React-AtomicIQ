@@ -3,15 +3,21 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaForward, FaBackward } from "react-icons/fa";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 
 // Import the sound effects when the user got the questions right/wrong
 import correctSoundFile from "../sounds/rightanswer.mp3";
 import incorrectSoundFile from "../sounds/wronganswer.mp3";
 
-type FlashcardProps = {
-  cardData: Array<{ frontSide: string; backSide: string }>;
+// Import the JSON data
+import flashcards from "../data/flashcards.json";
+
+type FlashcardQuiz = {
+  id: number;
+  level: number;
+  title: string;
+  questions: Array<{ id: number; frontSide: string; backSide: string }>;
 };
 
 export type AnswerData = {
@@ -19,15 +25,18 @@ export type AnswerData = {
   correct: boolean;
 };
 
-const FlashCard = ({ cardData }: FlashcardProps) => {
+const FlashCard = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const params = useParams<{ quizId: string }>();
+  const quizId = params.quizId || "0";
+  const cardData: FlashcardQuiz = flashcards[parseInt(quizId)];
   const { startIndex = 0 } = location.state || {};
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number>(startIndex);
   const [progress, setProgress] = useState<number>(
-    (startIndex / cardData.length) * 100
+    (startIndex / cardData.questions.length) * 100
   );
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -39,9 +48,12 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   const correctSound = new Audio(correctSoundFile);
   const incorrectSound = new Audio(incorrectSoundFile);
 
-  const groupSize = 3;
-  const total = cardData.length;
-  const currentCard = cardData[currentIndex] || { frontSide: "", backSide: "" };
+  const total = cardData.questions.length;
+  const groupSize = total;
+  const currentCard = cardData.questions[currentIndex] || {
+    frontSide: "",
+    backSide: "",
+  };
   const [cardBack, setCardBack] = useState<string>(currentCard.backSide);
 
   useEffect(() => {
@@ -81,12 +93,12 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   };
 
   const navigateToResults = (
-    currentIndex: number,
+    _currentIndex: number,
     newAnswers: AnswerData[]
   ) => {
     const sliceStart = startIndex;
     const sliceEnd = sliceStart + groupSize;
-    navigate(`/quiz/${Math.floor((currentIndex + 1) / groupSize)}/results`, {
+    navigate(`/flashcard/${cardData.id}/results`, {
       state: {
         answers: newAnswers.slice(sliceStart, sliceEnd).filter(Boolean),
       },
@@ -135,8 +147,11 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   // When the user submit an answer
   const handleAnswerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const correct =
-      userAnswer.toLowerCase() === currentCard.backSide.toLowerCase();
+    const correct = currentCard.backSide.includes("|")
+      ? currentCard.backSide.split("|").some((answer) => {
+          userAnswer.toLowerCase() === answer.toLowerCase();
+        })
+      : userAnswer.toLowerCase() === currentCard.backSide.toLowerCase();
     setIsCorrect(correct);
     setIsSubmitted(true);
     handleFlip();
@@ -194,9 +209,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
             Show Rules
           </button>
         </div>
-        <h1 className="text-2xl font-bold mb-4 text-black">
-          Periodic Table Elements
-        </h1>
+        <h1 className="text-2xl font-bold mb-4 text-black">{cardData.title}</h1>
         <div className="flip-card w-full h-72">
           <motion.div
             className={`flip-card-inner w-full h-full cursor-pointer ${
@@ -213,14 +226,14 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
             onClick={handleFlip}
           >
             {!isFlipped ? (
-              <div className="flip-card-front w-full h-full bg-zinc-800 rounded-lg p-4 flex justify-center items-center">
+              <div className="flip-card-front w-full h-full bg-zinc-800 rounded-lg p-8 flex justify-center text-center items-center">
                 <div className="text-3xl sm:text-4xl text-white">
                   {currentCard.frontSide}
                 </div>
               </div>
             ) : (
               <div
-                className="flip-card-back w-full h-full bg-zinc-800 rounded-lg p-4 flex justify-center items-center"
+                className="flip-card-back w-full h-full bg-zinc-800 rounded-lg p-8 flex justify-center text-center items-center"
                 style={{ transform: "rotateY(180deg)" }}
               >
                 <div className="text-3xl sm:text-4xl text-white">
