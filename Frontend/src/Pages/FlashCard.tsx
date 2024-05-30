@@ -243,10 +243,12 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
               {isCorrect ? "Well done :)" : "Try again later :("}
             </div>
           )}
+          {errorMessage && (
+            <div className="text-red-500 text-lg absolute inset-0 flex items-center justify-center">
+              {errorMessage}
+            </div>
+          )}
         </div>
-        {errorMessage && (
-          <div className="text-red-500 text-lg mt-4">{errorMessage}</div>
-        )}
         <div className="flex items-center justify-center space-x-4 mt-10">
           <Button
             onClick={handleBack}
