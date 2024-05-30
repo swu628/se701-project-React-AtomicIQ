@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -29,6 +30,8 @@ function ResponsiveAppBar() {
     }
   }, []);
 
+  const navigate = useNavigate();
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -37,11 +40,22 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("userToken");
+    navigate("/login"); 
+  };
+
+  const handleMenuClick = (setting: string) => {
+    if (setting === "Logout") {
+      handleLogout();
+    } else if (setting === "Profile") {
+      navigate("/profile");
+    }
+    handleCloseUserMenu();
+  };
+
   return (
-    <AppBar
-      position="static"
-      style={{ background: "linear-gradient(-1deg, lightgray, blue)" }}
-    >
+    <AppBar position="static" style={{ background: "linear-gradient(-1deg, lightgray, blue)" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -70,11 +84,7 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                sx={{ my: 2, color: "white", display: "block" }}
-                href={`/${page}`}
-              >
+              <Button key={page} sx={{ my: 2, color: "white", display: "block" }} href={`/${page}`}>
                 {page}
               </Button>
             ))}
@@ -107,11 +117,9 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => handleMenuClick(setting)}>
                   <Typography
                     textAlign="center"
-                    component="a"
-                    href={setting === "Profile" ? "/profile" : undefined}
                     sx={{
                       color: "inherit",
                       textDecoration: "none",
