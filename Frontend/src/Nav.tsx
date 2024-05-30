@@ -42,7 +42,7 @@ function ResponsiveAppBar() {
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");
-    navigate("/login"); 
+    navigate("/login");
   };
 
   const handleMenuClick = (setting: string) => {
@@ -55,7 +55,10 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" style={{ background: "linear-gradient(-1deg, lightgray, blue)" }}>
+    <AppBar
+      position="static"
+      style={{ background: "linear-gradient(-1deg, lightgray, blue)" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -84,7 +87,11 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button key={page} sx={{ my: 2, color: "white", display: "block" }} href={`/${page}`}>
+              <Button
+                key={page}
+                sx={{ my: 2, color: "white", display: "block" }}
+                href={`/${page}`}
+              >
                 {page}
               </Button>
             ))}
@@ -117,7 +124,10 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={() => handleMenuClick(setting)}>
+                <MenuItem
+                  key={setting}
+                  onClick={() => handleMenuClick(setting)}
+                >
                   <Typography
                     textAlign="center"
                     sx={{
