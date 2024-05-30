@@ -66,7 +66,7 @@ export default function Results() {
       session.questionPoints.correctQuestions += resultsValues.correct;
       session.questionPoints.incorrectQuestions += resultsValues.incorrect;
       session.questionPoints.totalQuestions +=
-        resultsValues.correct + resultsValues.incorrect + resultsValues.skipped;
+        resultsValues.correct + resultsValues.incorrect;
       session.quizPoints.numFlashcard += 1;
 
       updateBadges(session);
