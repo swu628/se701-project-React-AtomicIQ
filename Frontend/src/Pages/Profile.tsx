@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Container, Divider, Stack } from "@mui/material";
-import ProfileTitle from "~/components/Profile/ProfileTitle.tsx";
+import ProfileTitle from "~/components/Profile/ProfileTitle";
 import Points from "~/components/Profile/Points";
 import Badges from "~/components/Profile/Badges";
 import Levels from "~/components/Profile/Levels";
