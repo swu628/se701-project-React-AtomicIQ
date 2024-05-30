@@ -10,7 +10,6 @@ import Signup from "./Pages/Signup";
 import FlashCard from "./Pages/FlashCard";
 import Results from "./Pages/Results";
 import Wordle from "./Pages/Wordle.tsx";
-import flashcards from "./data/flashcards.json"; // Import the JSON data
 import badges from "./data/badges.json";
 import { Element, ElementProperty } from "~/types/element.ts";
 import "./App.css";
@@ -81,7 +80,7 @@ function App() {
           element={
             <>
               <Nav />
-              <FlashCard cardData={flashcards[0]} />
+              <FlashCard />
             </>
           }
         />

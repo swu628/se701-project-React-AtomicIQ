@@ -3,20 +3,21 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaForward, FaBackward } from "react-icons/fa";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 
 // Import the sound effects when the user got the questions right/wrong
 import correctSoundFile from "../sounds/rightanswer.mp3";
 import incorrectSoundFile from "../sounds/wronganswer.mp3";
 
-type FlashcardProps = {
-  cardData: {
-    id: number;
-    level: number;
-    title: string;
-    questions: Array<{ id: number; frontSide: string; backSide: string }>;
-  };
+// Import the JSON data
+import flashcards from "../data/flashcards.json";
+
+type FlashcardQuiz = {
+  id: number;
+  level: number;
+  title: string;
+  questions: Array<{ id: number; frontSide: string; backSide: string }>;
 };
 
 export type AnswerData = {
@@ -24,9 +25,12 @@ export type AnswerData = {
   correct: boolean;
 };
 
-const FlashCard = ({ cardData }: FlashcardProps) => {
+const FlashCard = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const params = useParams<{ quizId: string }>();
+  const quizId = params.quizId || "0";
+  const cardData: FlashcardQuiz = flashcards[parseInt(quizId)];
   const { startIndex = 0 } = location.state || {};
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
