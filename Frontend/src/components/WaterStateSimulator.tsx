@@ -5,6 +5,7 @@ import { Separator } from "./ui/separator";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
