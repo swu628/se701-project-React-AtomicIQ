@@ -80,17 +80,21 @@ export default function Results() {
     // Update profile
     const updateSession = (session: UserSession) => {
       // Update level progress
-      if (resultsValues.incorrect === 0 && resultsValues.skipped === 0) {
+      if (
+        resultsValues.correct > 0 &&
+        resultsValues.incorrect === 0 &&
+        resultsValues.skipped === 0
+      ) {
         session.progress = 100;
       } else {
         session.progress = Math.floor(
           (resultsValues.correct /
-            (resultsValues.incorrect + resultsValues.skipped)) *
+            (resultsValues.correct +
+              resultsValues.incorrect +
+              resultsValues.skipped)) *
             100
         );
       }
-
-      console.log(session.progress);
 
       // Update level if possible
       if (session.progress >= 100) {
