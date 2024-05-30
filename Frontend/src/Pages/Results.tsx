@@ -60,32 +60,67 @@ export default function Results() {
   const hasEffectRun = useRef(false);
 
   useEffect(() => {
-    if (!hasEffectRun.current) {
+    // Update profile
+    const updateSession = (session: UserSession) => {
+      // Update quiz points
+      session.questionPoints.correctQuestions += resultsValues.correct;
+      session.questionPoints.incorrectQuestions += resultsValues.incorrect;
+      session.questionPoints.totalQuestions +=
+        resultsValues.correct + resultsValues.incorrect + resultsValues.skipped;
+      session.quizPoints.numFlashcard += 1;
+
+      updateBadges(session);
+      // Initialize user points
+      // resetUserPoints(session);
+
+      localStorage.setItem("userSession", JSON.stringify(session));
+    };
+
+    // Update badges
+    const updateBadges = (session: UserSession) => {
+      const { numFlashcard } = session.quizPoints;
+
+      if (numFlashcard === 1) {
+        session.badges.push(4);
+      }
+      if (numFlashcard === 5) {
+        session.badges.push(5);
+      }
+      if (numFlashcard === 10) {
+        session.badges.push(6);
+      }
+      if (resultsValues.correct / resultsValues.incorrect >= 0.8) {
+        session.badges.push(7);
+        if (resultsValues.correct / resultsValues.incorrect >= 0.9) {
+          session.badges.push(8);
+          if (resultsValues.correct / resultsValues.incorrect >= 1) {
+            session.badges.push(9);
+          }
+        }
+      }
+    };
+
+    // Initialize user points
+    const resetUserPoints = (session: UserSession) => {
+      session.questionPoints.correctQuestions = 0;
+      session.questionPoints.incorrectQuestions = 0;
+      session.questionPoints.totalQuestions = 0;
+      session.quizPoints.numFlashcard = 0;
+      session.badges = [0];
+    };
+
+    const retrieveAndUpdateSession = () => {
+      // Retrieve user object
       const storedSession = localStorage.getItem("userSession");
       if (storedSession) {
         const session = JSON.parse(storedSession) as UserSession;
-
-        session.questionPoints.correctQuestions += resultsValues.correct;
-        session.questionPoints.incorrectQuestions += resultsValues.incorrect;
-        session.questionPoints.totalQuestions +=
-          resultsValues.correct +
-          resultsValues.incorrect +
-          resultsValues.skipped;
-        session.quizPoints.numFlashcard += 1;
-
-        // Initialize user points
-        // session.questionPoints.correctQuestions = 0;
-        // session.questionPoints.incorrectQuestions = 0;
-        // session.questionPoints.totalQuestions = 0;
-        // session.quizPoints.numFlashcard = 0;
-        // session.badges = [0];
-
-        localStorage.setItem("userSession", JSON.stringify(session));
+        updateSession(session);
       }
+    };
 
+    if (!hasEffectRun.current) {
+      retrieveAndUpdateSession();
       document.body.classList.add("backgroundImage");
-
-      // Mark the effect as run
       hasEffectRun.current = true;
     }
 
