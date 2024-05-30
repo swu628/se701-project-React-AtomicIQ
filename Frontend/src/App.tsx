@@ -81,7 +81,7 @@ function App() {
           element={
             <>
               <Nav />
-              <FlashCard cardData={flashcards} />
+              <FlashCard cardData={flashcards[0].questions} />
             </>
           }
         />

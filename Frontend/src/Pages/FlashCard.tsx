@@ -11,7 +11,7 @@ import correctSoundFile from "../sounds/rightanswer.mp3";
 import incorrectSoundFile from "../sounds/wronganswer.mp3";
 
 type FlashcardProps = {
-  cardData: Array<{ frontSide: string; backSide: string }>;
+  cardData: Array<{ id: number; frontSide: string; backSide: string }>;
 };
 
 export type AnswerData = {
@@ -213,14 +213,14 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
             onClick={handleFlip}
           >
             {!isFlipped ? (
-              <div className="flip-card-front w-full h-full bg-zinc-800 rounded-lg p-4 flex justify-center items-center">
+              <div className="flip-card-front w-full h-full bg-zinc-800 rounded-lg p-8 flex justify-center text-center items-center">
                 <div className="text-3xl sm:text-4xl text-white">
                   {currentCard.frontSide}
                 </div>
               </div>
             ) : (
               <div
-                className="flip-card-back w-full h-full bg-zinc-800 rounded-lg p-4 flex justify-center items-center"
+                className="flip-card-back w-full h-full bg-zinc-800 rounded-lg p-8 flex justify-center text-center items-center"
                 style={{ transform: "rotateY(180deg)" }}
               >
                 <div className="text-3xl sm:text-4xl text-white">
