@@ -26,7 +26,9 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number>(startIndex);
-  const [progress, setProgress] = useState<number>((startIndex / cardData.length) * 100);
+  const [progress, setProgress] = useState<number>(
+    (startIndex / cardData.length) * 100
+  );
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
@@ -78,11 +80,16 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
     }
   };
 
-  const navigateToResults = (currentIndex: number, newAnswers: AnswerData[]) => {
+  const navigateToResults = (
+    currentIndex: number,
+    newAnswers: AnswerData[]
+  ) => {
     const sliceStart = startIndex;
     const sliceEnd = sliceStart + groupSize;
     navigate(`/quiz/${Math.floor((currentIndex + 1) / groupSize)}/results`, {
-      state: { answers: newAnswers.slice(sliceStart, sliceEnd).filter(Boolean) },
+      state: {
+        answers: newAnswers.slice(sliceStart, sliceEnd).filter(Boolean),
+      },
     });
   };
 
@@ -100,9 +107,9 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
       setErrorMessage("");
       setIsSubmitted(false);
       setIsCorrect(null); // Reset isCorrect when moving to the next question
-      // navigate to the result page when the user reached to the last question and clicked on the next button
       setIsFlipped(false);
       if ((currentIndex + 1) % groupSize === 0) {
+        // navigate to the result page when the user reached to the last question of a level
         navigateToResults(currentIndex, newAnswers);
       }
     } else if (currentIndex === total - 1) {
@@ -110,6 +117,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
         newAnswers[currentIndex] = { answer: "", correct: false };
         setAnswers(newAnswers);
       }
+      // navigate to the result page when the user reached to the last question and clicked on the next button
       navigateToResults(currentIndex, newAnswers);
     }
   };
