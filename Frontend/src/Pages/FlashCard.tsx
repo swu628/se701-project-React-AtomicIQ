@@ -235,15 +235,17 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
             Submit
           </Button>
         </form>
-        {isCorrect !== null && isSubmitted && userAnswer !== "" && (
-          <div
-            className={`text-lg ${
-              isCorrect ? "text-green-500" : "text-red-500"
-            } mt-4 text-center`}
-          >
-            {isCorrect ? "Well done :)" : "Try again later :("}
-          </div>
-        )}
+        <div className="relative h-10 mt-4">
+          {isCorrect !== null && isSubmitted && userAnswer !== "" && (
+            <div
+              className={`text-lg ${
+                isCorrect ? "text-green-500" : "text-red-500"
+              } absolute inset-0 flex items-center justify-center`}
+            >
+              {isCorrect ? "Well done :)" : "Try again later :("}
+            </div>
+          )}
+        </div>
         {errorMessage && (
           <div className="text-red-500 text-lg mt-4">{errorMessage}</div>
         )}
