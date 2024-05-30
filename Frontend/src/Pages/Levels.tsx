@@ -20,11 +20,8 @@ export default function Levels() {
   const [isLevelTwoVisible, setIsLevelTwoVisible] = useState(false);
   const [isLevelThreeVisible, setIsLevelThreeVisible] = useState(false);
   const [isMoreLevelsVisible, setIsMoreLevelsVisible] = useState(false);
-  const [completedLevels, setCompletedLevels] = useState<number[]>(() => {
-    const savedLevels = localStorage.getItem("completedLevels");
-    return savedLevels ? JSON.parse(savedLevels) : [];
-  });
   const [userSession, setUserSession] = useState<UserSession | null>(null);
+
   useEffect(() => {
     // Retrieve currently logged in user
     const storedSession = localStorage.getItem("userSession");
@@ -38,16 +35,11 @@ export default function Levels() {
     };
   }, []);
 
-  useEffect(() => {
-    const savedLevels = localStorage.getItem("completedLevels");
-    if (savedLevels) {
-      setCompletedLevels(JSON.parse(savedLevels));
-    }
-  }, []);
-
   const resetCompletedLevels = () => {
-    localStorage.removeItem("completedLevels");
-    setCompletedLevels([]);
+    if (userSession) {
+      userSession.level = 1;
+    }
+    window.location.reload();
   };
 
   const containerStyles = {
@@ -132,9 +124,9 @@ export default function Levels() {
                 Level 1
               </Typography>
               <Typography
-                sx={completedLevels.includes(1) ? congratulationStyles : {}}
+                sx={(userSession?.level ?? 0) >= 1 ? congratulationStyles : {}}
               >
-                {completedLevels.includes(1) ? "Completed" : "Incompleted"}
+                {(userSession?.level ?? 0) >= 1 ? "Completed" : "Incompleted"}
               </Typography>
             </TimelineContent>
           </TimelineItem>
@@ -154,9 +146,9 @@ export default function Levels() {
                 Level 2
               </Typography>
               <Typography
-                sx={completedLevels.includes(2) ? congratulationStyles : {}}
+                sx={(userSession?.level ?? 0) >= 2 ? congratulationStyles : {}}
               >
-                {completedLevels.includes(2) ? "Completed" : "Incompleted"}
+                {(userSession?.level ?? 0) >= 2 ? "Completed" : "Incompleted"}
               </Typography>
             </TimelineContent>
           </TimelineItem>
@@ -180,9 +172,9 @@ export default function Levels() {
                 Level 3
               </Typography>
               <Typography
-                sx={completedLevels.includes(3) ? congratulationStyles : {}}
+                sx={(userSession?.level ?? 0) >= 3 ? congratulationStyles : {}}
               >
-                {completedLevels.includes(3) ? "Completed" : "Incompleted"}
+                {(userSession?.level ?? 0) >= 3 ? "Completed" : "Incompleted"}
               </Typography>
             </TimelineContent>
           </TimelineItem>
