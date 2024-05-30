@@ -114,7 +114,7 @@ export default function Results() {
         resultsValues.correct + resultsValues.incorrect;
       if (quizType === "flashcard") {
         session.quizPoints.numFlashcard += 1;
-      } else if (quizType === "origin") {
+      } else if (quizType === "wordle") {
         session.quizPoints.numWordle += 1;
       }
       if (resultsValues.incorrect === 0 && resultsValues.skipped === 0) {
@@ -291,7 +291,7 @@ export default function Results() {
   const handleRetakeQuiz = () => {
     if (quizType === "flashcard") {
       navigate(`/flashcard/${quizId}`);
-    } else if (quizType === "origin") {
+    } else if (quizType === "wordle") {
       navigate(`/wordle`);
     }
   };

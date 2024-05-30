@@ -300,7 +300,7 @@ export default function Wordle({
     navigate(`/wordle/results`, {
       state: {
         answers: answers,
-        quizType: "origin",
+        quizType: "wordle",
       },
     });
   };
