@@ -41,6 +41,7 @@ function Signup() {
         correctQuestions: 0,
         incorrectQuestions: 0,
         totalQuestions: 0,
+        consecutiveQuestions: 0,
       },
       quizPoints: {
         numFlashcard: 0,

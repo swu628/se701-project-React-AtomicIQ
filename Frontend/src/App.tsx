@@ -9,10 +9,9 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import FlashCard from "./Pages/FlashCard";
 import Results from "./Pages/Results";
-import Wordle from "./Pages/Wordle.tsx";
-import flashcards from "./data/flashcards.json"; // Import the JSON data
+import Wordle from "./Pages/Wordle";
 import badges from "./data/badges.json";
-import { Element, ElementProperty } from "~/types/element.ts";
+import { Element, ElementProperty } from "~/types/element";
 import "./App.css";
 
 function App() {
@@ -32,7 +31,7 @@ function App() {
           }
         />
         <Route
-          path="/quiz/:quizId/results"
+          path="/flashcard/:quizId/results"
           element={
             <>
               <Nav />
@@ -77,11 +76,11 @@ function App() {
           }
         />
         <Route
-          path="/flashcard"
+          path="/flashcard/:quizId/"
           element={
             <>
               <Nav />
-              <FlashCard cardData={flashcards} />
+              <FlashCard />
             </>
           }
         />

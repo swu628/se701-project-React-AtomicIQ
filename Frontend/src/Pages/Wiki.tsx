@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PeriodicTable from "~/components/PeriodicTable";
 import {
@@ -22,19 +22,6 @@ import {
 import Table from "~/components/Table";
 
 export default function Wiki() {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedElement, setSelectedElement] = useState(null);
-
-  const handleElementClick = (element) => {
-    setSelectedElement(element);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedElement(null);
-  };
-
   useEffect(() => {
     document.body.classList.add("backgroundImage");
 
@@ -253,10 +240,6 @@ export default function Wiki() {
           </div>
         </CardContent>
       </Card>
-
-      {showModal && (
-        <ElementModal element={selectedElement} onClose={handleCloseModal} />
-      )}
     </div>
   );
 }

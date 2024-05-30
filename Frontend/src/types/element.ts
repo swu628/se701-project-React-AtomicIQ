@@ -66,13 +66,16 @@ export enum Color {
 }
 
 export interface ElementData {
-    name: Element;
+    number: number;
+    symbol: Element;
+    name: string;
     category: Category;
     period: number;
     group: number;
     origins: Origin[];
     countries: Country[];
     color: Color;
+    funFact: string;
 }
 
 export enum ElementProperty {
@@ -83,186 +86,3 @@ export enum ElementProperty {
     Countries = "Countries",
     Color = "Color",
 }
-
-export const Elements: ElementData[] = [
-    {
-        name: Element.H,
-        category: Category.NonMetal,
-        period: 1,
-        group: 1,
-        origins: [Origin.TheBigBang],
-        countries: [Country.UK],
-        color: Color.Colorless,
-    },
-    {
-        name: Element.He,
-        category: Category.NobleGas,
-        period: 1,
-        group: 18,
-        origins: [Origin.TheBigBang],
-        countries: [Country.France, Country.UK],
-        color: Color.Colorless,
-    },
-    {
-        name: Element.Li,
-        category: Category.NobleGas,
-        period: 2,
-        group: 1,
-        origins: [Origin.DyingLowMassStars],
-        countries: [Country.Sweden],
-        color: Color.Silver,
-    },
-    {
-        name: Element.Be,
-        category: Category.NobleGas,
-        period: 2,
-        group: 2,
-        origins: [Origin.CosmicRayCollisions],
-        countries: [Country.France],
-        color: Color.SlateGray,
-    },
-    {
-        name: Element.B,
-        category: Category.NobleGas,
-        period: 2,
-        group: 13,
-        origins: [Origin.CosmicRayCollisions],
-        countries: [Country.France],
-        color: Color.Black,
-    },
-    {
-        name: Element.C,
-        category: Category.NobleGas,
-        period: 2,
-        group: 14,
-        origins: [Origin.DyingLowMassStars],
-        countries: [Country.Other],
-        color: Color.Black,
-    },
-    {
-        name: Element.N,
-        category: Category.NobleGas,
-        period: 2,
-        group: 15,
-        origins: [Origin.DyingLowMassStars],
-        countries: [Country.UK],
-        color: Color.Colorless,
-    },
-    {
-        name: Element.O,
-        category: Category.NobleGas,
-        period: 2,
-        group: 16,
-        origins: [Origin.DyingHighMassStars],
-        countries: [Country.Sweden],
-        color: Color.Colorless,
-    },
-    {
-        name: Element.F,
-        category: Category.NobleGas,
-        period: 2,
-        group: 17,
-        origins: [Origin.DyingHighMassStars],
-        countries: [Country.France],
-        color: Color.Colorless,
-    },
-    {
-        name: Element.Ne,
-        category: Category.NobleGas,
-        period: 2,
-        group: 18,
-        origins: [Origin.DyingHighMassStars],
-        countries: [Country.UK],
-        color: Color.Colorless,
-    },
-    {
-        name: Element.Na,
-        category: Category.NobleGas,
-        period: 3,
-        group: 1,
-        origins: [Origin.DyingHighMassStars],
-        countries: [Country.UK],
-        color: Color.Silver,
-    },
-    {
-        name: Element.Mg,
-        category: Category.NobleGas,
-        period: 3,
-        group: 2,
-        origins: [Origin.DyingHighMassStars],
-        countries: [Country.UK],
-        color: Color.Silver,
-    },
-    {
-        name: Element.Al,
-        category: Category.PostTransitionMetal,
-        period: 3,
-        group: 13,
-        origins: [Origin.DyingHighMassStars],
-        countries: [Country.Denmark],
-        color: Color.Silver,
-    },
-    {
-        name: Element.Si,
-        category: Category.Metalloid,
-        period: 3,
-        group: 14,
-        origins: [Origin.DyingHighMassStars],
-        countries: [Country.Sweden],
-        color: Color.Gray,
-    },
-    {
-        name: Element.P,
-        category: Category.NonMetal,
-        period: 3,
-        group: 15,
-        origins: [Origin.DyingHighMassStars],
-        countries: [Country.Germany],
-        color: Color.Colorless,
-    },
-    {
-        name: Element.S,
-        category: Category.NonMetal,
-        period: 3,
-        group: 16,
-        origins: [Origin.DyingHighMassStars, Origin.WhiteDwarfSupernovae],
-        countries: [Country.Other],
-        color: Color.Yellow,
-    },
-    {
-        name: Element.Cl,
-        category: Category.Halogen,
-        period: 3,
-        group: 17,
-        origins: [Origin.DyingHighMassStars],
-        countries: [Country.Sweden],
-        color: Color.Yellow,
-    },
-    {
-        name: Element.Ar,
-        category: Category.NobleGas,
-        period: 3,
-        group: 18,
-        origins: [Origin.DyingHighMassStars, Origin.WhiteDwarfSupernovae],
-        countries: [Country.UK],
-        color: Color.Colorless,
-    },
-    {
-        name: Element.K,
-        category: Category.AlkaliMetal,
-        period: 4,
-        group: 1,
-        origins: [Origin.DyingHighMassStars],
-        countries: [Country.UK],
-        color: Color.Silver,
-    },
-    {
-        name: Element.Ca,
-        category: Category.AlkalineEarthMetal,
-        period: 4,
-        group: 2,
-        origins: [Origin.DyingHighMassStars, Origin.WhiteDwarfSupernovae],
-        countries: [Country.UK],
-        color: Color.Silver,
-    },
-];

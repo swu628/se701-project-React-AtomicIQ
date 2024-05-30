@@ -16,6 +16,7 @@ export interface UserSession {
     correctQuestions: number;
     incorrectQuestions: number;
     totalQuestions: number;
+    consecutiveQuestions: number;
   };
   quizPoints: {
     numFlashcard: number;

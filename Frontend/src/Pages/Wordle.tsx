@@ -1,7 +1,8 @@
 // Define the props interface
 import {useEffect, useState} from "react";
 import Button from "@mui/material/Button";
-import {Element, ElementData, ElementProperty, Elements} from "~/types/element";
+import {Element, ElementData, ElementProperty} from "~/types/element";
+import {Elements} from "~/data/elementData";
 
 
 interface WordleProps {
@@ -20,7 +21,7 @@ export default function Wordle({allowedAttempts, properties, availableElements}:
     // pick a random element
     useEffect(() => {
         const answerElement = availableElements[Math.floor(Math.random() * availableElements.length)];
-        const answerElementData = Elements.find((e) => e.name === answerElement);
+        const answerElementData = Elements.find((e) => e.symbol === answerElement);
         if (answerElementData) {
             setAnswer(answerElementData);
         }
@@ -32,7 +33,7 @@ export default function Wordle({allowedAttempts, properties, availableElements}:
 
     const checkCellCorrectness = (rowIndex: number, colIndex: number) => {
         const element = guesses[rowIndex - 1];
-        const elementData = Elements.find((e) => e.name === element);
+        const elementData = Elements.find((e) => e.symbol === element);
         if (!elementData || !answer) {
             return false;
         }
@@ -56,7 +57,7 @@ export default function Wordle({allowedAttempts, properties, availableElements}:
 
     const getCellContent = (rowIndex: number, colIndex: number) => {
         const element = guesses[rowIndex - 1];
-        const elementData = Elements.find((e) => e.name === element);
+        const elementData = Elements.find((e) => e.symbol === element);
         if (!elementData || !answer) {
             return false;
         }
@@ -150,7 +151,7 @@ export default function Wordle({allowedAttempts, properties, availableElements}:
 
     const guess = (element: Element) => () => {
         setGuesses([...guesses, element]);
-        if (element === answer?.name) {
+        if (element === answer?.symbol) {
             console.log("Correct");
         }
         // grid[currentRow][guesses.length] = (

@@ -7,6 +7,11 @@ import {
   Drawer,
   Divider,
   LinearProgress,
+  FormControl,
+  InputLabel,
+  Select,
+  SelectChangeEvent,
+  MenuItem,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { UserSession } from "~/types/entities";
@@ -14,6 +19,7 @@ import LevelSidebar from "~/components/LevelSidebar";
 
 export default function Home() {
   const [userSession, setUserSession] = useState<UserSession | null>(null);
+  const [levelSetting, setLevelSetting] = useState<number>(1);
 
   useEffect(() => {
     // Retrieve currently logged in user
@@ -28,6 +34,10 @@ export default function Home() {
     };
   }, []);
 
+  const onLevelChange = (event: SelectChangeEvent) => {
+    setLevelSetting(parseInt(event.target.value));
+  };
+
   const containerStyles = {
     p: "2rem",
     width: "60vw",
@@ -41,7 +51,6 @@ export default function Home() {
 
   const buttonStyles = {
     width: { xs: "80vw", sm: "60vw", md: "30vw", lg: "15vw" },
-    mb: "2rem",
     backgroundColor: "#1976d2",
     color: "white",
     padding: { xs: "0.5rem 1rem", md: "1rem 2rem" },
@@ -68,10 +77,36 @@ export default function Home() {
           flex={1}
           justifyContent="center"
         >
-          <Link to="/flashcard" style={{ textDecoration: "none" }}>
+          <FormControl sx={{ marginBottom: "2rem" }}>
+            <InputLabel>Level</InputLabel>
+            <Select
+              value={levelSetting.toString()}
+              label="Level"
+              onChange={onLevelChange}
+            >
+              {(() => {
+                const arr = [] as React.ReactNode[];
+                for (let i = 1; i <= (userSession?.level || 1); i++) {
+                  arr.push(
+                    <MenuItem key={i} value={i}>
+                      {i}
+                    </MenuItem>
+                  );
+                }
+                return arr;
+              })()}
+            </Select>
+          </FormControl>
+          <Link
+            to={`/flashcard/${levelSetting - 1}`}
+            style={{ textDecoration: "none", marginBottom: "2rem" }}
+          >
             <Button sx={buttonStyles}>FlashCard</Button>
           </Link>
-          <Link to="/wordle" style={{ textDecoration: "none" }}>
+          <Link
+            to="/wordle"
+            style={{ textDecoration: "none", marginBottom: "2rem" }}
+          >
             <Button sx={buttonStyles}>Wordle</Button>
           </Link>
         </Stack>
