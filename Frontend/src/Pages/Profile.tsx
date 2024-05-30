@@ -55,7 +55,10 @@ export default function Profile({ badgeData }: ProfileProps) {
         ) : (
           <>
             <Levels level={1} progress={25} />
-            <Points correctQuiz={userSession?.correctQuiz ?? 0} />
+            <Points
+              correctQuiz={userSession?.correctQuiz ?? 0}
+              incorrectQuiz={userSession?.incorrectQuiz ?? 0}
+            />
           </>
         )}
       </Stack>

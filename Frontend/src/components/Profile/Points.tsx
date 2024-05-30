@@ -13,6 +13,7 @@ import {
 
 type pointProp = {
   correctQuiz: number;
+  incorrectQuiz: number;
 };
 
 // Styled component for the circle container
@@ -56,7 +57,7 @@ const theme = createTheme({
   },
 });
 
-export default function Points({ correctQuiz }: pointProp) {
+export default function Points({ correctQuiz, incorrectQuiz }: pointProp) {
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="column">
@@ -110,7 +111,7 @@ export default function Points({ correctQuiz }: pointProp) {
             <Tooltip title="Number of incorrect answers" arrow>
               <Label>Wrong</Label>
             </Tooltip>
-            <WinnerCount>0</WinnerCount>
+            <WinnerCount>{incorrectQuiz}</WinnerCount>
           </CircleContainer>
         </Grid>
       </Stack>

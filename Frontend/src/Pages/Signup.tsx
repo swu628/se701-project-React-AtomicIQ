@@ -38,6 +38,7 @@ function Signup() {
       progress: 0,
       avatar: "src/assets/avatar1.svg",
       correctQuiz: 0,
+      incorrectQuiz: 0,
     };
 
     localStorage.setItem("userSession", JSON.stringify(userSession));

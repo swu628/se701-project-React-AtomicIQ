@@ -13,4 +13,5 @@ export interface UserSession {
   progress: number;
   avatar: string;
   correctQuiz: number;
+  incorrectQuiz: number;
 }
