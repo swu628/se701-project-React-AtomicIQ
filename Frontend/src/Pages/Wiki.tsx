@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import PeriodicTable from "~/components/PeriodicTable";
 import {
   Card,
   CardContent,
