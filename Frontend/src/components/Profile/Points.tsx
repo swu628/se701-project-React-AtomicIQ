@@ -16,6 +16,7 @@ type pointProp = {
   incorrectQuestions: number;
   totalQuestions: number;
   numFlashcard: number;
+  numWordle: number;
   progress: number;
 };
 
@@ -65,6 +66,7 @@ export default function Points({
   incorrectQuestions,
   totalQuestions,
   numFlashcard,
+  numWordle,
   progress,
 }: pointProp) {
   return (
@@ -90,7 +92,7 @@ export default function Points({
             <Tooltip title="Number of wordle quiz completion" arrow>
               <Label>Wordle</Label>
             </Tooltip>
-            <WinnerCount>{progress}</WinnerCount>
+            <WinnerCount>{numWordle}</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Consecutive days of completion" arrow>
