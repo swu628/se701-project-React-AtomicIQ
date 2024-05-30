@@ -80,21 +80,30 @@ export default function Results() {
     // Update profile
     const updateSession = (session: UserSession) => {
       // Update level progress
-      if (resultsValues.incorrect === 0 && resultsValues.skipped === 0) {
+      if (
+        resultsValues.correct > 1 && // Prevent levelling up from getting the first wordle quiz correct
+        resultsValues.incorrect === 0 &&
+        resultsValues.skipped === 0
+      ) {
         session.progress = 100;
       } else {
         session.progress = Math.floor(
           (resultsValues.correct /
-            (resultsValues.incorrect + resultsValues.skipped)) *
+            (resultsValues.correct +
+              resultsValues.incorrect +
+              resultsValues.skipped)) *
             100
         );
       }
 
-      console.log(session.progress);
-
       // Update level if possible
-      if (session.progress === 100) {
+      if (session.progress >= 100) {
         session.level += 1;
+        session.progress = 0;
+      }
+
+      // Level cap since no lv3 questions (remember to remove this if statement)
+      if (session.level >= 3) {
         session.progress = 0;
       }
 
@@ -103,11 +112,11 @@ export default function Results() {
       session.questionPoints.incorrectQuestions += resultsValues.incorrect;
       session.questionPoints.totalQuestions +=
         resultsValues.correct + resultsValues.incorrect;
-        if (quizType === "flashcard") {
-            session.quizPoints.numFlashcard += 1;
-        } else if (quizType === "origin") {
-            session.quizPoints.numWordle += 1;
-        }
+      if (quizType === "flashcard") {
+        session.quizPoints.numFlashcard += 1;
+      } else if (quizType === "origin") {
+        session.quizPoints.numWordle += 1;
+      }
       if (resultsValues.incorrect === 0 && resultsValues.skipped === 0) {
         session.questionPoints.consecutiveQuestions += 1;
       } else {
@@ -147,12 +156,12 @@ export default function Results() {
         showSnackbar("Wordle Solver: Completed 1 origin quiz!");
       }
       if (numWordle === 5 && !session.badges.includes(23)) {
-          session.badges.push(23);
-          showSnackbar("Wordle Solver: Completed 5 origin quizzes!");
+        session.badges.push(23);
+        showSnackbar("Wordle Solver: Completed 5 origin quizzes!");
       }
       if (numWordle === 10 && !session.badges.includes(24)) {
-          session.badges.push(24);
-          showSnackbar("Wordle Solver: Completed 10 origin quizzes!");
+        session.badges.push(24);
+        showSnackbar("Wordle Solver: Completed 10 origin quizzes!");
       }
       // Elements Master: achieve n% or above in a flash card quiz
       if (
