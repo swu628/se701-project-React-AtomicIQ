@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Typography,
   Divider,
@@ -11,6 +10,13 @@ import {
   experimentalStyled as styled,
   createTheme,
 } from "@mui/material/styles";
+
+type pointProp = {
+  correctQuestions: number;
+  incorrectQuestions: number;
+  totalQuestions: number;
+  numFlashcard: number;
+};
 
 // Styled component for the circle container
 const CircleContainer = styled("div")({
@@ -53,7 +59,12 @@ const theme = createTheme({
   },
 });
 
-export default function Points() {
+export default function Points({
+  correctQuestions,
+  incorrectQuestions,
+  totalQuestions,
+  numFlashcard,
+}: pointProp) {
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="column">
@@ -71,19 +82,19 @@ export default function Points() {
             <Tooltip title="Number of flashcard completion" arrow>
               <Label>Flashcard</Label>
             </Tooltip>
-            <WinnerCount>2</WinnerCount>
+            <WinnerCount>{numFlashcard}</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Number of wordle quiz completion" arrow>
               <Label>Wordle</Label>
             </Tooltip>
-            <WinnerCount>2</WinnerCount>
+            <WinnerCount>0</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Consecutive days of completion" arrow>
               <Label>Streak</Label>
             </Tooltip>
-            <WinnerCount>0</WinnerCount>
+            <WinnerCount>1</WinnerCount>
           </CircleContainer>
         </Grid>
         <Grid
@@ -95,19 +106,19 @@ export default function Points() {
             <Tooltip title="Number of completed quizzes" arrow>
               <Label>Quizzes</Label>
             </Tooltip>
-            <WinnerCount>2</WinnerCount>
+            <WinnerCount>{totalQuestions}</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Number of correct answers" arrow>
               <Label>Correct</Label>
             </Tooltip>
-            <WinnerCount>2</WinnerCount>
+            <WinnerCount>{correctQuestions}</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Number of incorrect answers" arrow>
               <Label>Wrong</Label>
             </Tooltip>
-            <WinnerCount>0</WinnerCount>
+            <WinnerCount>{incorrectQuestions}</WinnerCount>
           </CircleContainer>
         </Grid>
       </Stack>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container, Typography, Divider, Stack } from "@mui/material";
+import { Container, Divider, Stack } from "@mui/material";
 import ProfileTitle from "~/components/Profile/ProfileTitle.tsx";
 import Points from "~/components/Profile/Points";
 import Badges from "~/components/Profile/Badges";
@@ -55,16 +55,23 @@ export default function Profile({ badgeData }: ProfileProps) {
         ) : (
           <>
             <Levels level={1} progress={25} />
-            <Points />
+            <Points
+              correctQuestions={
+                userSession?.questionPoints.correctQuestions ?? 0
+              }
+              incorrectQuestions={
+                userSession?.questionPoints.incorrectQuestions ?? 0
+              }
+              totalQuestions={userSession?.questionPoints.totalQuestions ?? 0}
+              numFlashcard={userSession?.quizPoints.numFlashcard ?? 0}
+            />
           </>
         )}
       </Stack>
-
       <Divider
         orientation="vertical"
         sx={{ borderColor: "black", borderWidth: "0.1vw", height: "auto" }}
       />
-
       {/* Right */}
       <Stack display="flex" flex={5} direction="column" ml="2rem">
         <Badges

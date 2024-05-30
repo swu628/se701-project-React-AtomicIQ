@@ -2,11 +2,12 @@ import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import RedoIcon from "@mui/icons-material/Redo";
 import PreviewIcon from "@mui/icons-material/Preview";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ResultsTable from "~/components/Results/ResultsTable";
 import ResultsDisplay from "~/components/Results/ResultsDisplay";
 import { AnswerData } from "./FlashCard";
+import { UserSession } from "~/types/entities";
 
 interface ResultsValues {
   correct: number;
@@ -38,7 +39,7 @@ export default function Results() {
         acc.resultsQuestions.correct.push(index + 1);
       } else if (answer.answer === "") {
         acc.resultsValues.skipped++;
-        acc.resultsQuestions.skipped.push(index + 1); 
+        acc.resultsQuestions.skipped.push(index + 1);
       } else {
         acc.resultsValues.incorrect++;
         acc.resultsQuestions.incorrect.push(index + 1);
@@ -55,19 +56,49 @@ export default function Results() {
     }
   );
 
+  // Use a ref to ensure the effect runs only once
+  const hasEffectRun = useRef(false);
+
   useEffect(() => {
-    document.body.classList.add("backgroundImage");
+    if (!hasEffectRun.current) {
+      const storedSession = localStorage.getItem("userSession");
+      if (storedSession) {
+        const session = JSON.parse(storedSession) as UserSession;
+
+        session.questionPoints.correctQuestions += resultsValues.correct;
+        session.questionPoints.incorrectQuestions += resultsValues.incorrect;
+        session.questionPoints.totalQuestions +=
+          resultsValues.correct +
+          resultsValues.incorrect +
+          resultsValues.skipped;
+        session.quizPoints.numFlashcard += 1;
+
+        // Initialize user points
+        // session.questionPoints.correctQuestions = 0;
+        // session.questionPoints.incorrectQuestions = 0;
+        // session.questionPoints.totalQuestions = 0;
+        // session.quizPoints.numFlashcard = 0;
+
+        localStorage.setItem("userSession", JSON.stringify(session));
+      }
+
+      document.body.classList.add("backgroundImage");
+
+      // Mark the effect as run
+      hasEffectRun.current = true;
+    }
+
     return () => {
       document.body.classList.remove("backgroundImage");
     };
-  }, []);
+  }, [resultsValues.correct, resultsValues.incorrect, resultsValues.skipped]);
 
   useEffect(() => {
     const completedLevel = Math.floor(answers.length / 3);
     if (completedLevel > 0) {
       const savedLevels = localStorage.getItem("completedLevels");
       const updatedLevels = savedLevels ? JSON.parse(savedLevels) : [];
-      
+
       if (!updatedLevels.includes(completedLevel)) {
         updatedLevels.push(completedLevel);
         localStorage.setItem("completedLevels", JSON.stringify(updatedLevels));
