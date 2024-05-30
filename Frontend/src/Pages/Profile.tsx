@@ -58,6 +58,7 @@ export default function Profile({ badgeData }: ProfileProps) {
             <Points
               correctQuiz={userSession?.correctQuiz ?? 0}
               incorrectQuiz={userSession?.incorrectQuiz ?? 0}
+              totalQuiz={userSession?.totalQuiz ?? 0}
             />
           </>
         )}

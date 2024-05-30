@@ -14,4 +14,5 @@ export interface UserSession {
   avatar: string;
   correctQuiz: number;
   incorrectQuiz: number;
+  totalQuiz: number,
 }

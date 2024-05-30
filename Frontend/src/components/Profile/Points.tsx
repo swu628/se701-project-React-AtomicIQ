@@ -14,6 +14,7 @@ import {
 type pointProp = {
   correctQuiz: number;
   incorrectQuiz: number;
+  totalQuiz: number;
 };
 
 // Styled component for the circle container
@@ -57,7 +58,11 @@ const theme = createTheme({
   },
 });
 
-export default function Points({ correctQuiz, incorrectQuiz }: pointProp) {
+export default function Points({
+  correctQuiz,
+  incorrectQuiz,
+  totalQuiz,
+}: pointProp) {
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="column">
@@ -87,7 +92,7 @@ export default function Points({ correctQuiz, incorrectQuiz }: pointProp) {
             <Tooltip title="Consecutive days of completion" arrow>
               <Label>Streak</Label>
             </Tooltip>
-            <WinnerCount>0</WinnerCount>
+            <WinnerCount>1</WinnerCount>
           </CircleContainer>
         </Grid>
         <Grid
@@ -99,7 +104,7 @@ export default function Points({ correctQuiz, incorrectQuiz }: pointProp) {
             <Tooltip title="Number of completed quizzes" arrow>
               <Label>Quizzes</Label>
             </Tooltip>
-            <WinnerCount>2</WinnerCount>
+            <WinnerCount>{totalQuiz}</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Number of correct answers" arrow>

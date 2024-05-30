@@ -63,6 +63,11 @@ export default function Results() {
       const session = JSON.parse(storedSession) as UserSession;
       session.correctQuiz = session.correctQuiz + resultsValues.correct;
       session.incorrectQuiz = session.incorrectQuiz + resultsValues.incorrect;
+      session.totalQuiz =
+        session.totalQuiz +
+        resultsValues.correct +
+        resultsValues.incorrect +
+        resultsValues.skipped;
       localStorage.setItem("userSession", JSON.stringify(session));
     }
 
