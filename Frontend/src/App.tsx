@@ -10,6 +10,7 @@ import Signup from "./Pages/Signup";
 import FlashCard from "./Pages/FlashCard";
 import Results from "./Pages/Results";
 import Wordle from "./Pages/Wordle";
+import StateActivity from "./Pages/StateActivity";
 import badges from "./data/badges.json";
 import { Element, ElementProperty } from "~/types/element";
 import "./App.css";
@@ -63,6 +64,15 @@ function App() {
             <>
               <Nav />
               <Wiki />
+            </>
+          }
+        />
+        <Route
+          path="/state_activity"
+          element={
+            <>
+              <Nav />
+              <StateActivity />
             </>
           }
         />

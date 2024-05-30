@@ -10,6 +10,7 @@ import {
 import { Button } from "../components/ui/button";
 import { Progress } from "../components/ui/progress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import {
   faAtom,
   faFlask,
@@ -21,6 +22,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Wiki() {
+  const navigate = useNavigate();
   useEffect(() => {
     document.body.classList.add("backgroundImage");
 
@@ -28,6 +30,10 @@ export default function Wiki() {
       document.body.classList.remove("backgroundImage");
     };
   }, []);
+  const handleButtonClick = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    navigate("/state_activity");
+  };
 
   return (
     <div>
@@ -69,9 +75,14 @@ export default function Wiki() {
                     </Progress>
                   </div>
                 </div>
-                <Button variant="outline">Go to Activity</Button>
+                <div onClick={(event) => event.preventDefault()}>
+                  <Button variant="outline" onClick={handleButtonClick}>
+                    Go to Activity
+                  </Button>
+                </div>
               </div>
             </Link>
+
             <Link to="/diffusion">
               <div className="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors">
                 <div className="flex items-center space-x-4">
