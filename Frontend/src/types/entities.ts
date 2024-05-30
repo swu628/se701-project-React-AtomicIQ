@@ -12,8 +12,13 @@ export interface UserSession {
   level: number;
   progress: number;
   avatar: string;
-  correctQuiz: number;
-  incorrectQuiz: number;
-  totalQuiz: number,
-  numOfFlashcard: number,
+  questionPoints: {
+    correctQuestions: number;
+    incorrectQuestions: number;
+    totalQuestions: number;
+  };
+  quizPoints: {
+    numFlashcard: number;
+    numWordle: number;
+  };
 }

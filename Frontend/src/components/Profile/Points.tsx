@@ -12,10 +12,10 @@ import {
 } from "@mui/material/styles";
 
 type pointProp = {
-  correctQuiz: number;
-  incorrectQuiz: number;
-  totalQuiz: number;
-  numOfFlashcard: number;
+  correctQuestions: number;
+  incorrectQuestions: number;
+  totalQuestions: number;
+  numFlashcard: number;
 };
 
 // Styled component for the circle container
@@ -60,10 +60,10 @@ const theme = createTheme({
 });
 
 export default function Points({
-  correctQuiz,
-  incorrectQuiz,
-  totalQuiz,
-  numOfFlashcard,
+  correctQuestions,
+  incorrectQuestions,
+  totalQuestions,
+  numFlashcard,
 }: pointProp) {
   return (
     <ThemeProvider theme={theme}>
@@ -82,7 +82,7 @@ export default function Points({
             <Tooltip title="Number of flashcard completion" arrow>
               <Label>Flashcard</Label>
             </Tooltip>
-            <WinnerCount>{numOfFlashcard}</WinnerCount>
+            <WinnerCount>{numFlashcard}</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Number of wordle quiz completion" arrow>
@@ -106,19 +106,19 @@ export default function Points({
             <Tooltip title="Number of completed quizzes" arrow>
               <Label>Quizzes</Label>
             </Tooltip>
-            <WinnerCount>{totalQuiz}</WinnerCount>
+            <WinnerCount>{totalQuestions}</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Number of correct answers" arrow>
               <Label>Correct</Label>
             </Tooltip>
-            <WinnerCount>{correctQuiz}</WinnerCount>
+            <WinnerCount>{correctQuestions}</WinnerCount>
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Number of incorrect answers" arrow>
               <Label>Wrong</Label>
             </Tooltip>
-            <WinnerCount>{incorrectQuiz}</WinnerCount>
+            <WinnerCount>{incorrectQuestions}</WinnerCount>
           </CircleContainer>
         </Grid>
       </Stack>

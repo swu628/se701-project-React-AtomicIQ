@@ -37,10 +37,15 @@ function Signup() {
       level: 1,
       progress: 0,
       avatar: "src/assets/avatar1.svg",
-      correctQuiz: 0,
-      incorrectQuiz: 0,
-      totalQuiz: 0,
-      numOfFlashcard: 0,
+      questionPoints: {
+        correctQuestions: 0,
+        incorrectQuestions: 0,
+        totalQuestions: 0,
+      },
+      quizPoints: {
+        numFlashcard: 0,
+        numWordle: 0,
+      },
     };
 
     localStorage.setItem("userSession", JSON.stringify(userSession));

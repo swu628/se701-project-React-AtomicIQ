@@ -65,19 +65,19 @@ export default function Results() {
       if (storedSession) {
         const session = JSON.parse(storedSession) as UserSession;
 
-        session.correctQuiz += resultsValues.correct;
-        session.incorrectQuiz += resultsValues.incorrect;
-        session.totalQuiz +=
+        session.questionPoints.correctQuestions += resultsValues.correct;
+        session.questionPoints.incorrectQuestions += resultsValues.incorrect;
+        session.questionPoints.totalQuestions +=
           resultsValues.correct +
           resultsValues.incorrect +
           resultsValues.skipped;
-        session.numOfFlashcard += 1;
+        session.quizPoints.numFlashcard += 1;
 
         // Initialize user points
-        // session.correctQuiz = 0;
-        // session.incorrectQuiz = 0;
-        // session.totalQuiz = 0;
-        // session.numOfFlashcard = 0;
+        // session.questionPoints.correctQuestions = 0;
+        // session.questionPoints.incorrectQuestions = 0;
+        // session.questionPoints.totalQuestions = 0;
+        // session.quizPoints.numFlashcard = 0;
 
         localStorage.setItem("userSession", JSON.stringify(session));
       }

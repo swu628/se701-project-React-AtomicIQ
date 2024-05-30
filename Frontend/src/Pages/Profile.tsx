@@ -56,10 +56,14 @@ export default function Profile({ badgeData }: ProfileProps) {
           <>
             <Levels level={1} progress={25} />
             <Points
-              correctQuiz={userSession?.correctQuiz ?? 0}
-              incorrectQuiz={userSession?.incorrectQuiz ?? 0}
-              totalQuiz={userSession?.totalQuiz ?? 0}
-              numOfFlashcard={userSession?.numOfFlashcard ?? 0}
+              correctQuestions={
+                userSession?.questionPoints.correctQuestions ?? 0
+              }
+              incorrectQuestions={
+                userSession?.questionPoints.incorrectQuestions ?? 0
+              }
+              totalQuestions={userSession?.questionPoints.totalQuestions ?? 0}
+              numFlashcard={userSession?.quizPoints.numFlashcard ?? 0}
             />
           </>
         )}
