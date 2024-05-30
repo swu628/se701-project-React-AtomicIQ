@@ -143,8 +143,11 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   // When the user submit an answer
   const handleAnswerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const correct =
-      userAnswer.toLowerCase() === currentCard.backSide.toLowerCase();
+    const correct = currentCard.backSide.includes("|")
+      ? currentCard.backSide.split("|").some((answer) => {
+          userAnswer.toLowerCase() === answer.toLowerCase();
+        })
+      : userAnswer.toLowerCase() === currentCard.backSide.toLowerCase();
     setIsCorrect(correct);
     setIsSubmitted(true);
     handleFlip();
@@ -202,9 +205,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
             Show Rules
           </button>
         </div>
-        <h1 className="text-2xl font-bold mb-4 text-black">
-          Periodic Table Elements
-        </h1>
+        <h1 className="text-2xl font-bold mb-4 text-black">{cardData.title}</h1>
         <div className="flip-card w-full h-72">
           <motion.div
             className={`flip-card-inner w-full h-full cursor-pointer ${

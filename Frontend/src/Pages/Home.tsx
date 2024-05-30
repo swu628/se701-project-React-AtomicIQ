@@ -41,7 +41,6 @@ export default function Home() {
 
   const buttonStyles = {
     width: { xs: "80vw", sm: "60vw", md: "30vw", lg: "15vw" },
-    mb: "2rem",
     backgroundColor: "#1976d2",
     color: "white",
     padding: { xs: "0.5rem 1rem", md: "1rem 2rem" },
@@ -68,10 +67,16 @@ export default function Home() {
           flex={1}
           justifyContent="center"
         >
-          <Link to="/flashcard/0" style={{ textDecoration: "none" }}>
+          <Link
+            to="/flashcard/0"
+            style={{ textDecoration: "none", marginBottom: "2rem" }}
+          >
             <Button sx={buttonStyles}>FlashCard</Button>
           </Link>
-          <Link to="/wordle" style={{ textDecoration: "none" }}>
+          <Link
+            to="/wordle"
+            style={{ textDecoration: "none", marginBottom: "2rem" }}
+          >
             <Button sx={buttonStyles}>Wordle</Button>
           </Link>
         </Stack>
