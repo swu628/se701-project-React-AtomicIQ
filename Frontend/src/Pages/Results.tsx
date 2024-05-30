@@ -10,7 +10,7 @@ import {
 import RedoIcon from "@mui/icons-material/Redo";
 import PreviewIcon from "@mui/icons-material/Preview";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
-import { useEffect, useRef } from "react";
+import {useEffect, useRef, useState} from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ResultsTable from "~/components/Results/ResultsTable";
 import ResultsDisplay from "~/components/Results/ResultsDisplay";
