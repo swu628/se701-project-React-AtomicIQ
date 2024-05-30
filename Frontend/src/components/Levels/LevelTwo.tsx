@@ -19,12 +19,12 @@ export function LevelTwo({ isLevelTwoVisible, toggleLevelTwo }: Props) {
           transition={{ duration: 0.5 }}
         >
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md text-center text-white">
-            <h2 className="text-2xl mb-4">Level Two</h2>
+            <h2 className="text-2xl mb-4">Level Two: Groups and Periods</h2>
             <p className="mb-4">
-              1. You have to learn the middle 3 elements of FLASHCARD.
+              1. Vertical columns in the periodic table with total 18 groups
             </p>
             <p className="mb-4">
-              2. You have to learn the middle 3 quizs of WORDLE.
+              2. Horizontal rows in the periodic table with total of 7 periods
             </p>
             <Button
               onClick={toggleLevelTwo}

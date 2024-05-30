@@ -21,10 +21,7 @@ export function MoreLevels({ isMoreLevelsVisible, toggleMoreLevels }: Props) {
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md text-center text-white">
             <h2 className="text-2xl mb-4">More Levels</h2>
             <p className="mb-4">
-              1. You can select more FLASHCARD quizs to unlock
-            </p>
-            <p className="mb-4">
-              2. You can select more WORDLE quizs to unlock
+              You can select more FLASHCARD quizs to unlock
             </p>
             <Button
               onClick={toggleMoreLevels}

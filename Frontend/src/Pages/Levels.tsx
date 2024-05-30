@@ -104,139 +104,143 @@ export default function Levels() {
         level={userSession?.level ?? 1}
         progress={userSession?.progress ?? 25}
       />
-    <Container sx={containerStyles}>
-      <Typography
-        variant="h2"
-        sx={{ display: "flex", justifyContent: "center", mb: { xs: 2, md: 4 }, fontSize: { xs: "1.5rem", md: "2rem" } }}
-      >
-        Levelling
-      </Typography>
-      <Timeline position="alternate">
-        <TimelineItem>
-          <TimelineSeparator>
-            <Button onClick={toggleLevelOne}>
-              <TimelineDot sx={timelineDotStyles}>
-                <img src="src/assets/level1.svg" alt="Level 1 Icon" />
-              </TimelineDot>
-            </Button>
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
-            <Typography variant="h6" component="span">
-              Level 1
-            </Typography>
-            <Typography
-              sx={
-                completedLevels.includes(1)
-                  ? congratulationStyles
-                  : {}
-              }
+      <Container sx={containerStyles}>
+        <Typography
+          variant="h2"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mb: { xs: 2, md: 4 },
+            fontSize: { xs: "1.5rem", md: "2rem" },
+          }}
+        >
+          Levelling
+        </Typography>
+        <Timeline position="alternate">
+          <TimelineItem>
+            <TimelineSeparator>
+              <Button onClick={toggleLevelOne}>
+                <TimelineDot sx={timelineDotStyles}>
+                  <img src="src/assets/level1.svg" alt="Level 1 Icon" />
+                </TimelineDot>
+              </Button>
+            </TimelineSeparator>
+            <TimelineContent
+              sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}
             >
-              {completedLevels.includes(1)
-                ? "Congratulation! You have learned the first 3 elements of FLASHCARD."
-                : "You have not learned the first 3 elements of FLASHCARD."}
-            </Typography>
-          </TimelineContent>
-        </TimelineItem>
-        <TimelineItem>
-          <TimelineSeparator>
-            <TimelineConnector sx={connectorStyles} />
-            <Button onClick={toggleLevelTwo}>
-              <TimelineDot color="primary" sx={timelineDotStyles}>
-                <img src="src/assets/level2.svg" alt="Level 2 Icon" />
-              </TimelineDot>
-            </Button>
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
-            <Typography variant="h6" component="span">
-              Level 2
-            </Typography>
-            <Typography
-              sx={
-                completedLevels.includes(2)
-                  ? congratulationStyles
-                  : {}
-              }
+              <Typography variant="h6" component="span">
+                Level 1
+              </Typography>
+              <Typography
+                sx={completedLevels.includes(1) ? congratulationStyles : {}}
+              >
+                {completedLevels.includes(1) ? "Completed" : "Incompleted"}
+              </Typography>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineConnector sx={connectorStyles} />
+              <Button onClick={toggleLevelTwo}>
+                <TimelineDot color="primary" sx={timelineDotStyles}>
+                  <img src="src/assets/level2.svg" alt="Level 2 Icon" />
+                </TimelineDot>
+              </Button>
+            </TimelineSeparator>
+            <TimelineContent
+              sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}
             >
-              {completedLevels.includes(2)
-                ? "Congratulation! You have learned the middle 3 elements of FLASHCARD."
-                : "You have not learned the middle 3 elements of FLASHCARD."}
-            </Typography>
-          </TimelineContent>
-        </TimelineItem>
-        <TimelineItem>
-          <TimelineSeparator>
-            <TimelineConnector sx={connectorStyles} />
-            <Button onClick={toggleLevelThree}>
-              <TimelineDot color="primary" variant="outlined" sx={timelineDotStyles}>
-                <img src="src/assets/level3.svg" alt="Level 3 Icon"/>
-              </TimelineDot>
-            </Button>
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
-            <Typography variant="h6" component="span">
-              Level 3
-            </Typography>
-            <Typography
-              sx={
-                completedLevels.includes(3)
-                  ? congratulationStyles
-                  : {}
-              }
+              <Typography variant="h6" component="span">
+                Level 2
+              </Typography>
+              <Typography
+                sx={completedLevels.includes(2) ? congratulationStyles : {}}
+              >
+                {completedLevels.includes(2) ? "Completed" : "Incompleted"}
+              </Typography>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineConnector sx={connectorStyles} />
+              <Button onClick={toggleLevelThree}>
+                <TimelineDot
+                  color="primary"
+                  variant="outlined"
+                  sx={timelineDotStyles}
+                >
+                  <img src="src/assets/level3.svg" alt="Level 3 Icon" />
+                </TimelineDot>
+              </Button>
+            </TimelineSeparator>
+            <TimelineContent
+              sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}
             >
-              {completedLevels.includes(3)
-                ? "Congratulation! You have learned the last 3 elements of FLASHCARD."
-                : "You have not learned the last 3 elements of FLASHCARD."}
-            </Typography>
-          </TimelineContent>
-        </TimelineItem>
-        <TimelineItem>
-          <TimelineSeparator>
-            <TimelineConnector sx={connectorStyles} />
-            <Button onClick={toggleMoreLevels}>
-              <TimelineDot color="secondary" sx={timelineDotStyles}>
-                <img src="src/assets/level4.svg" alt="More Levels Icon" />
-              </TimelineDot>
-            </Button>
-            <TimelineConnector sx={connectorStyles} />
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}>
-            <Typography variant="h6" component="span">
-              More Levels
-            </Typography>
-            <Typography>Learn more elements to unlock</Typography>
-          </TimelineContent>
-        </TimelineItem>
-      </Timeline>
+              <Typography variant="h6" component="span">
+                Level 3
+              </Typography>
+              <Typography
+                sx={completedLevels.includes(3) ? congratulationStyles : {}}
+              >
+                {completedLevels.includes(3) ? "Completed" : "Incompleted"}
+              </Typography>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineSeparator>
+              <TimelineConnector sx={connectorStyles} />
+              <Button onClick={toggleMoreLevels}>
+                <TimelineDot color="secondary" sx={timelineDotStyles}>
+                  <img src="src/assets/level4.svg" alt="More Levels Icon" />
+                </TimelineDot>
+              </Button>
+              <TimelineConnector sx={connectorStyles} />
+            </TimelineSeparator>
+            <TimelineContent
+              sx={{ py: { xs: "1vh", sm: "2vh", md: "3vh" }, px: 2 }}
+            >
+              <Typography variant="h6" component="span">
+                More Levels
+              </Typography>
+              <Typography>Learn more elements to unlock</Typography>
+            </TimelineContent>
+          </TimelineItem>
+        </Timeline>
 
-      <Button onClick={resetCompletedLevels} variant="contained" color="secondary" sx={{ mt: 4 }}>
-        Reset Completed Levels
-      </Button>
+        <Button
+          onClick={resetCompletedLevels}
+          variant="contained"
+          color="secondary"
+          sx={{ mt: 4 }}
+        >
+          Reset Completed Levels
+        </Button>
 
-      {isLevelOneVisible && (
-        <LevelOne
-          isLevelOneVisible={isLevelOneVisible}
-          toggleLevelOne={toggleLevelOne}
-        />
-      )}
-      {isLevelTwoVisible && (
-        <LevelTwo
-          isLevelTwoVisible={isLevelTwoVisible}
-          toggleLevelTwo={toggleLevelTwo}
-        />
-      )}
-      {isLevelThreeVisible && (
-        <LevelThree
-          isLevelThreeVisible={isLevelThreeVisible}
-          toggleLevelThree={toggleLevelThree}
-        />
-      )}
-      {isMoreLevelsVisible && (
-        <MoreLevels
-          isMoreLevelsVisible={isMoreLevelsVisible}
-          toggleMoreLevels={toggleMoreLevels}
-        />
-      )}
-    </Container>
+        {isLevelOneVisible && (
+          <LevelOne
+            isLevelOneVisible={isLevelOneVisible}
+            toggleLevelOne={toggleLevelOne}
+          />
+        )}
+        {isLevelTwoVisible && (
+          <LevelTwo
+            isLevelTwoVisible={isLevelTwoVisible}
+            toggleLevelTwo={toggleLevelTwo}
+          />
+        )}
+        {isLevelThreeVisible && (
+          <LevelThree
+            isLevelThreeVisible={isLevelThreeVisible}
+            toggleLevelThree={toggleLevelThree}
+          />
+        )}
+        {isMoreLevelsVisible && (
+          <MoreLevels
+            isMoreLevelsVisible={isMoreLevelsVisible}
+            toggleMoreLevels={toggleMoreLevels}
+          />
+        )}
+      </Container>
     </>
   );
 }
