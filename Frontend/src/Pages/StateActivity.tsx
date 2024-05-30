@@ -2,21 +2,24 @@ import Gas from "~/components/Gas";
 import Solid from "~/components/Solid";
 import Liquid from "~/components/Liquid";
 import { useEffect } from "react";
-import { Separator } from "~/components/ui/separator";
 import StateQuiz from "~/components/StateQuiz";
+import { useNavigate } from "react-router-dom";
+
 function StateActivity() {
-    const periodicElements = [
-        { name: "Hydrogen", type: "Gas", category: "Non-metal" },
-        { name: "Helium", type: "Gas", category: "Non-metal" },
-        { name: "Lithium", type: "Solid", category: "Metal" },
-        { name: "Beryllium", type: "Solid", category: "Metal" },
-        { name: "Boron", type: "Solid", category: "Metalloid" },
-        { name: "Carbon", type: "Solid", category: "Non-metal" },
-        { name: "Nitrogen", type: "Gas", category: "Non-metal" },
-        { name: "Oxygen", type: "Gas", category: "Non-metal" },
-        { name: "Fluorine", type: "Gas", category: "Non-metal" },
-        { name: "Neon", type: "Gas", category: "Non-metal" },
-      ];
+  const navigate = useNavigate();
+
+  const periodicElements = [
+    { name: "Hydrogen", type: "Gas", category: "Non-metal" },
+    { name: "Helium", type: "Gas", category: "Non-metal" },
+    { name: "Lithium", type: "Solid", category: "Metal" },
+    { name: "Beryllium", type: "Solid", category: "Metal" },
+    { name: "Boron", type: "Solid", category: "Metalloid" },
+    { name: "Carbon", type: "Solid", category: "Non-metal" },
+    { name: "Nitrogen", type: "Gas", category: "Non-metal" },
+    { name: "Oxygen", type: "Gas", category: "Non-metal" },
+    { name: "Fluorine", type: "Gas", category: "Non-metal" },
+    { name: "Neon", type: "Gas", category: "Non-metal" },
+  ];
   const objectives = [
     "Describe the state of elements at room temperature.",
     "State the distinguishing properties of solids, liquids, and gases.",
@@ -113,6 +116,12 @@ function StateActivity() {
         </div>
         <div className="w-1/2 bg-white px-5 rounded-lg">
           <StateQuiz />
+          <button
+            onClick={() => navigate("/flashcard/0")}
+            className="mt-24 m-2 ml-7 px-4 py-2 bg-black text-white rounded hover:bg-gray-700 float-right"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

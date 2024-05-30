@@ -47,6 +47,7 @@ function Signup() {
         numFlashcard: 0,
         numWordle: 0,
       },
+      latestQuizResults: [],
     };
 
     localStorage.setItem("userSession", JSON.stringify(userSession));

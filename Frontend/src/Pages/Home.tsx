@@ -4,9 +4,6 @@ import {
   Typography,
   Button,
   Stack,
-  Drawer,
-  Divider,
-  LinearProgress,
   FormControl,
   InputLabel,
   Select,
@@ -16,6 +13,12 @@ import {
 import { Link } from "react-router-dom";
 import { UserSession } from "~/types/entities";
 import LevelSidebar from "~/components/LevelSidebar";
+
+const levelToActivityMap = [
+  { level: 1, activity: "/solids-liquids-gases" },
+  { level: 2, activity: "/flashcard/1" },
+  { level: 3, activity: "/flashcard/2" },
+];
 
 export default function Home() {
   const [userSession, setUserSession] = useState<UserSession | null>(null);
@@ -98,10 +101,10 @@ export default function Home() {
             </Select>
           </FormControl>
           <Link
-            to={`/flashcard/${levelSetting - 1}`}
+            to={levelToActivityMap[levelSetting - 1].activity}
             style={{ textDecoration: "none", marginBottom: "2rem" }}
           >
-            <Button sx={buttonStyles}>FlashCard</Button>
+            <Button sx={buttonStyles}>Start</Button>
           </Link>
           <Link
             to="/wordle"

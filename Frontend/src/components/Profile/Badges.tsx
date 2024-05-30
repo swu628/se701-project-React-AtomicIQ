@@ -49,7 +49,7 @@ export default function Badges({ badgeData, existingBadges }: BadgesProps) {
           <List
             sx={{
               maxWidth: "40vw",
-              height: "65vh",
+              height: "80vh",
               padding: 0,
               marginRight: "0.5rem",
             }}
