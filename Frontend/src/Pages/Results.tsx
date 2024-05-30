@@ -2,7 +2,7 @@ import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import RedoIcon from "@mui/icons-material/Redo";
 import PreviewIcon from "@mui/icons-material/Preview";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ResultsTable from "~/components/Results/ResultsTable";
 import ResultsDisplay from "~/components/Results/ResultsDisplay";
@@ -56,27 +56,42 @@ export default function Results() {
     }
   );
 
+  // Use a ref to ensure the effect runs only once
+  const hasEffectRun = useRef(false);
+
   useEffect(() => {
-    // Retrieve and update currently logged in user
-    const storedSession = localStorage.getItem("userSession");
-    if (storedSession) {
-      const session = JSON.parse(storedSession) as UserSession;
-      session.correctQuiz = session.correctQuiz + resultsValues.correct;
-      session.incorrectQuiz = session.incorrectQuiz + resultsValues.incorrect;
-      session.totalQuiz =
-        session.totalQuiz +
-        resultsValues.correct +
-        resultsValues.incorrect +
-        resultsValues.skipped;
-      session.numOfFlashcard = session.numOfFlashcard + 1;
-      localStorage.setItem("userSession", JSON.stringify(session));
+    if (!hasEffectRun.current) {
+      const storedSession = localStorage.getItem("userSession");
+      if (storedSession) {
+        const session = JSON.parse(storedSession) as UserSession;
+
+        session.correctQuiz += resultsValues.correct;
+        session.incorrectQuiz += resultsValues.incorrect;
+        session.totalQuiz +=
+          resultsValues.correct +
+          resultsValues.incorrect +
+          resultsValues.skipped;
+        session.numOfFlashcard += 1;
+
+        // Initialize user points
+        // session.correctQuiz = 0;
+        // session.incorrectQuiz = 0;
+        // session.totalQuiz = 0;
+        // session.numOfFlashcard = 0;
+
+        localStorage.setItem("userSession", JSON.stringify(session));
+      }
+
+      document.body.classList.add("backgroundImage");
+
+      // Mark the effect as run
+      hasEffectRun.current = true;
     }
 
-    document.body.classList.add("backgroundImage");
     return () => {
       document.body.classList.remove("backgroundImage");
     };
-  }, [resultsValues.correct]);
+  }, [resultsValues.correct, resultsValues.incorrect, resultsValues.skipped]);
 
   useEffect(() => {
     const completedLevel = Math.floor(answers.length / 3);
