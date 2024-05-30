@@ -19,6 +19,7 @@ import {
   faShapes,
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
+import Table from "~/components/Table";
 
 export default function Wiki() {
   useEffect(() => {
@@ -213,7 +214,30 @@ export default function Wiki() {
           <CardTitle>3. Explore Elements</CardTitle>
         </CardHeader>
         <CardContent>
-          <PeriodicTable />
+          <Table/>
+          <div className="flex justify-center space-x-5">
+            <div className="bg-alkaline-earth-metal px-3 py-1">
+              <h1 className=" text-white text-center">{"alkaline earth metal"}</h1>
+            </div>
+            <div className="bg-alkali-metal px-3 py-1">
+              <h1 className="text-white text-center">{"alkali metal"}</h1>
+            </div>
+            <div className="bg-transition-metal item px-3 py-1">
+              <h1 className="text-white text-center">{"transition metal"}</h1>
+            </div>
+            <div className="bg-polyatomic-nonmetal item px-3 py-1">
+              <h1 className="text-white text-center">{"polyatomic nonmetal"}</h1>
+            </div>
+            <div className="bg-noble-gas item px-3 py-1">
+              <h1 className="text-white text-center">{"noble gas"}</h1>
+            </div>
+            <div className="bg-diatomic-nonmetal item px-3 py-1">
+              <h1 className="text-white text-center">{"diatomic nonmetal"}</h1>
+            </div>
+            <div className="bg-Metalloid item px-3 py-1">
+              <h1 className="text-white text-center">{"metalloid"}</h1>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </div>
