@@ -81,7 +81,7 @@ export default function Results() {
     const updateSession = (session: UserSession) => {
       // Update level progress
       if (
-        resultsValues.correct > 0 &&
+        resultsValues.correct > 1 && // Prevent levelling up from getting the first wordle quiz correct
         resultsValues.incorrect === 0 &&
         resultsValues.skipped === 0
       ) {
