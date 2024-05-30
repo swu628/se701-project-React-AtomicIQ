@@ -68,7 +68,7 @@ function App() {
           }
         />
         <Route
-          path="/state_activity"
+          path="/room-temperature-pressure"
           element={
             <>
               <Nav />

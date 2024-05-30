@@ -75,20 +75,18 @@ export default function Wiki() {
                     </Progress>
                   </div>
                 </div>
-                <div onClick={(event) => event.preventDefault()}>
-                  <Button variant="outline" onClick={handleButtonClick}>
-                    Go to Activity
-                  </Button>
-                </div>
+                <Button variant="outline">Go to Activity</Button>
               </div>
             </Link>
 
-            <Link to="/diffusion">
+            <Link to="/room-temperature-pressure">
               <div className="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors">
                 <div className="flex items-center space-x-4">
                   <FontAwesomeIcon icon={faRulerCombined} size="2x" />
                   <div>
-                    <span className="font-semibold">1.2 Diffusion</span>
+                    <span className="font-semibold">
+                      1.2 Room Temperature Pressure
+                    </span>
                     <Progress value={25} className="w-48 h-6 mt-2">
                       25%
                     </Progress>
