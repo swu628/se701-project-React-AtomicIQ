@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, ReactNode } from 'react';
+import React, { useState, createContext} from 'react';
 import FirstRow from './rows/FirstRow';
 import SecondRow from './rows/SecondRow';
 import data from '../data.json';

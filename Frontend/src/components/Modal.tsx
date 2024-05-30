@@ -1,6 +1,3 @@
-import React from 'react';
-import elementData from '../data/elementData';
-import react from '@vitejs/plugin-react';
 
 interface ModalProps {
   open: boolean;

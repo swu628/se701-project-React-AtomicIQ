@@ -228,7 +228,7 @@ export default function Wiki() {
         </CardHeader>
         <CardContent>
           <Table/>
-          <div className="flex justify-center space-x-8">
+          <div className="flex justify-center space-x-5">
             <div className="bg-alkaline-earth-metal px-3 py-1">
               <h1 className=" text-white text-center">{"alkaline earth metal"}</h1>
             </div>

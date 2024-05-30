@@ -1,4 +1,3 @@
-import React from 'react';
 import Element, { ElementData } from '../Element';
 
 interface SecondRowProps {
@@ -15,10 +14,10 @@ export default function SecondRow({ data }: SecondRowProps) {
           <div className=""> </div>
           <div className=""> </div>
           <div className=""> </div>
-          <div className="">  </div>
-          <div className="">  </div>
           <div className=""> </div>
-          <div className="">  </div>
+          <div className=""> </div>
+          <div className=""> </div>
+          <div className=""> </div>
         </div>
         <div className="md:w-1/2 w-full md:grid md:grid-cols-9">
           <div className="">  </div>
