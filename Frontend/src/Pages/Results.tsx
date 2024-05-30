@@ -78,6 +78,7 @@ export default function Results() {
         // session.questionPoints.incorrectQuestions = 0;
         // session.questionPoints.totalQuestions = 0;
         // session.quizPoints.numFlashcard = 0;
+        // session.badges = [0];
 
         localStorage.setItem("userSession", JSON.stringify(session));
       }
