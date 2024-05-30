@@ -60,9 +60,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
       setIsSubmitted(false);
       setIsFlipped(false);
     }
-    setTimeout(() => {
-      setCardBack(currentCard.backSide);
-    }, 150);
+    setCardBack(currentCard.backSide); // Update cardBack state directly
   }, [currentIndex, currentCard, answers]);
 
   const handleFlip = () => {
