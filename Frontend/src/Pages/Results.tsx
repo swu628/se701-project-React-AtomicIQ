@@ -10,7 +10,7 @@ import {
 import RedoIcon from "@mui/icons-material/Redo";
 import PreviewIcon from "@mui/icons-material/Preview";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ResultsTable from "~/components/Results/ResultsTable";
 import ResultsDisplay from "~/components/Results/ResultsDisplay";
@@ -79,6 +79,25 @@ export default function Results() {
   useEffect(() => {
     // Update profile
     const updateSession = (session: UserSession) => {
+      // Update level progress
+      if (resultsValues.incorrect === 0 && resultsValues.skipped === 0) {
+        session.progress = 100;
+      } else {
+        session.progress = Math.floor(
+          (resultsValues.correct /
+            (resultsValues.incorrect + resultsValues.skipped)) *
+            100
+        );
+      }
+
+      console.log(session.progress);
+
+      // Update level if possible
+      if (session.progress === 100) {
+        session.level += 1;
+        session.progress = 0;
+      }
+
       // Update quiz points
       session.questionPoints.correctQuestions += resultsValues.correct;
       session.questionPoints.incorrectQuestions += resultsValues.incorrect;
@@ -102,11 +121,12 @@ export default function Results() {
       localStorage.setItem("userSession", JSON.stringify(session));
     };
 
-    // Update badges
+    // Update badges if possible
     const updateBadges = (session: UserSession) => {
       const { correctQuestions, incorrectQuestions, consecutiveQuestions } =
         session.questionPoints;
       const { numFlashcard, numWordle } = session.quizPoints;
+      const { level } = session;
 
       // Quiz Wizard: complete n flashcard quiz
       if (numFlashcard === 1 && !session.badges.includes(4)) {
@@ -192,6 +212,19 @@ export default function Results() {
           "Consistent Genius: Achieved 100% in 8 consecutive flash card quizzes!"
         );
       }
+      // Level Achiever: Achieve Level n
+      if (level === 2 && !session.badges.includes(19)) {
+        session.badges.push(19);
+        showSnackbar("Level Achiever: Achieve Level 2");
+      }
+      if (level === 3 && !session.badges.includes(20)) {
+        session.badges.push(20);
+        showSnackbar("Level Achiever: Achieve Level 3");
+      }
+      if (level === 5 && !session.badges.includes(21)) {
+        session.badges.push(21);
+        showSnackbar("Level Achiever: Achieve Level 5");
+      }
     };
 
     // Function to show Snackbar
@@ -208,6 +241,8 @@ export default function Results() {
       session.questionPoints.consecutiveQuestions = 0;
       session.quizPoints.numFlashcard = 0;
       session.badges = [0];
+      session.level = 1;
+      session.progress = 0;
     };
 
     const retrieveAndUpdateSession = () => {

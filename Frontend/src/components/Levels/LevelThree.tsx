@@ -19,13 +19,14 @@ export function LevelThree({ isLevelThreeVisible, toggleLevelThree }: Props) {
           transition={{ duration: 0.5 }}
         >
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md text-center text-white">
-            <h2 className="text-2xl mb-4">Level Three</h2>
-            <p className="mb-4">
-              1. You have to learn the last 3 elements of FLASHCARD.
-            </p>
-            <p className="mb-4">
-              2. You have to learn the last 3 quizs of WORDLE.
-            </p>
+            <h2 className="text-2xl mb-4">
+              Level Three: Element Creation Method
+            </h2>
+            <p className="mb-4">1. Big Bang Nucleosynthesis</p>
+            <p className="mb-4">2. Stellar Nucleosynthesis</p>
+            <p className="mb-4">3. Nuclear Fusion</p>
+            <p className="mb-4">4. Nuclear Fission</p>
+            <p className="mb-4">5. Particle Accelerators</p>
             <Button
               onClick={toggleLevelThree}
               className="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-700"
