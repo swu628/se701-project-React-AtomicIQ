@@ -11,6 +11,7 @@ import {
     TableHead,
 } from "../components/ui/table";
 import {ElementData} from "~/types/element";
+import ElementModal from "~/components/ElementModal.tsx";
 
 const PeriodicTable = () => {
     const [showModal, setShowModal] = useState(false);
@@ -140,32 +141,7 @@ const PeriodicTable = () => {
                 </div>
             )}
             {showModal && selectedElement && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white rounded-lg p-8 max-w-md">
-                        <h2 className="text-2xl font-bold mb-4">{selectedElement.name}</h2>
-                        <p className="mb-2">
-                            <strong>Symbol:</strong> {selectedElement.symbol}
-                        </p>
-                        <p className="mb-2">
-                            <strong>Number:</strong> {selectedElement.number}
-                        </p>
-                        <p className="mb-2">
-                            <strong>Group:</strong> {selectedElement.group}
-                        </p>
-                        <p className="mb-2">
-                            <strong>Period:</strong> {selectedElement.period}
-                        </p>
-                        <p>
-                            <strong>Fun Fact:</strong> {selectedElement.funFact}
-                        </p>
-                        <button
-                            className="mt-6 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors duration-300"
-                            onClick={closeModal}
-                        >
-                            Close
-                        </button>
-                    </div>
-                </div>
+                <ElementModal element={selectedElement} closeModal={closeModal} />
             )}
         </div>
     );
