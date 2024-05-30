@@ -54,17 +54,15 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
       const { answer, correct } = answers[currentIndex];
       setUserAnswer(answer);
       setIsCorrect(correct);
-      setIsSubmitted(true);
-      setIsFlipped(true);
+      setIsSubmitted(answer !== ""); // Only set isSubmitted to true if the answer is not empty
+      setIsFlipped(answer !== ""); // Only set isFlipped to true if the answer is not empty
     } else {
       setUserAnswer("");
       setIsCorrect(null);
       setIsSubmitted(false);
       setIsFlipped(false);
     }
-    setTimeout(() => {
-      setCardBack(currentCard.backSide);
-    }, 150);
+    setCardBack(currentCard.backSide); // Update cardBack state directly
   }, [currentIndex, currentCard, answers]);
 
   const handleFlip = () => {
@@ -101,6 +99,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
       setProgress(((currentIndex + 1) / total) * 100);
       setErrorMessage("");
       setIsSubmitted(false);
+      setIsCorrect(null); // Reset isCorrect when moving to the next question
       // navigate to the result page when the user reached to the last question and clicked on the next button
       setIsFlipped(false);
       if ((currentIndex + 1) % groupSize === 0) {
@@ -121,18 +120,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
       setCurrentIndex((prev) => prev - 1);
       setProgress(((currentIndex - 1) / total) * 100);
       setErrorMessage("");
-      const previousAnswer = answers[currentIndex - 1];
-      if (previousAnswer && previousAnswer.answer === "") {
-        setIsSubmitted(false);
-        setIsCorrect(null);
-        setIsFlipped(false);
-        setUserAnswer("");
-      } else {
-        setIsSubmitted(true);
-        setIsCorrect(previousAnswer.correct);
-        setIsFlipped(true);
-        setUserAnswer(previousAnswer.answer);
-      }
+      setIsCorrect(null); // Reset isCorrect when moving to the previous question
     }
   };
 
@@ -247,7 +235,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
             } text-black`}
             placeholder="Enter your answer"
             required
-            disabled={isSubmitted}
+            disabled={isSubmitted && userAnswer !== ""}
           />
           <Button
             type="submit"
@@ -258,23 +246,27 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
                   : "bg-red-500"
                 : "bg-blue-500"
             }`}
-            disabled={isSubmitted}
+            disabled={isSubmitted && userAnswer !== ""}
           >
             Submit
           </Button>
         </form>
-        {isCorrect !== null && (
-          <div
-            className={`text-lg ${
-              isCorrect ? "text-green-500" : "text-red-500"
-            } mt-4 text-center`}
-          >
-            {isCorrect ? "Well done :)" : "Try again later :("}
-          </div>
-        )}
-        {errorMessage && (
-          <div className="text-red-500 text-lg mt-4">{errorMessage}</div>
-        )}
+        <div className="relative h-10 mt-4">
+          {isCorrect !== null && isSubmitted && userAnswer !== "" && (
+            <div
+              className={`text-lg ${
+                isCorrect ? "text-green-500" : "text-red-500"
+              } absolute inset-0 flex items-center justify-center`}
+            >
+              {isCorrect ? "Well done :)" : "Try again later :("}
+            </div>
+          )}
+          {errorMessage && (
+            <div className="text-red-500 text-lg absolute inset-0 flex items-center justify-center">
+              {errorMessage}
+            </div>
+          )}
+        </div>
         <div className="flex items-center justify-center space-x-4 mt-10">
           <Button
             onClick={handleBack}
