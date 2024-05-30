@@ -32,7 +32,7 @@ function App() {
           }
         />
         <Route
-          path="/quiz/:quizId/results"
+          path="/flashcard/:quizId/results"
           element={
             <>
               <Nav />
@@ -77,11 +77,11 @@ function App() {
           }
         />
         <Route
-          path="/flashcard"
+          path="/flashcard/:quizId/"
           element={
             <>
               <Nav />
-              <FlashCard cardData={flashcards[0].questions} />
+              <FlashCard cardData={flashcards[0]} />
             </>
           }
         />

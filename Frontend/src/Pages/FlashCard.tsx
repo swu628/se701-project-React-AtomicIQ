@@ -11,7 +11,12 @@ import correctSoundFile from "../sounds/rightanswer.mp3";
 import incorrectSoundFile from "../sounds/wronganswer.mp3";
 
 type FlashcardProps = {
-  cardData: Array<{ id: number; frontSide: string; backSide: string }>;
+  cardData: {
+    id: number;
+    level: number;
+    title: string;
+    questions: Array<{ id: number; frontSide: string; backSide: string }>;
+  };
 };
 
 export type AnswerData = {
@@ -27,7 +32,7 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number>(startIndex);
   const [progress, setProgress] = useState<number>(
-    (startIndex / cardData.length) * 100
+    (startIndex / cardData.questions.length) * 100
   );
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -39,9 +44,12 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   const correctSound = new Audio(correctSoundFile);
   const incorrectSound = new Audio(incorrectSoundFile);
 
-  const total = cardData.length;
+  const total = cardData.questions.length;
   const groupSize = total;
-  const currentCard = cardData[currentIndex] || { frontSide: "", backSide: "" };
+  const currentCard = cardData.questions[currentIndex] || {
+    frontSide: "",
+    backSide: "",
+  };
   const [cardBack, setCardBack] = useState<string>(currentCard.backSide);
 
   useEffect(() => {
@@ -81,12 +89,12 @@ const FlashCard = ({ cardData }: FlashcardProps) => {
   };
 
   const navigateToResults = (
-    currentIndex: number,
+    _currentIndex: number,
     newAnswers: AnswerData[]
   ) => {
     const sliceStart = startIndex;
     const sliceEnd = sliceStart + groupSize;
-    navigate(`/quiz/${Math.floor((currentIndex + 1) / groupSize)}/results`, {
+    navigate(`/flashcard/${cardData.id}/results`, {
       state: {
         answers: newAnswers.slice(sliceStart, sliceEnd).filter(Boolean),
       },

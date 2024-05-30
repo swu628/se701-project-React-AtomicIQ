@@ -107,7 +107,7 @@ export default function Results() {
   }, [answers]);
 
   const handleRetakeQuiz = () => {
-    navigate("/flashcard");
+    navigate(`/flashcard/${quizId}`);
   };
 
   const handleNextQuiz = () => {

@@ -68,7 +68,7 @@ export default function Home() {
           flex={1}
           justifyContent="center"
         >
-          <Link to="/flashcard" style={{ textDecoration: "none" }}>
+          <Link to="/flashcard/0" style={{ textDecoration: "none" }}>
             <Button sx={buttonStyles}>FlashCard</Button>
           </Link>
           <Link to="/wordle" style={{ textDecoration: "none" }}>
