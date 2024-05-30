@@ -110,7 +110,7 @@ export default function Home() {
             to="/wordle"
             style={{ textDecoration: "none", marginBottom: "2rem" }}
           >
-            <Button sx={buttonStyles}>Wordle</Button>
+            <Button sx={buttonStyles}>Elementle</Button>
           </Link>
         </Stack>
       </Container>

@@ -173,15 +173,15 @@ export default function Results() {
       // Wordle Solver: complete n origin quiz
       if (numWordle === 1 && !session.badges.includes(22)) {
         session.badges.push(22);
-        showSnackbar("Wordle Solver: Completed 1 wordle quiz!");
+        showSnackbar("Elementle Solver: Completed 1 elementle quiz!");
       }
       if (numWordle === 5 && !session.badges.includes(23)) {
         session.badges.push(23);
-        showSnackbar("Wordle Solver: Completed 5 wordle quizzes!");
+        showSnackbar("Elementle Solver: Completed 5 elementle quizzes!");
       }
       if (numWordle === 10 && !session.badges.includes(24)) {
         session.badges.push(24);
-        showSnackbar("Wordle Solver: Completed 10 wordle quizzes!");
+        showSnackbar("Elementle Solver: Completed 10 elementle quizzes!");
       }
       // Elements Master: achieve n% or above in a flash card quiz
       if (

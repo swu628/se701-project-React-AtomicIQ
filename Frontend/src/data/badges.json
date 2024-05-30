@@ -134,19 +134,19 @@
   {
     "id": 22,
     "icon": "AppsIcon",
-    "name": "Wordle Solver I",
-    "description": "Complete 1 wordle quiz"
+    "name": "Elementle Solver I",
+    "description": "Complete 1 elementle quiz"
   },
   {
     "id": 23,
     "icon": "AppsIcon",
-    "name": "Wordle Solver II",
-    "description": "Complete 5 wordle quizzes"
+    "name": "Elementle Solver II",
+    "description": "Complete 5 elementle quizzes"
   },
   {
     "id": 24,
     "icon": "AppsIcon",
-    "name": "Wordle Solver III",
-    "description": "Complete 10 wordle quizzes"
+    "name": "Elementle Solver III",
+    "description": "Complete 10 elementle quizzes"
   }
 ]

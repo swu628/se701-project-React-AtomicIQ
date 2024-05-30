@@ -90,7 +90,7 @@ export default function Points({
           </CircleContainer>
           <CircleContainer>
             <Tooltip title="Number of wordle quiz completion" arrow>
-              <Label>Wordle</Label>
+              <Label>Elementle</Label>
             </Tooltip>
             <WinnerCount>{numWordle}</WinnerCount>
           </CircleContainer>
@@ -108,7 +108,7 @@ export default function Points({
         >
           <CircleContainer>
             <Tooltip title="Number of completed quizzes" arrow>
-              <Label>Quizzes</Label>
+              <Label>Questions</Label>
             </Tooltip>
             <WinnerCount>{totalQuestions}</WinnerCount>
           </CircleContainer>
