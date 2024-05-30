@@ -98,6 +98,11 @@ export default function Results() {
         session.progress = 0;
       }
 
+      // Level cap since no lv3 questions (remember to remove this if statement)
+      if (session.level >= 3) {
+        session.progress = 0;
+      }
+
       // Update quiz points
       session.questionPoints.correctQuestions += resultsValues.correct;
       session.questionPoints.incorrectQuestions += resultsValues.incorrect;
