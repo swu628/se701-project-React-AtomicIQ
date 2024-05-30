@@ -85,9 +85,9 @@ export default function Results() {
         resultsValues.incorrect === 0 &&
         resultsValues.skipped === 0
       ) {
-        session.progress = 100;
+        session.progress += 100;
       } else {
-        session.progress = Math.floor(
+        session.progress += Math.floor(
           (resultsValues.correct /
             (resultsValues.correct +
               resultsValues.incorrect +
@@ -97,14 +97,15 @@ export default function Results() {
       }
 
       // Update level if possible
-      if (session.progress >= 100) {
+      while (session.progress >= 100) {
         session.level += 1;
-        session.progress = 0;
-      }
+        session.progress = session.progress - 100;
 
-      // Level cap since no lv3 questions (remember to remove this if statement)
-      if (session.level >= 3) {
-        session.progress = 0;
+        // Level cap since no lv3 questions (remember to remove this if statement)
+        if (session.level >= 3) {
+          session.progress = 0;
+          session.level = 3;
+        }
       }
 
       // Update quiz points
@@ -123,6 +124,23 @@ export default function Results() {
         session.questionPoints.consecutiveQuestions = 0;
       }
 
+      // Append latest quiz results
+      if (quizType === "flashcard") {
+        session.latestQuizResults.push({
+          quizType: "flashcard",
+          correct: resultsValues.correct,
+          incorrect: resultsValues.incorrect,
+          skipped: resultsValues.skipped,
+        });
+      } else if (quizType === "origin") {
+        session.latestQuizResults.push({
+          quizType: "wordle",
+          correct: resultsValues.correct,
+          incorrect: resultsValues.incorrect,
+          skipped: -1,
+        });
+      }
+
       updateBadges(session);
       // Initialize user points
       // resetUserPoints(session);
@@ -135,6 +153,8 @@ export default function Results() {
       const { correctQuestions, incorrectQuestions, consecutiveQuestions } =
         session.questionPoints;
       const { numFlashcard, numWordle } = session.quizPoints;
+      const { quizType, correct, incorrect, skipped } =
+        session.latestQuizResults[session.latestQuizResults.length - 1];
       const { level } = session;
 
       // Quiz Wizard: complete n flashcard quiz
@@ -153,19 +173,20 @@ export default function Results() {
       // Wordle Solver: complete n origin quiz
       if (numWordle === 1 && !session.badges.includes(22)) {
         session.badges.push(22);
-        showSnackbar("Wordle Solver: Completed 1 origin quiz!");
+        showSnackbar("Wordle Solver: Completed 1 wordle quiz!");
       }
       if (numWordle === 5 && !session.badges.includes(23)) {
         session.badges.push(23);
-        showSnackbar("Wordle Solver: Completed 5 origin quizzes!");
+        showSnackbar("Wordle Solver: Completed 5 wordle quizzes!");
       }
       if (numWordle === 10 && !session.badges.includes(24)) {
         session.badges.push(24);
-        showSnackbar("Wordle Solver: Completed 10 origin quizzes!");
+        showSnackbar("Wordle Solver: Completed 10 wordle quizzes!");
       }
       // Elements Master: achieve n% or above in a flash card quiz
       if (
-        correctQuestions / incorrectQuestions >= 0.8 &&
+        quizType === "flashcard" &&
+        correct / (correct + incorrect + skipped) >= 0.8 &&
         !session.badges.includes(7)
       ) {
         session.badges.push(7);
@@ -174,7 +195,8 @@ export default function Results() {
         );
       }
       if (
-        correctQuestions / incorrectQuestions >= 0.9 &&
+        quizType === "flashcard" &&
+        correct / (correct + incorrect + skipped) >= 0.9 &&
         !session.badges.includes(8)
       ) {
         session.badges.push(8);
@@ -183,7 +205,8 @@ export default function Results() {
         );
       }
       if (
-        correctQuestions / incorrectQuestions >= 1 &&
+        quizType === "flashcard" &&
+        correct / (correct + incorrect + skipped) >= 1 &&
         !session.badges.includes(9)
       ) {
         session.badges.push(9);

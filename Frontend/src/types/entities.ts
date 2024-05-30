@@ -22,4 +22,10 @@ export interface UserSession {
     numFlashcard: number;
     numWordle: number;
   };
+  latestQuizResults: {
+    quizType: string;
+    correct: number;
+    incorrect: number;
+    skipped: number;
+  }[];
 }
