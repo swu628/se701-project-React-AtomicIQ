@@ -9,6 +9,7 @@ import {
 import { Button } from "../components/ui/button";
 import { Progress } from "../components/ui/progress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import {
   faAtom,
   faFlask,
@@ -21,6 +22,7 @@ import {
 import Table from "~/components/Table";
 
 export default function Wiki() {
+  const navigate = useNavigate();
   useEffect(() => {
     document.body.classList.add("backgroundImage");
 
@@ -28,6 +30,10 @@ export default function Wiki() {
       document.body.classList.remove("backgroundImage");
     };
   }, []);
+  const handleButtonClick = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    navigate("/state_activity");
+  };
 
   return (
     <div>
@@ -72,12 +78,15 @@ export default function Wiki() {
                 <Button variant="outline">Go to Activity</Button>
               </div>
             </Link>
-            <Link to="/diffusion">
+
+            <Link to="/room-temperature-pressure">
               <div className="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors">
                 <div className="flex items-center space-x-4">
                   <FontAwesomeIcon icon={faRulerCombined} size="2x" />
                   <div>
-                    <span className="font-semibold">1.2 Diffusion</span>
+                    <span className="font-semibold">
+                      1.2 Room Temperature Pressure
+                    </span>
                     <Progress value={25} className="w-48 h-6 mt-2">
                       25%
                     </Progress>
