@@ -193,5 +193,86 @@
       }
     ]
   },
-  { "id": 2, "level": 3, "title": "Element Creation Method", "questions": [] }
+  {
+    "id": 2,
+    "level": 3,
+    "title": "Element Formation Method",
+    "questions": [
+      {
+        "id": 0,
+        "frontSide": "In what process was Hydrogen (H) created?",
+        "backSide": "Big Bang Fusion"
+      },
+      {
+        "id": 1,
+        "frontSide": "In what process was Helium (He) created?",
+        "backSide": "Big Bang Fusion|Exploding Massive Stars|Dying Low Mass Stars"
+      },
+      {
+        "id": 2,
+        "frontSide": "In what process was Lithium (Li) created?",
+        "backSide": "Big Bang Fusion|Cosmic Ray Fission|Dying Low Mass Stars"
+      },
+      {
+        "id": 3,
+        "frontSide": "In what process was Beryllium (Be) created?",
+        "backSide": "Cosmic Ray Fission"
+      },
+      {
+        "id": 4,
+        "frontSide": "In what process was Boron (B) created?",
+        "backSide": "Cosmic Ray Fission"
+      },
+      {
+        "id": 5,
+        "frontSide": "In what process was Carbon (C) created?",
+        "backSide": "Exploding Massive Stars|Dying Low Mass Stars"
+      },
+      {
+        "id": 6,
+        "frontSide": "In what process was Nitrogen (N) created?",
+        "backSide": "Exploding Massive Stars|Dying Low Mass Stars"
+      },
+      {
+        "id": 7,
+        "frontSide": "In what process was Oxygen (O) created?",
+        "backSide": "Exploding Massive Stars"
+      },
+      {
+        "id": 8,
+        "frontSide": "In what process was Fluorine (F) created?",
+        "backSide": "Exploding Massive Stars"
+      },
+      {
+        "id": 9,
+        "frontSide": "Name one element that is formed through Big Bang Fusion only?",
+        "backSide": "Hydrogen"
+      },
+      {
+        "id": 10,
+        "frontSide": "Name one element that is formed through all of Big Bang Fusion, Exploding Massive Stars, and Dyling Low Mass Stars?",
+        "backSide": "Helium"
+      },
+      {
+        "id": 11,
+        "frontSide": "Name one element that is formed through all of Big Bang Fusion, Cosmic Ray Fission, and Dyling Low Mass Stars?",
+        "backSide": "Lithium"
+      },
+      {
+        "id": 12,
+        "frontSide": "Name one element that is formed through Cosmic Ray Fission only?",
+        "backSide": "Beryllium|Boron"
+      },
+      {
+        "id": 13,
+        "frontSide": "Name one element that is formed through all of Exploding Massive Stars and Dying Low Mass Stars?",
+        "backSide": "Carbon|Nitrogen"
+      },
+      {
+        "id": 14,
+        "frontSide": "Name one element that is formed through Exploding Massive Stars only?",
+        "backSide": "Oxygen|Fluorine"
+      }
+    ]
+  }
 ]

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -9,7 +9,6 @@ import {
 import { Button } from "../components/ui/button";
 import { Progress } from "../components/ui/progress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
 import {
   faAtom,
   faFlask,
@@ -20,9 +19,22 @@ import {
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 import Table from "~/components/Table";
+import NotImplementedDialog from "~/components/NotImplementedDialog";
 
 export default function Wiki() {
-  const navigate = useNavigate();
+  // State for managing Dialog visibility
+  const [openNotImplemented, setOpenNotImplemented] = useState(false);
+
+  const handleOpenNotImplemented = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    setOpenNotImplemented(true);
+  };
+  const handleCloseNotImplemented = () => {
+    setOpenNotImplemented(false);
+  };
+
   useEffect(() => {
     document.body.classList.add("backgroundImage");
 
@@ -30,10 +42,6 @@ export default function Wiki() {
       document.body.classList.remove("backgroundImage");
     };
   }, []);
-  const handleButtonClick = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-    navigate("/state_activity");
-  };
 
   return (
     <div>
@@ -106,7 +114,10 @@ export default function Wiki() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <Link to="/elements-compounds-mixtures">
+            <Link
+              to="/elements-compounds-mixtures"
+              onClick={handleOpenNotImplemented}
+            >
               <div className="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors">
                 <div className="flex items-center space-x-4">
                   <FontAwesomeIcon icon={faFlask} size="2x" />
@@ -122,7 +133,7 @@ export default function Wiki() {
                 <Button variant="outline">Go to Activity</Button>
               </div>
             </Link>
-            <Link to="/atomic-structure">
+            <Link to="/atomic-structure" onClick={handleOpenNotImplemented}>
               <div className="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors">
                 <div className="flex items-center space-x-4">
                   <FontAwesomeIcon icon={faAtom} size="2x" />
@@ -138,7 +149,7 @@ export default function Wiki() {
                 <Button variant="outline">Go to Activity</Button>
               </div>
             </Link>
-            <Link to="/isotopes">
+            <Link to="/isotopes" onClick={handleOpenNotImplemented}>
               <div className="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors">
                 <div className="flex items-center space-x-4">
                   <FontAwesomeIcon icon={faMicroscope} size="2x" />
@@ -152,7 +163,7 @@ export default function Wiki() {
                 <Button variant="outline">Go to Activity</Button>
               </div>
             </Link>
-            <Link to="/ionic-bonds">
+            <Link to="/ionic-bonds" onClick={handleOpenNotImplemented}>
               <div className="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors">
                 <div className="flex items-center space-x-4">
                   <FontAwesomeIcon icon={faIcons} size="2x" />
@@ -168,7 +179,7 @@ export default function Wiki() {
                 <Button variant="outline">Go to Activity</Button>
               </div>
             </Link>
-            <Link to="/covalent-bonds">
+            <Link to="/covalent-bonds" onClick={handleOpenNotImplemented}>
               <div className="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors">
                 <div className="flex items-center space-x-4">
                   <FontAwesomeIcon icon={faMicroscope} size="2x" />
@@ -184,7 +195,7 @@ export default function Wiki() {
                 <Button variant="outline">Go to Activity</Button>
               </div>
             </Link>
-            <Link to="/giant-covalent">
+            <Link to="/giant-covalent" onClick={handleOpenNotImplemented}>
               <div className="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors">
                 <div className="flex items-center space-x-4">
                   <FontAwesomeIcon icon={faShapes} size="2x" />
@@ -200,7 +211,7 @@ export default function Wiki() {
                 <Button variant="outline">Go to Activity</Button>
               </div>
             </Link>
-            <Link to="/metallic-bonding">
+            <Link to="/metallic-bonding" onClick={handleOpenNotImplemented}>
               <div className="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors">
                 <div className="flex items-center space-x-4">
                   <FontAwesomeIcon icon={faAtom} size="2x" />
@@ -222,10 +233,12 @@ export default function Wiki() {
           <CardTitle>3. Explore Elements</CardTitle>
         </CardHeader>
         <CardContent>
-          <Table/>
+          <Table />
           <div className="flex justify-center space-x-5">
             <div className="bg-alkaline-earth-metal px-3 py-1">
-              <h1 className=" text-white text-center">{"alkaline earth metal"}</h1>
+              <h1 className=" text-white text-center">
+                {"alkaline earth metal"}
+              </h1>
             </div>
             <div className="bg-alkali-metal px-3 py-1">
               <h1 className="text-white text-center">{"alkali metal"}</h1>
@@ -234,7 +247,9 @@ export default function Wiki() {
               <h1 className="text-white text-center">{"transition metal"}</h1>
             </div>
             <div className="bg-polyatomic-nonmetal item px-3 py-1">
-              <h1 className="text-white text-center">{"polyatomic nonmetal"}</h1>
+              <h1 className="text-white text-center">
+                {"polyatomic nonmetal"}
+              </h1>
             </div>
             <div className="bg-noble-gas item px-3 py-1">
               <h1 className="text-white text-center">{"noble gas"}</h1>
@@ -248,6 +263,10 @@ export default function Wiki() {
           </div>
         </CardContent>
       </Card>
+      <NotImplementedDialog
+        open={openNotImplemented}
+        handleClose={handleCloseNotImplemented}
+      />
     </div>
   );
 }

@@ -34,7 +34,7 @@ const FlashCard = () => {
   if (cardData.questions.length > 10) {
     cardData.questions = cardData.questions
       .sort(() => 0.5 - Math.random())
-      .slice(0, 9);
+      .slice(0, 10);
   }
   const { startIndex = 0 } = location.state || {};
   const [isFlipped, setIsFlipped] = useState(false);
