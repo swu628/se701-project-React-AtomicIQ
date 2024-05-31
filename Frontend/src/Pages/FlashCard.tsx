@@ -30,7 +30,12 @@ const FlashCard = () => {
   const location = useLocation();
   const params = useParams<{ quizId: string }>();
   const quizId = params.quizId || "0";
-  const cardData: FlashcardQuiz = flashcards[parseInt(quizId)];
+  let cardData: FlashcardQuiz = flashcards[parseInt(quizId)];
+  if (cardData.questions.length > 10) {
+    cardData.questions = cardData.questions
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 9);
+  }
   const { startIndex = 0 } = location.state || {};
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
