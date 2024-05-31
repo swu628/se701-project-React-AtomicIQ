@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
-import Confetti from 'react-confetti';
+import React, { useState } from "react";
+import Confetti from "react-confetti";
 import { Slider } from "./ui/slider";
 import { Separator } from "./ui/separator";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
 import { Textarea } from "./ui/textarea";
 import ParticleSimulation from './ParticleSimulation';
@@ -235,7 +242,10 @@ const WaterStateSimulator = () => {
                   onCheckedChange={() => handleCheckboxChange(objective.id)}
                   disabled
                 />
-                <label htmlFor={`objective-${objective.id}`} className={`${objective.completed ? 'line-through' : ''}`}>
+                <label
+                  htmlFor={`objective-${objective.id}`}
+                  className={`${objective.completed ? "line-through" : ""}`}
+                >
                   {objective.text}
                 </label>
               </div>
@@ -259,7 +269,15 @@ const validateAnswer = (userAnswer, correctAnswer) => {
 type SliderProps = React.ComponentProps<typeof Slider>;
 
 const SliderDemo = ({ className, ...props }: SliderProps) => {
-  return <Slider defaultValue={[50]} max={100} step={1} {...props} className={`w-full ${className}`} />;
+  return (
+    <Slider
+      defaultValue={[50]}
+      max={100}
+      step={1}
+      {...props}
+      className={`w-full ${className}`}
+    />
+  );
 };
 
 

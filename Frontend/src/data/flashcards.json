@@ -1,43 +1,197 @@
 [
-    {
-      "frontSide": "H",
-      "backSide": "Hydrogen"
-    },
-    {
-      "frontSide": "He",
-      "backSide": "Helium"
-    },
-    {
-      "frontSide": "Li",
-      "backSide": "Lithium"
-    },
-    {
-      "frontSide": "Be",
-      "backSide": "Beryllium"
-    },
-    {
-      "frontSide": "B",
-      "backSide": "Boron"
-    },
-    {
-      "frontSide": "C",
-      "backSide": "Carbon"
-    },
-    {
-      "frontSide": "N",
-      "backSide": "Nitrogen"
-    },
-    {
-      "frontSide": "O",
-      "backSide": "Oxygen"
-    },
-    {
-      "frontSide": "F",
-      "backSide": "Fluorine"
-    },
-    {
-      "frontSide": "Ne",
-      "backSide": "Neon"
-    }
-  ]
-  
+  {
+    "id": 0,
+    "level": 1,
+    "title": "States of Matter",
+    "questions": [
+      {
+        "id": 0,
+        "frontSide": "What is the state of Hydrogen (H) at RTP?",
+        "backSide": "Gas"
+      },
+      {
+        "id": 1,
+        "frontSide": "What is the state of Helium (He) at RTP?",
+        "backSide": "Gas"
+      },
+      {
+        "id": 2,
+        "frontSide": "What is the state of Lithium (Li) at RTP?",
+        "backSide": "Solid"
+      },
+      {
+        "id": 3,
+        "frontSide": "What is the state of Beryllium (Be) at RTP?",
+        "backSide": "Solid"
+      },
+      {
+        "id": 4,
+        "frontSide": "What is the state of Boron (B) at RTP?",
+        "backSide": "Solid"
+      },
+      {
+        "id": 5,
+        "frontSide": "What is the state of Carbon (C) at RTP?",
+        "backSide": "Solid"
+      },
+      {
+        "id": 6,
+        "frontSide": "What is the state of Nitrogen (N) at RTP?",
+        "backSide": "Gas"
+      },
+      {
+        "id": 7,
+        "frontSide": "What is the state of Oxygen (O) at RTP?",
+        "backSide": "Gas"
+      },
+      {
+        "id": 8,
+        "frontSide": "What is the state of Fluorine (F) at RTP?",
+        "backSide": "Gas"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "level": 2,
+    "title": "Groups and Periods",
+    "questions": [
+      {
+        "id": 0,
+        "frontSide": "What group is Hydrogen (H) in?",
+        "backSide": "1|One"
+      },
+      {
+        "id": 1,
+        "frontSide": "What group is Helium (He) in?",
+        "backSide": "18|Eighteen"
+      },
+      {
+        "id": 2,
+        "frontSide": "What group is Lithium (Li) in?",
+        "backSide": "1|One"
+      },
+      {
+        "id": 3,
+        "frontSide": "What group is Beryllium (Be) in?",
+        "backSide": "2|Two"
+      },
+      {
+        "id": 4,
+        "frontSide": "What group is Boron (B) in?",
+        "backSide": "13|Thirteen"
+      },
+      {
+        "id": 5,
+        "frontSide": "What group is Carbon (C) in?",
+        "backSide": "14|Fourteen"
+      },
+      {
+        "id": 6,
+        "frontSide": "What group is Nitrogen (N) in?",
+        "backSide": "15|Fifteen"
+      },
+      {
+        "id": 7,
+        "frontSide": "What group is Oxygen (O) in?",
+        "backSide": "16|Sixteen"
+      },
+      {
+        "id": 8,
+        "frontSide": "What group is Fluorine (F) in?",
+        "backSide": "17|Seventeen"
+      },
+      {
+        "id": 9,
+        "frontSide": "What period is Hydrogen (H) in?",
+        "backSide": "1|One"
+      },
+      {
+        "id": 10,
+        "frontSide": "What period is Helium (He) in?",
+        "backSide": "1|One"
+      },
+      {
+        "id": 11,
+        "frontSide": "What period is Lithium (Li) in?",
+        "backSide": "2|Two"
+      },
+      {
+        "id": 12,
+        "frontSide": "What period is Beryllium (Be) in?",
+        "backSide": "2|Two"
+      },
+      {
+        "id": 13,
+        "frontSide": "What period is Boron (B) in?",
+        "backSide": "2|Two"
+      },
+      {
+        "id": 14,
+        "frontSide": "What period is Carbon (C) in?",
+        "backSide": "2|Two"
+      },
+      {
+        "id": 15,
+        "frontSide": "What period is Nitrogen (N) in?",
+        "backSide": "2|Two"
+      },
+      {
+        "id": 16,
+        "frontSide": "What period is Oxygen (O) in?",
+        "backSide": "2|Two"
+      },
+      {
+        "id": 17,
+        "frontSide": "What period is Fluorine (F) in?",
+        "backSide": "2|Two"
+      },
+      {
+        "id": 18,
+        "frontSide": "What element is in group 1 and period 1?",
+        "backSide": "Hydrogen"
+      },
+      {
+        "id": 19,
+        "frontSide": "What element is in group 18 and period 1?",
+        "backSide": "Helium"
+      },
+      {
+        "id": 20,
+        "frontSide": "What element is in group 1 and period 2?",
+        "backSide": "Lithium"
+      },
+      {
+        "id": 21,
+        "frontSide": "What element is in group 2 and period 2?",
+        "backSide": "Beryllium"
+      },
+      {
+        "id": 22,
+        "frontSide": "What element is in group 13 and period 2?",
+        "backSide": "Boron"
+      },
+      {
+        "id": 23,
+        "frontSide": "What element is in group 14 and period 2?",
+        "backSide": "Carbon"
+      },
+      {
+        "id": 24,
+        "frontSide": "What element is in group 15 and period 2?",
+        "backSide": "Nitrogen"
+      },
+      {
+        "id": 25,
+        "frontSide": "What element is in group 16 and period 2?",
+        "backSide": "Oxygen"
+      },
+      {
+        "id": 26,
+        "frontSide": "What element is in group 17 and period 2?",
+        "backSide": "Fluorine"
+      }
+    ]
+  },
+  { "id": 2, "level": 3, "title": "Element Creation Method", "questions": [] }
+]

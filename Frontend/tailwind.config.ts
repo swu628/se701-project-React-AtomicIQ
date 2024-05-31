@@ -19,6 +19,15 @@ const config = {
     },
     extend: {
       colors: {
+        'diatomic-nonmetal': '#E6D61A',
+        'noble-gas': '#F5A623',
+        'alkali-metal': '#D0021B',
+        'alkaline-earth-metal': '#2B62A2',
+        'Metalloid': '#417505',
+        'polyatomic-nonmetal': '#E6D61A',
+        'lanthanide': '#ADADAD',
+        'actinide': '#ADADAD',
+        'transition-metal': '#ADADAD',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

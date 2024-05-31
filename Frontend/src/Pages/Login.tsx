@@ -4,12 +4,7 @@ import { Button } from "~/components/ui/button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UserCircleIcon, LockClosedIcon } from "@heroicons/react/20/solid";
 import Loader from "~/components/Loader/FullScreenLoader";
-
-interface UserSession {
-  username: string;
-  password: string;
-  // TODO: add more attributes
-}
+import { UserSession } from "~/types/entities";
 
 function Login() {
   const [username, setUsername] = useState("");

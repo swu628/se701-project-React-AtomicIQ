@@ -1,5 +1,4 @@
-import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Nav from "./Nav";
 import Home from "./Pages/Home";
 import Levels from "./Pages/Levels";
@@ -10,7 +9,11 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import FlashCard from "./Pages/FlashCard";
 import Results from "./Pages/Results";
-import flashcards from "./data/flashcards.json"; // Import the JSON data
+import Wordle from "./Pages/Wordle";
+import StateActivity from "./Pages/StateActivity";
+import badges from "./data/badges.json";
+import { Element, ElementProperty } from "~/types/element";
+import "./App.css";
 
 function App() {
   return (
@@ -29,7 +32,7 @@ function App() {
           }
         />
         <Route
-          path="/quiz/:quizId/results"
+          path="/flashcard/:quizId/results"
           element={
             <>
               <Nav />
@@ -65,23 +68,83 @@ function App() {
           }
         />
         <Route
-          path="/profile"
+          path="/room-temperature-pressure"
           element={
             <>
               <Nav />
-              <Profile />
+              <StateActivity />
             </>
           }
         />
         <Route
-          path="/flashcard"
+          path="/profile"
           element={
             <>
               <Nav />
-              <FlashCard cardData={flashcards} />
+              <Profile badgeData={badges} />
             </>
           }
         />
+        <Route
+          path="/flashcard/:quizId/"
+          element={
+            <>
+              <Nav />
+              <FlashCard />
+            </>
+          }
+        />
+        <Route
+          path="/wordle"
+          element={
+            <>
+              <Nav />
+              <Wordle
+                allowedAttempts={5}
+                properties={[
+                  ElementProperty.Category,
+                  ElementProperty.Period,
+                  ElementProperty.Group,
+                  ElementProperty.Origins,
+                  ElementProperty.Countries,
+                  ElementProperty.Color,
+                  ElementProperty.NaturalPhase,
+                ]}
+                availableElements={[
+                  Element.H,
+                  Element.He,
+                  Element.Li,
+                  Element.Be,
+                  Element.B,
+                  Element.C,
+                  Element.N,
+                  Element.O,
+                  Element.F,
+                  // Element.Ne,
+                  // Element.Na,
+                  // Element.Mg,
+                  // Element.Al,
+                  // Element.Si,
+                  // Element.P,
+                  // Element.S,
+                  // Element.Cl,
+                  // Element.Ar,
+                  // Element.K,
+                  // Element.Ca,
+                ]}
+              />
+            </>
+          }
+        />
+          <Route
+              path="/wordle/results"
+              element={
+                  <>
+                      <Nav />
+                      <Results />
+                  </>
+              }
+          />
       </Routes>
     </div>
   );

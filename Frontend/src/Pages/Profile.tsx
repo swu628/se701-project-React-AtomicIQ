@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
-import { Container, Typography, Grid, Divider } from "@mui/material";
-import ProfileTitle from "~/components/Profile/ProfileTitle.tsx";
-import Skills from "~/components/Profile/Skills";
+import { Container, Divider, Stack } from "@mui/material";
+import ProfileTitle from "~/components/Profile/ProfileTitle";
 import Points from "~/components/Profile/Points";
 import Badges from "~/components/Profile/Badges";
+import Levels from "~/components/Profile/Levels";
+import { Badge, UserSession } from "~/types/entities";
+import Avatar from "~/components/Profile/Avatar";
 
-interface UserSession {
-  username: string;
-  password: string;
-  // TODO: add more attributes
+interface ProfileProps {
+  badgeData: Badge[];
 }
 
-export default function Profile() {
+export default function Profile({ badgeData }: ProfileProps) {
   const [userSession, setUserSession] = useState<UserSession | null>(null);
+  const [isUpdatingAvatar, setIsUpdatingAvatar] = useState<boolean>(false);
 
   useEffect(() => {
     // Retrieve currently logged in user
@@ -31,52 +32,57 @@ export default function Profile() {
   return (
     <Container
       sx={{
-        p: "2rem",
-        marginTop: 3,
-        marginBottom: 3,
-        minHeight: "75vh",
+        p: "2rem !important",
+        marginTop: "7.5vh",
+        marginBottom: "7.5vh",
         width: "80vw",
         boxShadow: 3,
         display: "flex",
         backgroundColor: "white",
+        borderRadius: 1,
       }}
     >
       {/* Left */}
-      <Grid
-        container
-        sx={{
-          flex: 5,
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <ProfileTitle username={userSession?.username ?? ""} />
-        <Grid
-          item
-          sx={{ display: "flex", flexDirection: "column", marginTop: 3 }}
-        >
-          <Skills />
-          <Points />
-        </Grid>
-      </Grid>
-
-      {/* Right */}
+      <Stack display="flex" flex={5} direction="column" mr="2rem" gap="1rem">
+        <ProfileTitle
+          username={userSession?.username ?? ""}
+          isUpdatingAvatar={isUpdatingAvatar}
+          setIsUpdatingAvatar={setIsUpdatingAvatar}
+        />
+        {isUpdatingAvatar ? (
+          <Avatar />
+        ) : (
+          <>
+            <Levels
+              level={userSession?.level ?? 0}
+              progress={userSession?.progress ?? 0}
+            />
+            <Points
+              correctQuestions={
+                userSession?.questionPoints.correctQuestions ?? 0
+              }
+              incorrectQuestions={
+                userSession?.questionPoints.incorrectQuestions ?? 0
+              }
+              totalQuestions={userSession?.questionPoints.totalQuestions ?? 0}
+              numFlashcard={userSession?.quizPoints.numFlashcard ?? 0}
+              numWordle={userSession?.quizPoints.numWordle ?? 0}
+              progress={userSession?.progress ?? 0}
+            />
+          </>
+        )}
+      </Stack>
       <Divider
         orientation="vertical"
         sx={{ borderColor: "black", borderWidth: "0.1vw", height: "auto" }}
       />
-      <Grid
-        container
-        sx={{ flex: 5, display: "flex", flexDirection: "column", marginTop: 3 }}
-      >
-        <Typography variant="h4" sx={{ alignSelf: "center" }}>
-          Badges
-        </Typography>
-        <Divider
-          sx={{ borderBottomWidth: 2, borderColor: "black", marginY: 1 }}
+      {/* Right */}
+      <Stack display="flex" flex={5} direction="column" ml="2rem">
+        <Badges
+          badgeData={badgeData}
+          existingBadges={userSession?.badges || []}
         />
-        <Badges />
-      </Grid>
+      </Stack>
     </Container>
   );
 }
