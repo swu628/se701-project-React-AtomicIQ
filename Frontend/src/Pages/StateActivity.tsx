@@ -18,7 +18,6 @@ function StateActivity() {
     { name: "Nitrogen", type: "Gas", category: "Non-metal" },
     { name: "Oxygen", type: "Gas", category: "Non-metal" },
     { name: "Fluorine", type: "Gas", category: "Non-metal" },
-    { name: "Neon", type: "Gas", category: "Non-metal" },
   ];
   const objectives = [
     "Describe the state of elements at room temperature.",
