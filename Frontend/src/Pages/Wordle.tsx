@@ -62,9 +62,9 @@ export default function Wordle({
       case ElementProperty.Group:
         return elementData.group === answer.group;
       case ElementProperty.Origins:
-        return elementData.origins === answer.origins;
+        return elementData.origins[0] === answer.origins[0] && elementData.origins[1] === answer.origins[1];
       case ElementProperty.Countries:
-        return elementData.countries === answer.countries;
+        return elementData.countries[0] === answer.countries[0] && elementData.countries[1] === answer.countries[1];
       case ElementProperty.Color:
         return elementData.color === answer.color;
       case ElementProperty.NaturalPhase:
