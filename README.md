@@ -15,7 +15,6 @@ git clone https://github.com/SOFTENG701-2024/assignment-7-group-project-group-5.
 2. Navigate to the `Frontend` directory in the terminal.
 
 ```bash
-# For window OS machines
 cd Frontend
 ```
 
